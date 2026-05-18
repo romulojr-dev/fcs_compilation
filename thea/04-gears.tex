@@ -1,0 +1,1038 @@
+% Spacing Setup
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\usetikzlibrary{arrows.meta}
+% TikZ Predetermined Elements 
+\tikzset{
+    coil spring/.pic={
+        % Parameters: length of straight lines and coil
+        \def\Lbefore{0.5}   % length of line before coil
+        \def\Lafter{0.5}    % length of line after coil
+        \def\coilLength{1}  % length of the coil itself
+
+        % Draw left line
+        \draw (0,0) -- (\Lbefore,0);
+
+        % Draw coil in the middle
+        \draw[decorate, decoration={coil, aspect=0.5, segment length=2mm, amplitude=2mm}]
+        (\Lbefore,0) -- (\Lbefore+\coilLength,0);
+
+
+        % Draw right line
+        \draw (\Lbefore+\coilLength,0) -- (\Lbefore+\coilLength+\Lafter,0);
+    },
+    damper/.pic={
+        % The damper drawing
+        \draw (0,0) -- (1.4,0);          
+        \draw (1.4,-0.2) -- (1.4,0.2);  
+        \draw (1.7,0.3) -- (1.7,-0.3) -- (1,-0.3);
+        \draw (1.7,0.3) -- (1,0.3);  
+        \draw (1.7,0) -- (2.8,0);       
+    },
+    curvedarrow/.pic={
+        \draw[<-, line width=1pt] (30:1cm) arc[start angle=30, end angle=100, radius=1cm];
+    },
+}
+
+% Problem 26
+\newpage
+\noindent\rule{\textwidth}{1pt}
+\noindent\textbf{Problem 26} \hfill
+\\ Determine the transfer function \(H(s) = \frac{\theta_3(s)}{T_i(s)}\) for the gear system shown below.
+
+\begin{figure}[!ht]
+\centering
+\resizebox{1\textwidth}{!}{%
+\begin{tikzpicture}[scale=1.4, transform shape, font=\large]
+    % walls
+    \draw[pattern=bricks] (-4,4) rectangle (-3,-2);
+    \draw[pattern=bricks] (12.4,4) rectangle (13.2,2);
+    \draw[pattern=bricks] (12.4,0) rectangle (13.2,-2);
+    
+    % k1
+    \pic [scale=0.8] at (-3,1) {coil spring};
+    \node at (-1,2.5) {$K=12\,\mathrm{N\cdotp m/rad}$};
+
+    % k2
+    \pic [scale=1.6] at (9.3,-0.5) {coil spring};
+    \node at (10.5,0) {$15\,\mathrm{N\cdotp m/rad}$};
+    
+    % fv1
+    \pic [scale=0.8] at (-1.5,1) {damper}; 
+    \node at (-0.8,-0.5) {$4\,\mathrm{N\cdotp m\cdotp s/rad}$};
+
+    % fv2
+    \pic [scale=1.2] at (9.1,3) {damper}; 
+    \node at (10.6,4) {$6\,\mathrm{N\cdotp m\cdotp s/rad}$};
+
+     % fv3
+   \pic [scale=1.1] at (9.3,-1.3) {damper}; 
+    \node at (10.5,-2) {$4\,\mathrm{N\cdotp m\cdotp s/rad}$};
+    
+    % j1
+    \draw (0.6,1) ellipse (0.3cm and 1cm);
+    \draw (0.6,2) -- (2.5,2);
+    \draw (0.6,0) -- (2.5,0);
+    \draw (2.5,2) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=1cm];
+    \node at (1.7,1) {$4\,\mathrm{kg\cdot m^2}$};
+
+    % j2
+    \draw (5.8,3) ellipse (0.3cm and 1cm);
+    \draw (5.8,4) -- (8.8,4);
+    \draw (5.8,2) -- (8.8,2);
+    \draw (8.8,4) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=1cm];
+    \node at (7.4,3) {$7\,\mathrm{kg\cdot m^2}$};
+
+    % j3
+    \draw (6,-1) ellipse (0.3cm and 1cm);
+    \draw (6,0) -- (9,0);
+    \draw (6,-2) -- (9,-2);
+    \draw (9,0) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=1cm];
+    \node at (7.5,-1) {$5\,\mathrm{kg\cdot m^2}$};
+    
+    % line
+    \draw (2.8,1) -- (4.3,1); 
+
+    % n1
+    \draw (4.3,3) -- (5.8,3);
+    \draw (4.3,3.7) -- (4.3,2.2);
+    \node at (3.5,3) {$N_1=8$};
+
+    % n2
+    \draw (4.3,1.8) -- (4.3,0.2);
+    \node at (5.3,1) {$N_2=12$};
+
+    % n3
+    \draw (4.3,-1) -- (6,-1);                 
+    \draw (4.3,-0.3) -- (4.3,-1.8);                
+    \node at (3.5,-1) {$N_g=10$};            
+
+    % torque
+    \draw[->, thick, color=cyan] (8,-2.3) arc[start angle=290, end angle=45, x radius=0.5cm, y radius=1.5cm];
+    \node at (8,1) {$T$};
+    
+\end{tikzpicture}
+}%
+\end{figure}
+
+\noindent\rule{\textwidth}{1pt}
+
+\textbf{Given:}
+\[
+J_1 = 4~\mathrm{kg\,m^2},\; J_2 = 7~\mathrm{kg\,m^2},\; J_3 = 5~\mathrm{kg\,m^2}
+\]
+\[
+K_1 = 12~\mathrm{N\,m/rad},\; K_2 = 15~\mathrm{N\,m/rad}
+\]
+\[
+B_1 = 4~\mathrm{N\,m\,s/rad},\; B_2 = 6~\mathrm{N\,m\,s/rad},\; B_3 = 4~\mathrm{N\,m\,s/rad}
+\]
+\[
+N_1 = 8,\; N_2 = 12,\; N_g = 10
+\]
+\[
+T \; \text{(applied to bottom inertia).}
+\]
+
+\textbf{Required:}
+\[
+H(s) = \frac{\theta_3(s)}{T_i(s)}
+\]
+
+\textbf{Solution:}
+
+Reflected inertias to shaft of \( J_3 \):
+\[
+J_1' = J_1 N_g^2 = 4 \cdot 10^2 = 400
+\]
+\[
+J_2' = J_2 \left( \frac{N_g}{N_1} \right)^2 = 7 \cdot \left( \frac{10}{8} \right)^2 = 7 \cdot \frac{100}{64} = \frac{700}{64}
+\]
+\[
+J_3 = 5
+\]
+
+Total equivalent inertia:
+\[
+J_{\text{eq}} = J_1' + J_2' + J_3 = 400 + \frac{700}{64} + 5 = \frac{26620}{64}
+\]
+
+Reflected spring constants:
+\[
+K_1' = K_1 N_g^2 = 12 \cdot 100 = 1200
+\]
+\[
+K_2 = 15
+\]
+
+Total equivalent stiffness:
+\[
+K_{\text{eq}} = K_1' + K_2 = 1200 + 15 = 1215
+\]
+
+Reflected damping:
+\[
+D_1' = D_1 N_g^2 = 4 \cdot 100 = 400
+\]
+\[
+D_2' = D_2 \left( \frac{N_g}{N_1} \right)^2 = 6 \cdot \frac{100}{64} = \frac{600}{64}
+\]
+\[
+D_3 = 4
+\]
+
+Total equivalent damping:
+\[
+D_{\text{eq}} = D_1' + D_2' + D_3 = 400 + \frac{600}{64} + 4 = \frac{26660}{64}
+\]
+
+Equation of motion:
+\[
+T(s) = J_{\text{eq}} s^2 \theta_3(s) + D_{\text{eq}} s \theta_3(s) + K_{\text{eq}} \theta_3(s)
+\]
+
+Transfer function:
+\[
+\frac{\theta_3(s)}{T(s)} = \frac{1}{J_{\text{eq}} s^2 + D_{\text{eq}} s + K_{\text{eq}}}
+\]
+
+Substitute values:
+\[
+\frac{\theta_3(s)}{T(s)} = \frac{1}{\frac{26620}{64} s^2 + \frac{26660}{64} s + 1215}
+\]
+
+Multiply numerator and denominator by 64:
+\[
+\frac{\theta_3(s)}{T(s)} = \frac{64}{26620 s^2 + 26660 s + 77760}
+\]
+
+\[
+\boxed{\frac{\theta_3(s)}{T(s)} = \frac{64}{26620 s^2 + 26660 s + 77760}}
+\]
+
+% Problem 27
+\newpage
+
+\noindent\rule{\textwidth}{1pt}
+\noindent\textbf{Problem 27} \hfill
+\\ Determine the transfer function \(H(s) = \frac{\omega_o(s)}{T_i(s)}\) for the gear system with gear ratio shown below.
+
+\begin{figure}[!ht]
+\centering
+\resizebox{1\textwidth}{!}{%
+\begin{tikzpicture}[scale=1.4, transform shape, font=\medium]
+    % walls
+    \draw[pattern=bricks] (-4,4) rectangle (-3,-2);
+    \draw[pattern=bricks] (12.4,4) rectangle (13.2,2);
+    \draw[pattern=bricks] (12.4,0) rectangle (13.2,-2);
+    
+    % k1
+    \pic [scale=1.8] at (-3,1.3) {coil spring};
+    \node at (-1,2.5) {$K=14\,\mathrm{N\cdotp m/rad}$};
+
+    % k2
+    \pic [scale=1.6] at (9.3,-0.5) {coil spring};
+    \node at (10.5,0) {$18\,\mathrm{N\cdotp m/rad}$};
+    
+    % fv1
+    \pic [scale=1.3] at (-3,0.6) {damper}; 
+    \node at (-0.8,-0.5) {$3.5\,\mathrm{N\cdotp m\cdotp s/rad}$};
+
+    % fv2
+    \pic [scale=1.2] at (9.1,3) {damper}; 
+    \node at (10.6,4) {$5.5\,\mathrm{N\cdotp m\cdotp s/rad}$};
+
+    % fv3
+    \pic [scale=1.1] at (9.3,-1.3) {damper}; 
+    \node at (10.5,-2) {$4.2\,\mathrm{N\cdotp m\cdotp s/rad}$};
+    
+    % j1
+    \draw (0.6,1) ellipse (0.3cm and 1cm);
+    \draw (0.6,2) -- (2.5,2);
+    \draw (0.6,0) -- (2.5,0);
+    \draw (2.5,2) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=1cm];
+    \node at (1.85,1) {$3.6\,\mathrm{kg\cdot m^2}$};
+
+    % j2
+    \draw (5.8,3) ellipse (0.3cm and 1cm);
+    \draw (5.8,4) -- (8.8,4);
+    \draw (5.8,2) -- (8.8,2);
+    \draw (8.8,4) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=1cm];
+    \node at (7.4,3) {$6.8\,\mathrm{kg\cdot m^2}$};
+
+    % j3
+    \draw (6,-1) ellipse (0.3cm and 1cm);
+    \draw (6,0) -- (9,0);
+    \draw (6,-2) -- (9,-2);
+    \draw (9,0) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=1cm];
+    \node at (7.5,-1) {$5.4\,\mathrm{kg\cdot m^2}$};
+    
+    % line
+    \draw (2.8,1) -- (4.3,1); 
+
+    % n1
+    \draw (4.3,3) -- (5.8,3);
+    \draw (4.3,3.7) -- (4.3,2.2);
+    \node at (3.5,3) {$N_1=9$};
+
+    % n2
+    \draw (4.3,1.8) -- (4.3,0.2);
+    \node at (5.3,1) {$N_2=13$};
+
+    % n3
+    \draw (4.3,-1) -- (6,-1);                 
+    \draw (4.3,-0.3) -- (4.3,-1.8);                
+    \node at (3.5,-1) {$N_g=11$};            
+
+    % torque
+    \draw[->, thick, color=cyan] (8,-2.3) arc[start angle=290, end angle=45, x radius=0.5cm, y radius=1.5cm];
+    \node at (8,1) {$T$};
+    
+\end{tikzpicture}
+}%
+\end{figure}
+
+\noindent\rule{\textwidth}{1pt}
+\textbf{Given:}
+\[
+J_1 = 3.6~\mathrm{kg\,m^2},\;\; J_2 = 6.8~\mathrm{kg\,m^2},\;\; J_3 = 5.4~\mathrm{kg\,m^2}
+\]
+\[
+K_1 = 14~\mathrm{N\,m/rad},\;\; K_2 = 18~\mathrm{N\,m/rad}
+\]
+\[
+B_1 = 3.5~\mathrm{N\,m\,s/rad},\;\; B_2 = 5.5~\mathrm{N\,m\,s/rad},\;\; B_3 = 4.2~\mathrm{N\,m\,s/rad}
+\]
+\[
+N_1 = 9,\;\; N_2 = 13,\;\; N_g = 11
+\]
+
+\textbf{Required:}
+\[
+H(s) \equiv \dfrac{\Theta_3(s)}{T(s)}
+\]
+
+\textbf{Solution:}
+
+Define the kinematic (magnitude) gear ratios referenced to shaft 1:
+\[
+r_{12}=\frac{N_1}{N_2}=\frac{9}{13},\qquad
+r_{13}=\frac{N_1}{N_g}=\frac{9}{11}.
+\]
+
+Reflect inertias/dampers/springs to a single reference shaft (shaft 1).
+\[
+\begin{aligned}
+J_{\rm eq} &= J_1 + r_{12}^2 J_2 + r_{13}^2 J_3,\\[4pt]
+B_{\rm eq} &= B_1 + r_{12}^2 B_2 + r_{13}^2 B_3,\\[4pt]
+K_{\rm eq} &= K_1 + r_{13}^2 K_2.
+\end{aligned}
+\]
+
+Torque reflection
+\[
+\tau_{\rm eq} = -\,r_{13}\,T,
+\]
+
+Single-DOF equation on shaft 1.
+\[
+J_{\rm eq}\,\ddot\theta_1 + B_{\rm eq}\,\dot\theta_1 + K_{\rm eq}\,\theta_1 = -\,r_{13}\,T(t).
+\]
+
+Taking Laplace transforms (zero initial conditions) and solving for \(\Theta_1(s)/T(s)\):
+\[
+\Theta_1(s)\big( J_{\rm eq}s^2 + B_{\rm eq}s + K_{\rm eq}\big)
+= -\,r_{13}\,T(s)
+\]
+\[
+\frac{\Theta_1(s)}{T(s)} = \frac{-\,r_{13}}{J_{\rm eq}s^2 + B_{\rm eq}s + K_{\rm eq}}.
+\]
+
+Using \(\Theta_3(s) = -\,r_{13}\,\Theta_1(s)\) we get
+\[
+\frac{\Theta_3(s)}{T(s)} \;=\; \frac{r_{13}^2}{J_{\rm eq}s^2 + B_{\rm eq}s + K_{\rm eq}}
+\]
+
+First the squared ratios (decimal):
+\[
+r_{12}^2=\left(\frac{9}{13}\right)^2=\frac{81}{169}\approx 0.4792899408,
+\]
+\[
+r_{13}^2=\left(\frac{9}{11}\right)^2=\frac{81}{121}\approx 0.6694214876.
+\]
+
+Now compute the equivalent parameters (showing arithmetic):
+\[
+J_{\rm eq} = 3.6 + \left(\frac{9}{13}\right)^2 (6.8) + \left(\frac{9}{11}\right)^2 (5.4)
+\]
+\[
+= 3.6 + 0.4792899408 \times 6.8 + 0.6694214876 \times 5.4
+\]
+\[
+= 3.6 + 3.2591715974 + 3.6148760333
+\]
+\[
+\approx 10.4740476307\ \mathrm{kg\cdot m^2}
+\]
+
+\[
+B_{\rm eq} = 3.5 + \left(\frac{9}{13}\right)^2 (5.5) + \left(\frac{9}{11}\right)^2 (4.2)
+\]
+\[
+= 3.5 + 0.4792899408 \times 5.5 + 0.6694214876 \times 4.2
+\]
+\[
+= 3.5 + 2.6360946744 + 2.8115732420
+\]
+\[
+\approx 8.9476679164\ \mathrm{N\cdot m\cdot s/rad}
+\]
+
+
+\[
+K_{\rm eq} = 14 + \left(\frac{9}{11}\right)^2 (18)
+\]
+\[
+= 14 + 0.6694214876 \times 18
+\]
+\[
+= 14 + 12.0495867769
+\]
+\[
+\approx 26.0495867769\ \mathrm{N\cdot m/rad}
+\]
+
+
+Using \(r_{13}^2\approx 0.6694215\), \(J_{\rm eq}\approx 10.4740\), \(B_{\rm eq}\approx 8.9477\), \(K_{\rm eq}\approx 26.0496\):
+
+\[
+\boxed{\;
+H(s) \;=\; \frac{\Theta_3(s)}{T(s)} \;=\;
+\frac{0.6694215}{\,10.4740\,s^2 + 8.9477\,s + 26.0496\,}
+\;}
+\]
+
+% Problem 28
+\newpage
+
+\noindent\rule{\textwidth}{1pt}
+\noindent\textbf{Problem 28} \hfill
+\\ Determine the transfer function \(H(s) = \frac{\theta_3(s)}{T_i(s)}\) for the belt drive system shown below.
+
+\begin{figure}[!ht]
+\centering
+\resizebox{1\textwidth}{!}{%
+\begin{tikzpicture} [font=\medium]]
+
+    % walls
+    \draw[pattern=bricks] (-4,4) rectangle (-3,-2);
+    \draw[pattern=bricks] (12.4,4) rectangle (13.2,2);
+    \draw[pattern=bricks] (12.4,0) rectangle (13.2,-2);
+
+    % k1
+    \draw (-3.2,1) -- (-2.4,1);
+    \draw[decorate,decoration={coil,aspect=0.5,segment length=1.5mm,amplitude=1.2mm}] 
+        (-2.4,1) -- (-1.2,1);
+    \draw (-1.,1) -- (-1.2,1);
+    \node at (-1.2,2) {$K = 10 \,\mathrm{N \cdotp m/rad}$};
+
+    % k2
+    \pic [scale=1.7] at (9,2.5) {coil spring};         
+    \node at (10.9,1.8) {$7\,\mathrm{N\cdotp m/rad}$};
+
+    % k3
+    \pic [scale=1.6] at (9.2,-0.4) {coil spring};
+    \node at (10.5,0.3) {$12\,\mathrm{N\cdotp m/rad}$};
+    
+    % fv1
+    \pic [scale=0.7] at (-1.2,1) {damper};             
+    \node at (-1,-0.1) {$3\,\mathrm{N\cdotp m\cdotp s/rad}$};
+
+    %  fv2
+    \pic [scale=1.2] at (9.1,3.5) {damper};              
+    \node at (10.6,4.3) {$5\,\mathrm{Nm\!-\!s/rad}$};
+
+    % fv3
+    \pic [scale=1.1] at (9.3,-1.3) {damper};         
+    \node at (10.5,-2) {$5\,\mathrm{N\cdotp m\cdotp s/rad}$};
+    
+    % j1
+    \draw (0.6,1) ellipse (0.3cm and 1cm);
+    \draw (0.6,2) -- (2.5,2);
+    \draw (0.6,0) -- (2.5,0);
+    \draw (2.5,2) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=1cm];
+    \node at (1.7,1) {$5\,\mathrm{kg\cdot m^2}$};
+
+     % j2
+    \draw (5.8,3) ellipse (0.3cm and 1cm);
+    \draw (5.8,4) -- (8.8,4);
+    \draw (5.8,2) -- (8.8,2);
+    \draw (8.8,4) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=1cm];
+    \node at (7.4,3) {$6\,\mathrm{kg\cdot m^2}$};
+
+    % j3
+    \draw (6,-1) ellipse (0.3cm and 1cm);
+    \draw (6,0) -- (9,0);
+    \draw (6,-2) -- (9,-2);
+    \draw (9,0) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=1cm];
+    \node at (7.5,-1) {$4\,\mathrm{kg\cdot m^2}$};
+    
+    % line
+    \draw (2.8,1) -- (4.3,1); 
+
+    % n1
+    \draw (4.3,3) -- (5.8,3);
+    \draw (4.3,3.7) -- (4.3,2.2);
+    \node at (3.5,3) {$N_1=6$};
+
+    % n2
+    \draw (4.3,1.8) -- (4.3,0.2);
+    \node at (5.3,1) {$N_2=9$};
+
+    % n3
+    \draw (4.3,-1) -- (6,-1);                    
+    \draw (4.3,-0.3) -- (4.3,-1.8);                   
+    \node at (3.5,-1) {$N_g=8$};               
+    
+    % torque
+    \draw[->, thick, color=cyan] (2,-0.3) arc[start angle=290, end angle=45, x radius=0.5cm, y radius=1.5cm];
+    \node at (2,3) {$T$};
+
+    % t3
+    \draw[->, thick, color=cyan] (7,-2.1) arc[start angle=-135, end angle=110, x radius=0.5cm, y radius=1.5cm];
+    \node at (7,1) {$\theta_3$};
+
+\end{tikzpicture}
+}%
+\end{figure}
+
+\noindent\rule{\textwidth}{1pt}
+\textbf{Given:}
+\[
+J_1 = 5~\mathrm{kg\cdot m^2},\;\; J_2 = 6~\mathrm{kg\cdot m^2},\;\; J_3 = 4~\mathrm{kg\cdot m^2}
+\]
+\[
+K_1 = 10~\mathrm{N\cdot m/rad},\;\; K_2 = 7~\mathrm{N\cdot m/rad},\;\; K_3 = 12~\mathrm{N\cdot m/rad}
+\]
+\[
+B_1 = 3~\mathrm{N\cdot m\cdot s/rad},\;\; B_2 = 5~\mathrm{N\cdot m\cdot s/rad},\;\; B_3 = 5~\mathrm{N\cdot m\cdot s/rad}
+\]
+\[
+N_1 = 6,\;\; N_2 = 9,\;\; N_g = 8
+\]
+\[
+T \text{ (applied to the bottom inertia, } J_3\text{)}
+\]
+
+\vspace{4pt}
+\textbf{Required;}
+\[
+H(s) \equiv \frac{\Theta_3(s)}{T(s)}.
+\]
+
+\textbf{Solution:}
+
+Reflected Parameters to Shaft of Bottom Inertia:
+\[
+J_1' = J_1 N_g^2 = 5 \cdot 64 = 320
+\]
+\[
+J_2' = J_2 \left( \frac{N_g}{N_1} \right)^2 = 6 \cdot \left( \frac{8}{6} \right)^2 = 6 \cdot \frac{64}{36} = \frac{384}{36}
+\]
+\[
+J_3 = 4
+\]
+
+Total equivalent inertia:
+\[
+J_{\text{eq}} = J_1' + J_2' + J_3 = 320 + \frac{384}{36} + 4 = \frac{11864}{36}
+\]
+
+Reflected Spring Constants:
+\[
+K_1' = K_1 N_g^2 = 10 \cdot 64 = 640
+\]
+\[
+K_2' = K_2 \left( \frac{N_g}{N_1} \right)^2 = 7 \cdot \frac{64}{36} = \frac{448}{36}
+\]
+\[
+K_3 = 12
+\]
+
+Total equivalent stiffness:
+\[
+K_{\text{eq}} = K_1' + K_2' + K_3 = 640 + \frac{448}{36} + 12 = \frac{23920}{36}
+\]
+
+Reflected Damping Constants:
+\[
+D_1' = D_1 N_g^2 = 3 \cdot 64 = 192
+\]
+\[
+D_2' = D_2 \cdot \left( \frac{N_g}{N_1} \right)^2 = 5 \cdot \frac{64}{36} = \frac{320}{36}
+\]
+\[
+D_3 = 5
+\]
+
+Total equivalent damping:
+\[
+D_{\text{eq}} = D_1' + D_2' + D_3 = 192 + \frac{320}{36} + 5 = \frac{7120}{36}
+\]
+
+Equation of Motion:
+\[
+T(s) = J_{\text{eq}} s^2 \theta_3(s) + D_{\text{eq}} s \theta_3(s) + K_{\text{eq}} \theta_3(s)
+\]
+
+Transfer Function:
+\[
+\frac{\theta_3(s)}{T(s)} = \frac{1}{J_{\text{eq}} s^2 + D_{\text{eq}} s + K_{\text{eq}}}
+\]
+
+\[
+\frac{\theta_3(s)}{T(s)} = \frac{1}{\frac{11864}{36} s^2 + \frac{7120}{36} s + \frac{23920}{36}}
+\]
+
+\[
+\frac{\theta_3(s)}{T(s)} = \frac{36}{11864 s^2 + 7120 s + 23920}
+\]
+
+\[
+\boxed{\frac{\theta_3(s)}{T(s)} = \frac{36}{11864 s^2 + 7120 s + 23920}}
+\]
+
+% Problem 29
+\newpage
+
+\noindent\rule{\textwidth}{1pt}
+\noindent\textbf{Problem 29} \hfill
+\\ Determine the transfer function \(H(s) = \frac{\theta_3(s)}{T_i(s)}\) for the planetary gear system shown below.
+
+\begin{figure}[!ht]
+\centering
+\resizebox{1\textwidth}{!}{%
+\begin{tikzpicture} [font=\footnotesize]
+
+    % walls
+    \draw[pattern=bricks] (-4,4) rectangle (-3,-2);
+    \draw (14.3,0.8) -- (15,0.8);
+    \draw[pattern=bricks] (15,4) rectangle (16,-2);
+
+    % k1
+    \draw (-3.1,0.8) -- (-2.5,0.8);
+    \draw[decorate,decoration={coil,aspect=0.5,segment length=1mm,amplitude=1mm}]
+        (-2.5,0.8) -- (-1.5,0.8);
+    \draw (-1.5,0.8) -- (-1.2,0.8);
+    \node at (-1.3,1.5) {$K_1 = 15 \,\mathrm{N \cdotp m/rad}$};
+    
+    % k2
+    \draw (4.1,-1) -- (5,-1);
+    \draw[decorate,decoration={coil,aspect=0.5,segment length=1mm,amplitude=1mm}] 
+        (5,-1) -- (6.2,-1);
+    \draw (6.2,-1) -- (7,-1);
+    \node at (5.6,-0.6) {$K_2 = 9 \,\mathrm{N \cdotp m/rad}$};
+    
+    % k3
+    \draw (7,1.2) -- (8.5,1.2);
+    \draw[decorate,decoration={coil,aspect=0.5,segment length=1mm,amplitude=1mm}] 
+        (8.5,1.2) -- (10,1.2);
+    \draw (10,1.2) -- (11.4,1.2);
+    \node at (9.2,1.8) {$K_3 = 8 \,\mathrm{N \cdotp m/rad}$};
+    
+    % fv1
+    \begin{scope}[scale=0.7, shift={(-2.1,1.15)}]
+        \draw (0,0) -- (1.4,0);          
+        \draw (1.4,-0.2) -- (1.4,0.2);  
+        \draw (1.7,0.3) -- (1.7,-0.3) -- (1,-0.3);
+        \draw (1.7,0.3) -- (1,0.3);  
+        \draw (1.7,0) -- (2.8,0);      
+    \end{scope}
+    \node at (-1.2,0.22) {$B_1=4\,\mathrm{N\cdotp m\cdotp s/rad}$};
+    
+    % fv2
+    \begin{scope}[scale=0.8, shift={(5.5,-2)}]
+        \draw (-0.38,0) -- (1.4,0);          
+        \draw (1.4,-0.2) -- (1.4,0.2);  
+        \draw (1.7,0.3) -- (1.7,-0.3) -- (1,-0.3);
+        \draw (1.7,0.3) -- (1,0.3);  
+        \draw (1.7,0) -- (3.25,0);      
+    \end{scope}
+    \node at (5.5,-2.2) {$B_2=3.5\,\mathrm{N\cdotp m\cdotp s/rad}$};
+    \draw (7,-0.5) -- (7,-2);
+    
+    % fv3
+    \begin{scope}[scale=0.8, shift={(10,0.6)}]
+        \draw (-1.25,0) -- (1.4,0);          
+        \draw (1.4,-0.2) -- (1.4,0.2);  
+        \draw (1.7,0.3) -- (1.7,-0.3) -- (1,-0.3);
+        \draw (1.7,0.3) -- (1,0.3);  
+        \draw (1.7,0) -- (4.25,0);      
+    \end{scope}
+    \node at (9.1,-0.1) {$B_3=2.5\,\mathrm{N\cdotp m\cdotp s/rad}$};
+    
+    % j1
+    \draw (0.6,0.8) ellipse (0.3cm and 1cm);
+    \draw (0.6,1.8) -- (2.9,1.8);
+    \draw (0.6,-0.2) -- (2.9,-0.2);
+    \draw (2.9,1.8) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=1cm];
+    \node at (1.9,0.8) {$6\,\mathrm{kg\cdot m^2}$};
+
+    % j2
+    \draw (11.5,0.8) ellipse (0.3cm and 1cm);   
+    \draw (11.5,1.8) -- (14,1.8);                
+    \draw (11.5,-0.2) -- (14,-0.2);             
+    \draw (14,1.8) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=1cm];
+    \node at (13,0.8) {$4\,\mathrm{kg\cdot m^2}$};
+    
+    % Torque T 
+    \draw[->, thick, color=cyan] (2,-0.5) arc[start angle=290, end angle=45, x radius=0.5cm, y radius=1.5cm];
+    \node at (2,2.9) {$T$};
+    
+    % connecting line to gears 
+    \draw (3.2,0.8) -- (4.1,0.8); 
+
+    % n1
+    \draw (4.1,1.5) -- (4.1,0.2);
+    \node at (5,0.8) {$N_1=10$};
+
+    % n2
+    \draw (4.1,-0.5) -- (4.1,-2);                   
+    \node at (3.3,-1.2) {$N_2=7$};               
+    
+    % n3         
+    \draw (7,1.5) -- (7,0.2);                  
+
+\end{tikzpicture}
+}%
+\end{figure}
+
+\noindent\rule{\textwidth}{1pt}
+\textbf{Given:}
+\[
+J_1 = 6~\mathrm{kg\cdot m^2},\;\; J_2 = 4~\mathrm{kg\cdot m^2}
+\]
+\[
+K_1 = 15~\mathrm{N\cdot m/rad},\;\; K_2 = 9~\mathrm{N\cdot m/rad},\;\; K_3 = 8~\mathrm{N\cdot m/rad}
+\]
+\[
+B_1 = 4~\mathrm{N\cdot m\cdot s/rad},\;\; B_2 = 3.5~\mathrm{N\cdot m\cdot s/rad},\;\; B_3 = 2.5~\mathrm{N\cdot m\cdot s/rad}
+\]
+\[
+N_1 = 10,\;\; N_2 = 7
+\]
+\[
+T \text{ (applied to the inertia } J_1\text{).}
+\]
+
+\vspace{4pt}
+\textbf{Required:}
+\[
+H(s) = \frac{\theta_2(s)}{T(s)}.
+\]
+
+\vspace{4pt}
+\textbf{Solution:}
+
+Reflect inertias through the gear ratios to combine them at the input:
+\[
+J_{\rm eq} = J_1 + \left(\frac{N_1}{N_2}\right)^2 J_2
+\]
+\[
+J_{\rm eq} = 6 + \left(\frac{10}{7}\right)^2 (4)
+\]
+\[
+J_{\rm eq} = 6 + 2.0408163265 \times 4
+\]
+\[
+J_{\rm eq} = 6 + 8.163265306
+\]
+\[
+J_{\rm eq} \approx 14.163~\mathrm{kg\cdot m^2}
+\]
+
+Reflect dampers through the gear ratios:
+\[
+B_{\rm eq} = B_1 + \left(\frac{N_1}{N_2}\right)^2 B_2 + B_3
+\]
+\[
+B_{\rm eq} = 4 + \left(\frac{10}{7}\right)^2 (3.5) + 2.5
+\]
+\[
+B_{\rm eq} = 4 + 7.142857143 + 2.5
+\]
+\[
+B_{\rm eq} \approx 13.643~\mathrm{N\cdot m\cdot s/rad}
+\]
+
+Reflect springs through the gear ratios:
+\[
+K_{\rm eq} = K_1 + \left(\frac{N_1}{N_2}\right)^2 K_2 + K_3
+\]
+\[
+K_{\rm eq} = 15 + \left(\frac{10}{7}\right)^2 (9) + 8
+\]
+\[
+K_{\rm eq} = 15 + 18.36734694 + 8
+\]
+\[
+K_{\rm eq} \approx 41.367~\mathrm{N\cdot m/rad}
+\]
+
+Write the equation of motion for the equivalent single inertia system:
+\[
+J_{\rm eq} \ddot{\theta} + B_{\rm eq} \dot{\theta} + K_{\rm eq} \theta = T(s)
+\]
+\[
+(J_{\rm eq} s^2 + B_{\rm eq} s + K_{\rm eq}) \Theta(s) = T(s)
+\]
+
+\[
+H(s) = \frac{\Theta(s)}{T(s)} = \frac{1}{J_{\rm eq} s^2 + B_{\rm eq} s + K_{\rm eq}}
+\]
+\[
+H(s) = \frac{1}{14.163 s^2 + 13.643 s + 41.367}
+\]
+
+\[
+\boxed{H(s) \approx \frac{1}{14.163 s^2 + 13.643 s + 41.367}}
+\]
+
+% Problem 30
+\newpage
+
+\noindent\rule{\textwidth}{1pt}
+\noindent\textbf{Problem 30} \hfill
+\\ Determine the transfer function \(H(s) = \frac{\theta_3(s)}{T_i(s)}\) for the planetary gear system shown below.
+
+\begin{figure}[!ht]
+\centering
+\resizebox{1\textwidth}{!}{%
+\begin{tikzpicture} [font=\footnotesize]
+
+    % walls
+    \draw[pattern=bricks] (-4,4) rectangle (-3,-2);
+    \draw (14.3,0.8) -- (15,0.8);
+    \draw[pattern=bricks] (15,4) rectangle (16,-2);
+
+    % k1
+    \draw (-3.1,0.8) -- (-2.5,0.8);
+    \draw[decorate,decoration={coil,aspect=0.5,segment length=1mm,amplitude=1mm}]
+        (-2.5,0.8) -- (-1.5,0.8);
+    \draw (-1.5,0.8) -- (-1.2,0.8);
+    \node at (-1.3,1.5) {$K_1 = 12 \,\mathrm{N \cdotp m/rad}$};
+    
+    % k2
+    \draw (4.1,-1) -- (5,-1);
+    \draw[decorate,decoration={coil,aspect=0.5,segment length=1mm,amplitude=1mm}] 
+        (5,-1) -- (6.2,-1);
+    \draw (6.2,-1) -- (7,-1);
+    \node at (5.55,-0.6) {$K_2 = 7 \,\mathrm{N \cdotp m/rad}$};
+    
+    % k3
+    \draw (7,1.2) -- (8.5,1.2);
+    \draw[decorate,decoration={coil,aspect=0.5,segment length=1mm,amplitude=1mm}] 
+        (8.5,1.2) -- (10,1.2);
+    \draw (10,1.2) -- (11.4,1.2);
+    \node at (9.2,1.8) {$K_3 = 6 \,\mathrm{N \cdotp m/rad}$};
+    
+    % fv1
+    \begin{scope}[scale=0.7, shift={(-2.1,1.15)}]
+        \draw (0,0) -- (1.4,0);          
+        \draw (1.4,-0.2) -- (1.4,0.2);  
+        \draw (1.7,0.3) -- (1.7,-0.3) -- (1,-0.3);
+        \draw (1.7,0.3) -- (1,0.3);  
+        \draw (1.7,0) -- (2.8,0);      
+    \end{scope}
+    \node at (-1.3,0.22) {$B_1=5\,\mathrm{N\cdotp m\cdotp s/rad}$};
+    
+    % fv2
+    \begin{scope}[scale=0.8, shift={(5.5,-2)}]
+        \draw (-0.38,0) -- (1.4,0);          
+        \draw (1.4,-0.2) -- (1.4,0.2);  
+        \draw (1.7,0.3) -- (1.7,-0.3) -- (1,-0.3);
+        \draw (1.7,0.3) -- (1,0.3);  
+        \draw (1.7,0) -- (3.25,0);      
+    \end{scope}
+    \node at (5.5,-2.2) {$B_2=3\,\mathrm{N\cdotp m\cdotp s/rad}$};
+    \draw (7,-0.5) -- (7,-2);
+    
+    % fv3
+    \begin{scope}[scale=0.8, shift={(10,0.6)}]
+        \draw (-1.25,0) -- (1.4,0);          
+        \draw (1.4,-0.2) -- (1.4,0.2);  
+        \draw (1.7,0.3) -- (1.7,-0.3) -- (1,-0.3);
+        \draw (1.7,0.3) -- (1,0.3);  
+        \draw (1.7,0) -- (4.25,0);      
+    \end{scope}
+    \node at (9.1,-0.1) {$B_3=2\,\mathrm{N\cdotp m\cdotp s/rad}$};
+    
+    % j1
+    \draw (0.6,0.8) ellipse (0.3cm and 1cm);
+    \draw (0.6,1.8) -- (2.9,1.8);
+    \draw (0.6,-0.2) -- (2.9,-0.2);
+    \draw (2.9,1.8) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=1cm];
+    \node at (1.9,0.8) {$8\,\mathrm{kg\cdot m^2}$};
+    
+    % Torque T 
+    \draw[->, thick, color=cyan] (2,-0.5) arc[start angle=290, end angle=45, x radius=0.5cm, y radius=1.5cm];
+    \node at (2,2.9) {$T$};
+
+    % j2
+    \draw (11.5,0.8) ellipse (0.3cm and 1cm);   
+    \draw (11.5,1.8) -- (14,1.8);                
+    \draw (11.5,-0.2) -- (14,-0.2);             
+    \draw (14,1.8) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=1cm];
+    \node at (13,0.8) {$5\,\mathrm{kg\cdot m^2}$};
+    
+    % connecting line to gears 
+    \draw (3.2,0.8) -- (4.1,0.8); 
+
+    % n1
+    \draw (4.1,1.5) -- (4.1,0.2);
+    \node at (5,0.8) {$N_1=9$};
+
+    % n2
+    \draw (4.1,-0.5) -- (4.1,-2);                   
+    \node at (3.3,-1.2) {$N_2=8$};               
+    
+    % n3         
+    \draw (7,1.5) -- (7,0.2);                  
+    
+
+\end{tikzpicture}
+}%
+\end{figure}
+
+\noindent\rule{\textwidth}{1pt}
+\textbf{Given:}
+\[
+J_1 = 8~\mathrm{kg\cdot m^2},\;\; J_2 = 5~\mathrm{kg\cdot m^2}
+\]
+\[
+K_1 = 12~\mathrm{N\cdot m/rad},\;\; K_2 = 7~\mathrm{N\cdot m/rad},\;\; K_3 = 6~\mathrm{N\cdot m/rad}
+\]
+\[
+B_1 = 5~\mathrm{N\cdot m\cdot s/rad},\;\; B_2 = 3~\mathrm{N\cdot m\cdot s/rad},\;\; B_3 = 2~\mathrm{N\cdot m\cdot s/rad}
+\]
+\[
+N_1 = 9,\;\; N_2 = 8
+\]
+\[
+T \text{ (applied to the inertia } J_1\text{).}
+\]
+
+\textbf{Required:}
+\[
+H(s) \equiv \frac{\Theta_2(s)}{T(s)}.
+\]
+
+\textbf{Solution:}
+
+Reflected parameters to shaft of Inertia 3:
+\[
+J_1' = J_1 N_g^2 
+\]
+\[
+J_1' = 8 \cdot 64 
+\]
+\[
+J_1' = 512
+\]
+\[
+J_2' = J_2 \left( \frac{N_g}{N_1} \right)^2 
+\]
+\[
+J_2' = 5 \cdot \left( \frac{8}{9} \right)^2 
+\]
+\[
+J_2' = 5 \cdot \frac{64}{81} 
+\]
+\[
+J_2' = \frac{320}{81}
+\]
+\[
+J_3 = \text{final inertia} = 5
+\]
+\[
+J_{\text{eq}} = J_1' + J_2' + J_3 
+\]
+\[
+J_{\text{eq}} = 512 + \frac{320}{81} + 5 
+\]
+\[
+J_{\text{eq}} = \frac{42177}{81}
+\]
+
+Reflected spring constants:
+\[
+K_1' = K_1 N_g^2 = 12 \cdot 64 = 768
+\]
+\[
+K_2' = K_2 \cdot \left( \frac{N_g}{N_1} \right)^2 = 7 \cdot \frac{64}{81} = \frac{448}{81}
+\]
+\[
+K_3 = 6
+\]
+\[
+K_{\text{eq}} = K_1' + K_2' + K_3 
+\]
+\[
+K_{\text{eq}} = 768 + \frac{448}{81} + 6 
+\]
+\[
+K_{\text{eq}} = \frac{63422}{81}
+\]
+
+Reflected damping constants:
+\[
+D_1' = D_1 N_g^2 
+\]
+\[
+D_1' = 5 \cdot 64 
+\]
+\[
+D_1' = 320
+\]
+\[
+D_2' = D_2 \cdot \left( \frac{N_g}{N_1} \right)^2 
+\]
+\[
+D_2' = 3 \cdot \frac{64}{81} 
+\]
+\[
+D_2' = \frac{192}{81}
+\]
+\[
+D_3 = 2
+\]
+\[
+D_{\text{eq}} = D_1' + D_2' + D_3 
+\]
+\[
+D_{\text{eq}} = 320 + \frac{192}{81} + 2 
+\]
+\[
+D_{\text{eq}} = \frac{26394}{81}
+\]
+
+Transfer function:
+\[
+T(s) = J_{\text{eq}} s^2 \theta_3(s) + D_{\text{eq}} s \theta_3(s) + K_{\text{eq}} \theta_3(s)
+\]
+
+\[
+\frac{\theta_3(s)}{T(s)} = \frac{1}{J_{\text{eq}} s^2 + D_{\text{eq}} s + K_{\text{eq}}}
+\]
+
+\[
+\frac{\theta_3(s)}{T(s)} = \frac{1}{\frac{42177}{81} s^2 + \frac{26394}{81} s + \frac{63422}{81}}
+\]
+
+\[
+\frac{\theta_3(s)}{T(s)} = \frac{81}{42177 s^2 + 26394 s + 63422}
+\]
+
+\[
+\boxed{\frac{\theta_3(s)}{T(s)} = \frac{81}{42177 s^2 + 26394 s + 63422}}
+\]

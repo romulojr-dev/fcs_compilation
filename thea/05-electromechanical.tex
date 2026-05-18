@@ -1,0 +1,1065 @@
+% Spacing Setup
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\usetikzlibrary{arrows.meta}
+% TikZ Predetermined Elements 
+\tikzset{
+    coil spring/.pic={
+        % Parameters: length of straight lines and coil
+        \def\Lbefore{0.5}   % length of line before coil
+        \def\Lafter{0.5}    % length of line after coil
+        \def\coilLength{1}  % length of the coil itself
+
+        % Draw left line
+        \draw (0,0) -- (\Lbefore,0);
+
+        % Draw coil in the middle
+        \draw[decorate, decoration={coil, aspect=0.5, segment length=2mm, amplitude=2mm}]
+        (\Lbefore,0) -- (\Lbefore+\coilLength,0);
+
+
+        % Draw right line
+        \draw (\Lbefore+\coilLength,0) -- (\Lbefore+\coilLength+\Lafter,0);
+    },
+    damper/.pic={
+        % The damper drawing
+        \draw (0,0) -- (1.4,0);          
+        \draw (1.4,-0.2) -- (1.4,0.2);  
+        \draw (1.7,0.3) -- (1.7,-0.3) -- (1,-0.3);
+        \draw (1.7,0.3) -- (1,0.3);  
+        \draw (1.7,0) -- (2.8,0);       
+    },
+}
+
+% Problem 31
+\newpage
+\noindent\rule{\textwidth}{1pt}
+\noindent\textbf{Problem 31} \hfill
+\\ Perform a rotational mechanical reduction to refer the load inertia and damping to the motor shaft (shaft A). Derive the transfer function.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[scale=1.1, transform shape, >=Stealth]
+
+    % Motor
+    \draw (0,0) to[R,l=$R$] (3.5,0);
+    \draw (3.5,0) -- (3.5,-0.6);
+    \draw (3.3,-0.6) rectangle (3.7,-1);
+    \draw (3.3,-1.5) rectangle (3.7,-2);
+    \draw[fill=white] (3.5,-1.3) circle (0.4);
+    \draw (3.5,-2) -- (3.5,-2.6);
+    \draw (0,-2.6) -- (3.5,-2.6);
+    \node[left] at (0,0) {$+$};
+    \node[left] at (0,-2.6) {$-$};
+    \draw (3.9,-1.3) -- (5,-1.3);
+    \node[left] at (0.2,-1.3) {$e_a(t)$};
+    
+    % Inertia A 
+    \draw (5,-1.3) ellipse (0.3cm and 0.6cm);
+    \draw (5,-0.7) -- (7,-0.7);
+    \draw (5,-1.9) -- (7,-1.9);
+    \draw (7,-0.7) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=0.6cm];
+    \node at (6.2,-1.3) {$J_A=0.3$};
+    \node at (6.2,-2.2) {$B_A=1.5$};
+    
+    % Gear A
+    \draw (7.3,-1.3) -- (8,-1.3);
+    \draw (8,-1.7) -- (8,-0.9);
+    \node at (8.3,-0.6) {$N_A=20$};
+    
+    % Gear B
+    \draw (8,-2.2) -- (8,-3);
+    \draw (8,-2.6) -- (9.5,-2.6);
+    \node at (7,-2.6) {$N_B=80$};
+    
+    % Inertia B 
+    \draw (9.5,-2.6) ellipse (0.3cm and 0.6cm);
+    \draw (9.5,-2.0) -- (11.5,-2.0);
+    \draw (9.5,-3.2) -- (11.5,-3.2);
+    \draw (11.5,-2.0) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=0.6cm];
+    \node at (10.7,-2.6) {$J_B=12$};
+    \node at (10.7,-3.5) {$B_B=50$};
+    
+    % Spring to ground
+    \pic [scale=1] at (11.8,-2.5) {coil spring};
+    \draw[pattern=bricks] (13.8,-3.5) rectangle (14.3,-1.5);
+    \node[right] at (11.8,-2) {$K=600$};
+    
+   \draw[->, thick] (9,-3.1) arc[start angle=290, end angle=45, 
+    x radius=0.3cm, y radius=0.6cm];
+    \node at (9,-1.7) {$\theta_L(t)$};
+
+\end{tikzpicture}
+\end{figure}
+
+\noindent\rule{\textwidth}{1pt}
+\textbf{Given:}
+\[
+J_A = 0.3\ \mathrm{kg\cdot m^2}, \quad
+J_B = 12\ \mathrm{kg\cdot m^2}
+\]
+\[
+B_A = 1.5\ \mathrm{N\cdot m\!-\!s/rad}, \quad
+B_B = 50\ \mathrm{N\cdot m\!-\!s/rad} 
+\]
+\[
+N_A = 20, \quad
+N_B = 80 
+\]
+\[
+K = 600\ \mathrm{N\cdot m/rad}
+\]
+
+\textbf{Required:}
+\[
+G(s)=\dfrac{\Omega_B(s)}{T_m(s)}
+\]
+
+\textbf{Solution:}
+
+Gear (kinematic) ratio:
+\[
+r \equiv \frac{\theta_A}{\theta_B}=\frac{N_B}{N_A}.
+\]  \\
+
+With \(N_A=20,\ N_B=80\) we get
+\[
+r=\frac{80}{20}=4,
+\] \\
+
+so the motor spins 4 times faster than the load:
+\[
+\omega_A = 4\,\omega_B,\qquad \theta_A = 4\,\theta_B.
+\]
+
+Reflection factor for inertias and viscous damping is \(1/r^2\). \\
+
+Thus
+\[
+J_{B\to A} = \frac{J_B}{r^2} 
+\]
+\[
+J_{B\to A}= \frac{12}{4^2} 
+\]
+\[
+J_{B\to A}= \frac{12}{16} 
+\]
+\[
+J_{B\to A}= 0.75\ \mathrm{kg\cdot m^2},
+\]
+\[
+B_{B\to A} = \frac{B_B}{r^2} 
+\]
+\[
+B_{B\to A}= \frac{50}{16} 
+\]
+\[
+B_{B\to A}= 3.125\ \mathrm{N\cdot m\!-\!s/rad}.
+\]
+
+\[
+K_{A} = \frac{K}{r} = \frac{600}{4} = 150\ \mathrm{N\cdot m/rad}.
+\]
+
+Equivalent inertia and damping at motor shaft:
+\[
+J_{eq} = J_A + J_{B\to A} 
+\]
+\[
+J_{eq} = 0.3 + 0.75 
+\]
+\[
+J_{eq} = 1.05\ \mathrm{kg\cdot m^2},
+\]
+\[
+B_{eq} = B_A + B_{B\to A} 
+\]
+\[
+B_{eq} = 1.5 + 3.125 
+\]
+\[
+B_{eq} = 4.625\ \mathrm{N\cdot m\!-\!s/rad}.
+\]
+
+Equation of motion at motor shaft (Laplace domain):  
+\[
+T_m(s) = \big(J_{eq}s + B_{eq}\big)\,\Omega_A(s) + K_{A}\,\Theta_A(s).
+\] \\
+
+Using $\Theta_A(s)=\dfrac{\Omega_A(s)}{s}$ gives
+\[
+T_m(s) = \left(J_{eq}s + B_{eq} + \frac{K_{A}}{s}\right)\Omega_A(s).
+\]
+
+\[
+\frac{\Omega_A(s)}{T_m(s)} = \frac{1}{J_{eq}s + B_{eq} + \dfrac{K_{A}}{s}}
+\]
+\[
+\frac{\Omega_A(s)}{T_m(s)}= \frac{s}{J_{eq}s^2 + B_{eq}s + K_{A}}.
+\]
+
+From the gear ratio,
+\[
+\Omega_B(s) = \frac{\Omega_A(s)}{r} 
+\]
+\[
+\Omega_B(s) = \frac{1}{4}\,\Omega_A(s).
+\]
+
+Final transfer function:
+\[
+G(s)=\frac{1}{4}\cdot\frac{\Omega_A(s)}{T_m(s)}
+\]
+
+\[
+G(s)= \frac{1}{4}\cdot\frac{s}{J_{eq}s^2 + B_{eq}s + K_{A}}.
+\]
+
+Substitute the numeric values \(J_{eq}=1.05,\ B_{eq}=4.625,\ K_{A}=150\):
+\[
+G(s)=\frac{s}{4\big(1.05\,s^2 + 4.625\,s + 150\big)}
+\]
+
+\[
+G(s)= \frac{s}{4.2\,s^2 + 18.5\,s + 600}.
+\]
+
+\[
+\boxed{\;G(s)=\dfrac{s}{4.2\,s^2 + 18.5\,s + 600}\;}
+\]
+
+% Problem 32
+\newpage
+
+\noindent\rule{\textwidth}{1pt}
+\noindent\textbf{Problem 32} \hfill
+\\ Solve for the transfer function of the figure.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm,>=Stealth, scale=0.8, transform shape, font=\footnotesize]
+
+    % Motor
+    \draw (0,0) to[R,l=$R$] (3.5,0);
+    \draw (3.5,0) -- (3.5,-0.6);
+    \draw (3.3,-0.6) rectangle (3.7,-1);
+    \draw (3.3,-1.5) rectangle (3.7,-2);
+    \draw[fill=white] (3.5,-1.3) circle (0.4);
+    \draw (3.5,-2) -- (3.5,-2.6);
+    \draw (0,-2.6) -- (3.5,-2.6);
+    \draw (0.1,-1.3) node[left,yshift=-0.1cm] {$e_a(t)$};
+    \node[left] at (0,0) {$+$};
+    \node[left] at (0,-2.6) {$-$};
+    \draw (3.9,-1.3) -- (5,-1.3);
+    
+    % Inertia 1 
+    \draw (5,-1.3) ellipse (0.3cm and 0.6cm);  
+    \draw (5,-0.7) -- (7,-0.7);                 
+    \draw (5,-1.9) -- (7,-1.9);               
+    \draw (7,-0.7) arc[start angle=90, end angle=-90,
+          x radius=0.3cm, y radius=0.6cm]; 
+    \node at (6.2,-1.3) {$4\,kg\!-\!m^2$};
+    
+    %  Gear 1 
+    \draw (7.3,-1.3) -- (8,-1.3);
+    \draw (8,-1.7) -- (8,-0.9);
+    \node at (8.3,-0.6) {$N_1=40$};
+    
+    %  Gear 2 
+    \draw (8,-2.2) -- (8,-3);
+    \draw (8,-2.6) -- (9.5,-2.6);
+    \node at (7,-2.6) {$N_2=100$};
+    \node at (7.6,-3.8) {$D_1=60\,N\!-\!m\!-\!s/rad$};
+    
+    %  Inertia 2 
+    \draw (9.5,-2.6) ellipse (0.3cm and 0.6cm);  
+    \draw (9.5,-2.0) -- (11.5,-2.0);                 
+    \draw (9.5,-3.2) -- (11.5,-3.2);               
+    \draw (11.5,-2.0) arc[start angle=90, end angle=-90,
+          x radius=0.3cm, y radius=0.6cm]; 
+    \node at (10.7,-2.6) {$6\,kg\!-\!m^2$};
+    
+    %  Gear 3 
+    \draw (11.8,-2.6) -- (12.5,-2.6);
+    \draw (12.5,-3.0) -- (12.5,-2.2);
+    \node at (12.8,-2.0) {$N_3=30$};
+    
+    %  Gear 4 
+    \draw (12.5,-3.4) -- (12.5,-4.2);
+    \draw (12.5,-3.8) -- (14,-3.8);
+    \node at (11.5,-3.8) {$N_4=90$};
+    \node at (12.5,-4.8) {$D_2=120\,N\!-\!m\!-\!s/rad$};
+    
+    %  Inertia 3
+    \draw (14,-3.8) ellipse (0.3cm and 0.6cm);  
+    \draw (14,-3.2) -- (16,-3.2);                 
+    \draw (14,-4.4) -- (16,-4.4);               
+    \draw (16,-3.2) arc[start angle=90, end angle=-90,
+          x radius=0.3cm, y radius=0.6cm]; 
+    \node at (15.3,-3.8) {$10\,kg\!-\!m^2$};
+    \draw (16.3,-3.8) -- (17.5,-3.8);
+    
+    %  Wall (fixed) 
+    \draw[pattern=bricks] (17.5,-4.6) rectangle (18.0,-3.0);
+    
+    %  Torque arrow 
+    \draw[->, thick] (4.5,-1.8) arc[start angle=290, end angle=45,
+          x radius=0.3cm, y radius=0.6cm];
+    \node at (4.5,0) {$\theta_L(t)$};
+    
+    %  Right triangle torque-speed axes 
+    \draw (11,-0.3) -- (12.8,-0.3) -- (11,2.3) -- cycle;
+    \draw[->, thick] (11,-0.3) -- (11,2.8);
+    \draw[->, thick] (12.8,-0.3) -- (13.5,-0.3);
+    \draw (11,-0.3) rectangle (11.3,0);
+    
+    % Labels
+    \node at (10.5,1.8) {$200$};
+    \node at (10,2.5) {$T\,(N\cdot m)$};
+    \node at (13.8,0) {$\omega\,(rad/s)$};
+    \node at (13,-0.5) {$100$};
+    
+    % Hypotenuse label
+    \draw (11,2.3) -- (12.8,-0.3)
+          node[midway, sloped, above] {$T=-4\omega+200$};
+    
+    
+\end{tikzpicture}
+\end{figure}
+
+\noindent\rule{\textwidth}{1pt}
+
+\textbf{Given:}
+\[
+J_1 = 4\ \text{kg\,m}^2, \quad J_2 = 6\ \text{kg\,m}^2, \quad J_3 = 10\ \text{kg\,m}^2
+\]
+\[
+D_1 = 60\ \text{N\,m\,s/rad}, \quad D_2 = 120\ \text{N\,m\,s/rad}
+\]
+\[
+N_1 = 40, \quad N_2 = 100, \quad N_3 = 30, \quad N_4 = 90
+\]
+
+\textbf{Required:}
+\[
+G(s)\;=\;\frac{\Theta_L(s)}{E_a(s)}.
+\]
+
+\textbf{Solution:}
+\[
+n_1=\frac{N_2}{N_1}=\frac{100}{40}=2.5
+]\]
+\[
+n_2=\frac{N_4}{N_3}=\frac{90}{30}=3
+\]
+\[N=n_1 n_2=7.5 .
+\]
+
+\[
+\Theta_L(s)=\frac{1}{N}\
+\]
+\[
+\Theta_m(s)=\frac{2}{15}\,\Theta_m(s).
+\]
+
+Equivalent inertia on motor shaft
+\[
+J_{\text{eq}}=J_1+\frac{J_2}{n_1^2}+\frac{J_3}{N^2}
+\]
+\[
+J_{\text{eq}}=4+\frac{6}{(2.5)^2}+\frac{10}{(7.5)^2}
+\]
+\[J_{\text{eq}}=4+\frac{6}{6.25}+\frac{10}{56.25}
+\]
+\[
+J_{\text{eq}}=4+0.96+0.177777\overline{7}
+\]
+\[
+J_{\text{eq}}=\frac{1156}{225}\ \text{kg\,m}^2
+\]
+\[
+J_{\text{eq}}\approx 5.13778.
+\]
+
+Equivalent viscous damping on motor shaft
+\[
+B_{\text{eq}}=\frac{D_1}{n_1^2}+\frac{D_2}{N^2}
+\]
+\[
+B_{\text{eq}}=\frac{60}{(2.5)^2}+\frac{120}{(7.5)^2} 
+\]
+\[
+B_{\text{eq}}=\frac{60}{6.25}+\frac{120}{56.25}
+\]
+\[
+B_{\text{eq}}=9.6+2.13333\overline{3}
+\]
+\[
+B_{\text{eq}}=\frac{176}{15}\ \text{N\,m\,s/rad}
+\]
+\[
+B_{\text{eq}}\approx 11.73333.
+\]
+
+A useful common-denominator form is
+\[
+J_{\text{eq}}s^2+B_{\text{eq}}s
+=\frac{1}{225}\,\Big(1156\,s^2+2640\,s\Big).
+\]
+
+Mechanical balance at the motor shaft:
+\[
+T_m(s)=\big(J_{\text{eq}}s^2+B_{\text{eq}}s\big)\,\Theta_m(s).
+\]
+
+Electrical (Laplace) equation:
+\[
+E_a(s)=(R+Ls)\,I_a(s)+K_b\\Theta_m(s)
+\]
+\[
+T_m(s)=K_t\,I_a(s).
+\] \\
+
+Eliminate \(I_a\):
+\[
+E_a(s)=\frac{R+Ls}{K_t}\,T_m(s)+K_b\,\Theta_m(s)
+\]
+\[
+E_a(s)=\left[\frac{R+Ls}{K_t}\big(J_{\text{eq}}s^2+B_{\text{eq}}s\big)+K_b\right]\Theta_m(s).
+\]
+
+\[
+\frac{\Theta_m(s)}{E_a(s)}=
+\frac{1}{\dfrac{R+Ls}{K_t}\big(J_{\text{eq}}s^2+B_{\text{eq}}s\big)+K_b}.
+\]
+
+Using \(\Theta_L=\Theta_m/N=(2/15)\Theta_m\),
+\[
+\frac{\Theta_L(s)}{E_a(s)}
+=\frac{2}{15}\cdot
+\frac{1}{\dfrac{R+Ls}{K_t}\big(J_{\text{eq}}s^2+B_{\text{eq}}s\big)+K_b}.
+\]
+
+Substitute the numeric \(J_{\text{eq}},B_{\text{eq}}\) and clear fractions with the factorization above:
+\[
+J_{\text{eq}}s^2+B_{\text{eq}}s=\frac{1}{225}\big(1156s^2+2640s\big).
+\]
+
+\[
+\frac{\Theta_L(s)}{E_a(s)}
+=\frac{2}{15}\cdot
+\frac{1}{\dfrac{R+Ls}{K_t}\cdot\frac{1}{225}\,(1156s^2+2640s)+K_b}.
+\]
+
+\[
+\boxed{\;
+\frac{\Theta_L(s)}{E_a(s)}
+=\frac{30}{\displaystyle \frac{R+Ls}{K_t}\,\big(1156\,s^2+2640\,s\big)+225\,K_b}\; }.
+\]
+
+
+% Problem 33
+\newpage
+
+\noindent\rule{\textwidth}{1pt}
+\noindent\textbf{Problem 33} \hfill
+\\ Determine the transfer function for the electromechanical system shown below.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm,>=Stealth, scale=0.7, transform shape]
+
+    % Motor (instead of Motor A box)
+    \draw (0,0) to[R,l=$R$] (3.5,0);
+    \draw (3.5,0) -- (3.5,-0.6);
+    \draw (3.3,-0.6) rectangle (3.7,-1);
+    \draw (3.3,-1.5) rectangle (3.7,-2);
+    \draw[fill=white] (3.5,-1.3) circle (0.4);
+    \draw (3.5,-2) -- (3.5,-2.6);
+    \draw (0,-2.6) -- (3.5,-2.6);
+    \node[left] at (0,0) {$+$};
+    \node[left] at (0,-2.6) {$-$};
+    \draw (3.9,-1.3) -- (5,-1.3);
+    \node[left] at (0.2,-1.3) {$e_a(t)$};
+    
+    % Inertia A (motor shaft)
+    \draw (5,-1.3) ellipse (0.3cm and 0.6cm);
+    \draw (5,-0.7) -- (7,-0.7);
+    \draw (5,-1.9) -- (7,-1.9);
+    \draw (7,-0.7) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=0.6cm];
+    \node at (6.2,-1.3) {$J_A=0.6$};
+    \node at (6.2,-2.2) {$B_A=2.0$};
+
+    %  Torque arrow 
+    \draw[->, thick] (4.5,-1.8) arc[start angle=290, end angle=45,
+          x radius=0.3cm, y radius=0.6cm];
+    \node at (4.5,0) {$T$};
+    
+    % Gear A
+    \draw (7.3,-1.3) -- (8,-1.3);
+    \draw (8,-1.7) -- (8,-0.9);
+    \node at (8.3,-0.6) {$N_A=25$};
+    
+    % Gear B
+    \draw (8,-2.2) -- (8,-3);
+    \draw (8,-2.6) -- (9.5,-2.6);
+    \node at (7,-2.6) {$N_B=60$};
+    
+    % Inertia B (Load shaft)
+    \draw (9.5,-2.6) ellipse (0.3cm and 0.6cm);
+    \draw (9.5,-2.0) -- (11.5,-2.0);
+    \draw (9.5,-3.2) -- (11.5,-3.2);
+    \draw (11.5,-2.0) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=0.6cm];
+    \node at (10.7,-2.6) {$J_B=10$};
+    \node at (10.7,-3.5) {$B_B=30$};
+    \draw (11.8,-2.6) -- (12.8,-2.6);
+    \draw (12.8,-3.1) -- (12.8,-2.2);
+
+    %  Theta arrow 
+    \draw[->, thick] (8.5,-3) arc[start angle=-110, end angle=135,
+          x radius=0.3cm, y radius=0.6cm];
+    \node at (9,-1.3) {$\theta_2(t)$};
+    
+    % Inertia C
+    \draw (14,-1.3) ellipse (0.3cm and 0.6cm);
+    \draw (14,-0.7) -- (16,-0.7);
+    \draw (14,-1.9) -- (16,-1.9);
+    \draw (16,-0.7) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=0.6cm];
+    \node at (15.2,-1.3) {$J_C=0.8$};
+    \node at (15.2,-2.2) {$B_C=3.0$};
+    
+    \draw (12.8,-1.3) -- (14,-1.3);
+    \draw (12.8,-1.3) -- (12.8,-1.3);
+    \draw (12.8,-1.7) -- (12.8,-0.9);
+    \node at (13.1,-0.6) {$N_C=15$};
+    \draw (16.3,-1.3) -- (16.4,-1.3);
+    
+    % Damper 
+    \pic [scale=1.3] at (16.4,-1.3) {damper}; 
+    \node at (18.5,-0.2) {$B=12\ \text{Nm/rad}$}; % label
+    
+    % Wall
+    \draw[pattern=bricks] (20,-2.3) rectangle (20.5,-0.3);
+    
+    
+    %  Enlarged Right triangle torque-speed axes (shifted left) 
+    \draw (17.5,0.3) -- (21.5,0.3) -- (17.5,4.3) -- cycle;   % large right triangle
+    \draw[->, thick] (17.5,0.3) -- (17.5,5.0);               % vertical axis (Torque)
+    \draw[->, thick] (21.5,0.3) -- (22.3,0.3);               % horizontal axis (Speed)
+    \draw (17.5,0.3) rectangle (17.8,0.6);                   % right angle marker
+    
+    % Axis Labels
+    \node[left] at (17.5,4.7) {$T \, (N\cdot m)$};
+    \node[below] at (22.0,0.3) {$\omega \, (rad/s)$};
+    
+    % Axis values
+    \node at (17.0,3.8) {$250$};
+    \node at (21.0,-0.3) {$120$};
+    
+    % Hypotenuse line + equation
+    \draw (17.5,4.3) -- (21.5,0.3)
+    node[midway, sloped, above] {$T=-2\omega+250$};
+
+    
+\end{tikzpicture}
+\end{figure}
+
+\noindent\rule{\textwidth}{1pt}
+\textbf{Given:}
+\[
+J_A = 0.6\ \mathrm{kg\cdot m^2}, \quad J_B = 10\ \mathrm{kg\cdot m^2}, \quad J_C = 0.8\ \mathrm{kg\cdot m^2}
+\]
+\[
+B_A = 2.0\ \mathrm{Nm\cdot s/rad}, \quad B_B = 30\ \mathrm{Nm\cdot s/rad}, \quad B_C = 3.0\ \mathrm{Nm\cdot s/rad}
+\]
+\[
+K = 12\ \mathrm{Nm/rad}
+\]
+\[
+N_A = 25, \quad N_B = 60, \quad N_C = 15
+\]
+\[
+T_m = -2\omega + 250
+\]
+
+\textbf{Required:}
+\[
+H(s) = \frac{\Theta_2(s)}{E_a(s)}
+\]
+
+\textbf{Solution:}
+
+The reflected inertias to motor side:
+
+\[
+J_\text{eq} = J_A + \left(\frac{N_A}{N_B}\right)^2 J_B + \left(\frac{N_A N_C}{N_B}\right)^2 J_C
+\]
+
+The reflected damping:
+
+\[
+B_\text{eq} = B_A + \left(\frac{N_A}{N_B}\right)^2 B_B + \left(\frac{N_A N_C}{N_B}\right)^2 (B_C + B)
+\]
+
+Motor electrical equation
+\[
+E_a(s) = R I_a(s) + K_e \Omega(s)
+\]
+\[
+\]
+
+Mechanical equation at motor shaft
+\[
+T_m(s) = J_\text{eq} s \Omega(s) + B_\text{eq} \Omega(s)
+\]
+
+\[
+E_a(s) = R \frac{T_m(s)}{K_t} + K_e \Omega(s) 
+\]
+\[
+E_a(s) = \left( \frac{R J_\text{eq}}{K_t} s + \frac{R B_\text{eq}}{K_t} + K_e \right) \Omega(s)
+\]
+
+Angular displacement at load
+\[
+\Theta_2(s) = \frac{\Omega(s)}{s} \cdot \frac{N_B}{N_A} \quad \text{(reflecting through gear A-B)}
+\]
+
+Transfer function
+\[
+H(s) = \frac{\Theta_2(s)}{E_a(s)} = \frac{\frac{N_B}{N_A}}{s \left( \frac{R J_\text{eq}}{K_t} s + \frac{R B_\text{eq}}{K_t} + K_e \right)}
+\]
+
+Substitute numerical values
+\[
+\frac{N_A}{N_B} = \frac{25}{60} = \frac{5}{12}
+\]
+\[
+\frac{N_A N_C}{N_B} = \frac{25\cdot15}{60} 
+\]
+\[
+\frac{N_A N_C}{N_B}= 6.25
+\]
+
+\[
+J_\text{eq} = 0.6 + (5/12)^2 \cdot 10 + (6.25)^2 \cdot 0.8 
+\]
+\[
+J_\text{eq} \approx 33.586
+\]
+
+\[
+B_\text{eq} = 2 + (5/12)^2 \cdot 30 + (6.25)^2 \cdot (3 + 12) 
+\]
+\[
+B_\text{eq} \approx 154.083
+\]
+
+\[
+H(s) = \frac{\Theta_2(s)}{E_a(s)} = \frac{60/25}{s \left( \frac{33.586 R}{K_t} s + \frac{154.083 R}{K_t} + K_e \right)} 
+\]
+\[
+H(s) = \frac{2.4}{s \left( \frac{33.586 R}{K_t} s + \frac{154.083 R}{K_t} + K_e \right)}
+\]
+
+\[
+\boxed{
+H(s) = \frac{2.4}{s \left( \frac{33.586 R}{K_t} s + \frac{154.083 R}{K_t} + K_e \right)}
+}
+\]
+
+% Problem 34
+\newpage
+
+\noindent\rule{\textwidth}{1pt}
+\noindent\textbf{Problem 34} \hfill
+\\ Determine the \textbf{transfer function} from the applied voltage $e_a(t)$ to the load angular displacement $\theta_L(t)$: $H(s) = \frac{\Theta_L(s)}{E_a(s)}$
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm,>=Stealth, scale=0.9, transform shape]
+
+    % Motor with R_a and L_a
+    \draw (0,0) to[R,l=$2\Omega$] (1.5,0)    
+          to[L,l=$0.5H$] (3.5,0);        
+    \draw (3.5,0) -- (3.5,-0.6);
+    \draw (3.3,-0.6) rectangle (3.7,-1);
+    \draw (3.3,-1.5) rectangle (3.7,-2);
+    \draw[fill=white] (3.5,-1.3) circle (0.4);
+    \draw (3.5,-2) -- (3.5,-2.6);
+    \draw (0,-2.6) -- (3.5,-2.6);
+    \node[left] at (0,0) {$+$};
+    \node[left] at (0,-2.6) {$-$};
+    \draw (3.9,-1.3) -- (5,-1.3);
+    \node[left] at (0.2,-1.3) {$e_a(t)$};
+
+    \node at (1.5,-3.2) {$J_a=1kg-m^2$};
+    \node at (1.5,-3.8) {$D_a=5Nms/rad$};
+
+    % Gear 1
+    \draw (5,-1.3) -- (5.2,-1.3);
+    \draw (5.2,-1.7) -- (5.2,-0.9);
+    \node at (5.5,-0.6) {$N_1=6$};
+
+    %  theta_m(t) Arrow 
+    \draw[->, thick] (4.5,-1.8) arc[start angle=290, end angle=45,
+          x radius=0.3cm, y radius=0.6cm];
+    \node at (4.5,0) {$\theta_m(t)$};
+
+    % Gear 2
+    \draw (5.2,-2.2) -- (5.2,-3);
+    \draw (5.2,-2.6) -- (6.5,-2.6);
+    \node at (4.4,-2.6) {$N_2=8$};
+
+    % Gear 3
+    \draw (6.5,-2.2) -- (6.5,-3);
+    \node at (7.3,-2.6) {$N_3=4$};
+
+     % Gear 4
+    \draw (6.5,-1.3) -- (7.8,-1.3);
+    \draw (6.5,-1.7) -- (6.5,-0.9);
+    \node at (7,-0.6) {$N_4=12$};
+
+     % Gear 5
+    \draw (7.8,-0.5) -- (7.8,0.3);
+    \node at (8.6,-1.2) {$N_5=4$};
+
+    % Gear 6
+    \draw (7.8,-0.1) -- (9.5,-0.1);
+    \draw (7.8,-1.7) -- (7.8,-0.9);
+    \node at (7.8,0.5) {$N_6=16$};
+
+     % Inertia C
+    \draw (9.5,-0.1) ellipse (0.3cm and 0.6cm);
+    \draw (9.5,0.5) -- (12,0.5);
+    \draw (9.5,-0.7) -- (12,-0.7);
+    \draw (12,0.5) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=0.6cm];
+    \node at (10.8,-0.11) {$16 kg-m^2$};
+    \draw (12.3,-0.1) -- (13.5,-0.1);
+
+    %  theta_L(t) Arrow 
+    \draw[->, thick] (12.6,-0.5) arc[start angle=225, end angle=500,
+          x radius=0.3cm, y radius=0.6cm];
+    \node at (12.8,1) {$\theta_L(t)$};
+
+    %  Right triangle Torque-Speed Axis below Inertia 
+    \begin{scope}[shift={(2.3,-5.3)}]  % shift down below the inertia
+        % Right triangle
+        \draw (9.5,-0.1) -- (13.5,-0.1) -- (9.5,3.5) -- cycle;
+        
+        % Axes
+        \draw[->, thick] (9.5,-0.1) -- (9.5,4);    % Torque axis (vertical)
+        \draw[->, thick] (9.5,-0.1) -- (14, -0.1); % Speed axis (horizontal)
+        
+        % Axis Labels
+        \node[left] at (9.3,3.8) {$T \,(Nm)$};
+        \node[below] at (13.8,-0.3) {$\omega \,(rad/s)$};
+        
+        % Axis values
+        \node at (9,3) {300};
+        \node at (13,-0.3) {120};
+        
+        % Hypotenuse / Torque-Speed line
+        \draw (9.5,3.5) -- (13.5,-0.1) node[midway, sloped, above] {$T=-2\omega+250$};
+    \end{scope}
+
+    % Wall
+    \draw[pattern=bricks] (13.5,-0.8) rectangle (14,0.8);
+    
+\end{tikzpicture}
+\end{figure}
+
+
+\noindent\rule{\textwidth}{1pt}
+\textbf{Given:}
+\[
+J_a = 1\ \mathrm{kg\cdot m^2}, \quad J_C = 16\ \mathrm{kg\cdot m^2}
+\]
+\[
+D_a = 5\ \mathrm{N\,m\,s/rad}
+\]
+\[
+N_1 = 6, \ N_2 = 8, \ N_3 = 4, \ N_4 = 12, \ N_5 = 4, \ N_6 = 16
+\]
+\[
+T(\omega) = -2 \omega + 250\ \mathrm{Nm}
+\]
+\[
+R_a = 2\ \Omega, \ L_a = 0.5\ \mathrm{H}, \ K_t = 0.1\ \mathrm{Nm/A}, \ K_e = 0.1\ \mathrm{V\cdot s/rad}
+\]
+
+\textbf{Required:}
+\[
+H(s) = \frac{\Theta_L(s)}{E_a(s)}
+\]
+
+\textbf{Solution:}
+
+Reflect load inertia and damping to motor side:
+\[
+\frac{N_1}{N_2} = \frac{6}{8} = 0.75
+\]
+\[
+\frac{N_1 N_4}{N_2} = \frac{6 \cdot 12}{8} 
+\]
+\[
+\frac{N_1 N_4}{N_2}= 9
+\]
+
+\[
+J_\mathrm{eq} = J_a + \left(\frac{N_1 N_4}{N_2}\right)^2 J_C + \left(\frac{N_1}{N_2}\right)^2 D_a 
+\]
+\[
+J_\mathrm{eq} = 1 + 9^2 (16) + 0.75^2 (5) 
+\]
+\[
+J_\mathrm{eq} \approx 1299.8125
+\]
+
+\[
+D_\mathrm{eq} = D_a + \left(\frac{N_1 N_4}{N_2}\right)^2 B_\mathrm{load} + \left(\frac{N_1}{N_2}\right)^2 D_a
+\]
+\[
+D_\mathrm{eq}= 5 + 9^2 (2) + 0.75^2 (5) 
+\]
+\[
+D_\mathrm{eq}\approx 169.8125
+\]
+
+Motor electrical and mechanical equations:
+\[
+E_a(s) = R_a I_a(s) + L_a s I_a(s) + K_e \Omega(s)
+\]
+\[
+T_m(s) = J_\mathrm{eq} s \Omega(s) + D_\mathrm{eq} \Omega(s)
+\]
+
+\[
+I_a(s) = \frac{T_m(s)}{K_t}
+\]
+
+\[
+E_a(s) = \left(\frac{R_a J_\mathrm{eq}}{K_t} s + \frac{L_a J_\mathrm{eq}}{K_t} s^2 + \frac{R_a D_\mathrm{eq}}{K_t} + \frac{L_a D_\mathrm{eq}}{K_t} s + K_e \right) \Omega(s)
+\]
+
+Substitute numeric values:
+\[
+\begin{aligned}
+\frac{R_a J_\mathrm{eq}}{K_t} &= \frac{2 \cdot 1299.8125}{0.1} \approx 25996.25,\\
+\frac{L_a J_\mathrm{eq}}{K_t} &= \frac{0.5 \cdot 1299.8125}{0.1} \approx 6499.06,\\
+\frac{R_a D_\mathrm{eq}}{K_t} &= \frac{2 \cdot 169.8125}{0.1} \approx 3396.25,\\
+\frac{L_a D_\mathrm{eq}}{K_t} &= \frac{0.5 \cdot 169.8125}{0.1} \approx 849.06
+\end{aligned}
+\]
+
+Load displacement:
+\[
+\Theta_L(s) = \frac{\Omega(s)}{s} \cdot \frac{1}{9} 
+\]
+\[
+\Theta_L(s)\approx 0.1111 \frac{\Omega(s)}{s}
+\]
+
+Transfer function:
+\[
+H(s) = \frac{\Theta_L(s)}{E_a(s)} 
+\]
+\[
+H(s) = \frac{0.1111}{s \left( 6499.06 s^2 + (25996.25 + 849.06) s + 3396.25 + 0.1 \right)}\\
+\]
+\[
+H(s) = \frac{0.1111}{s (6499.06 s^2 + 26845.31 s + 3396.35)}
+\]
+
+\[
+\boxed{H(s) = \frac{0.1111}{s (6499.06 s^2 + 26845.31 s + 3396.35)}}
+\]
+
+% Problem 35
+\newpage
+
+\noindent\rule{\textwidth}{1pt}
+\noindent\textbf{Problem 35} \hfill
+\\ Determine the \textbf{transfer function} from the applied voltage $e_a(t)$ to the angular displacement of the load $\theta_L(t)$: $H(s) = \frac{\Theta_L(s)}{E_a(s)}$
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm,>=Stealth, scale=1.1, transform shape]
+
+    % Motor with R_a and L_a
+    \draw (0,0) to[R,l=$3\Omega$] (1.5,0)     % resistor
+          to[L,l=$0.5H$] (3.5,0);          % inductor in series
+    \draw (3.5,0) -- (3.5,-0.6);
+    \draw (3.3,-0.6) rectangle (3.7,-1);
+    \draw (3.3,-1.5) rectangle (3.7,-2);
+    \draw[fill=white] (3.5,-1.3) circle (0.4);
+    \draw (3.5,-2) -- (3.5,-2.6);
+    \draw (0,-2.6) -- (3.5,-2.6);
+    \node[left] at (0,0) {$+$};
+    \node[left] at (0,-2.6) {$-$};
+    \draw (3.9,-1.3) -- (5,-1.3);
+    \node[left] at (0.2,-1.3) {$e_a(t)$};
+
+    \node at (1.5,-3.2) {$J_a=1kg-m^2$};
+    \node at (1.5,-3.8) {$D_a=5Nms/rad$};
+
+    % Gear 1
+    \draw (5,-1.3) -- (5.2,-1.3);
+    \draw (5.2,-1.7) -- (5.2,-0.9);
+    \node at (5.5,-0.6) {$N_1=2$};
+
+    %  theta_m(t) Arrow 
+    \draw[->, thick] (4.5,-1.8) arc[start angle=290, end angle=45,
+          x radius=0.3cm, y radius=0.6cm];
+    \node at (4.5,0) {$\theta_m(t)$};
+
+    % Gear 2
+    \draw (5.2,-2.2) -- (5.2,-3);
+    \draw (5.2,-2.6) -- (6.5,-2.6);
+    \node at (4.4,-2.6) {$N_2=16$};
+
+    % Gear 3
+    \draw (6.5,-2.2) -- (6.5,-3);
+    \node at (6.2,-3.4) {$N_3=8$};
+
+     % Gear 4
+    \draw (6.5,-1.3) -- (7.8,-1.3);
+    \draw (6.5,-1.7) -- (6.5,-0.9);
+    \node at (7,-0.6) {$N_4=6$};
+
+     % Gear 5
+    \draw (7.8,-1.7) -- (7.8,-0.9);
+    \node at (8.6,-1.2) {$N_512$};
+
+    % Gear 6
+    \draw (7.8,-2.6) -- (9.5,-2.6);
+    \draw (7.8,-2.2) -- (7.8,-3);
+    \node at (8.1,-3.4) {$N_6=10$};
+
+    %  Inertia below Gear 5 
+    \draw (9.5,-2.6) ellipse (0.3cm and 0.6cm);           % inertia ellipse
+    \draw (9.5,-2) -- (12,-2);                          % top horizontal line
+    \draw (9.5,-3.2) -- (12,-3.2);                        % bottom horizontal line
+    \draw (12,-2) arc[start angle=90, end angle=-90, x radius=0.3cm, y radius=0.6cm]; % right end
+    \node at (11,-2.6) {$5\ \mathrm{kg\!-\!m^2}$};   % inertia label
+    \draw (12.3,-2.6) -- (13.5,-2.6);                    % output shaft
+
+    % Damper 
+    \draw (12.8,-2.6) -- (12.8,-3.6);       % connecting line
+    \draw (12.5,-3.6) -- (13.1,-3.6);       % plate
+    \draw (12.4,-3.9) -- (13.2,-3.9) -- (13.2,-3.3);  %bottom box part
+    \draw (12.4,-3.3) -- (12.4,-3.9);       % top box part
+    \draw (12.8,-3.9) -- (12.8,-4.8);         % horizontal line to the right
+    \node at (11,-4.5) {$B=12\ \text{Nm/rad}$}; % label
+
+    %  Wall 
+    \draw[pattern=bricks] (13.5,-1.8) rectangle (14,-3.4);
+    \draw[pattern=bricks] (12.3,-4.8) rectangle (13.3,-5.3);
+
+\end{tikzpicture}
+\end{figure}
+
+\noindent\rule{\textwidth}{1pt}
+
+\textbf{Given:}
+
+\[
+R_a = 3\ \Omega, \ L_a = 0.5\ \mathrm{H}, \ K_t = 0.1\ \mathrm{Nm/A}, \ K_e = 0.1\ \mathrm{V\cdot s/rad}
+\]
+\[
+J_a = 1\ \mathrm{kg\!-\!m^2}, \ J_L = 5\ \mathrm{kg\!-\!m^2}
+\]
+\[
+D_a = 5\ \mathrm{Nms/rad}, \ B = 12\ \mathrm{Nm/rad}
+\]
+\[
+N_1 = 2, \ N_2 = 16, \ N_4 = 6, \ N_5 = 12, \ N_6 = 10
+\]
+
+\textbf{Required:}
+\[
+H(s) = \frac{\Theta_L(s)}{E_a(s)}
+\]
+
+\textbf{Solution:}
+
+Reflect load inertia to motor side
+\[
+\frac{N_1 N_4}{N_2} = \frac{2 \cdot 6}{16} 
+\]
+\[
+\frac{N_1 N_4}{N_2}= 0.75
+\]
+
+Reflected inertia and damping:
+\[
+J_\mathrm{eq} = J_a + \left(\frac{N_1 N_4}{N_2}\right)^2 J_L + \left(\frac{N_1}{N_2}\right)^2 D_a \\
+\]
+\[
+J_\mathrm{eq}= 1 + (0.75)^2 (5) + (0.125)^2 (5) 
+\]
+\[
+J_\mathrm{eq}\approx 3.891
+\]
+
+\[
+D_\mathrm{eq} = D_a + \left(\frac{N_1 N_4}{N_2}\right)^2 B + \left(\frac{N_1}{N_2}\right)^2 D_a \\
+\]
+\[
+D_\mathrm{eq} 5 + (0.75)^2 (12) + (0.125)^2 (5) 
+\]
+\[
+D_\mathrm{eq} \approx 11.828
+\]
+
+Motor electrical equation in Laplace domain
+
+\[
+E_a(s) = R_a I_a(s) + L_a s I_a(s) + K_e \Omega(s)
+\]
+\[
+T_m(s) = J_\mathrm{eq} s \Omega(s) + D_\mathrm{eq} \Omega(s)
+\]
+\[
+I_a(s) = \frac{T_m(s)}{K_t}
+\]
+
+Substitute numeric values
+
+\[
+\frac{R_a J_\mathrm{eq}}{K_t} = \frac{3 \cdot 3.891}{0.1} \approx 116.73
+\]
+
+\[
+\frac{L_a J_\mathrm{eq}}{K_t} = \frac{0.5 \cdot 3.891}{0.1} \approx 19.455
+\]
+
+\[
+\frac{R_a D_\mathrm{eq}}{K_t} = \frac{3 \cdot 11.828}{0.1} \approx 354.84
+\]
+
+\[
+\frac{L_a D_\mathrm{eq}}{K_t} = \frac{0.5 \cdot 11.828}{0.1} \approx 59.14
+\]
+
+Relate load displacement to motor speed
+
+\[
+\Theta_L(s) = \frac{\Omega(s)}{s} \cdot \frac{N_2}{N_1 N_4} 
+\]
+\[
+\Theta_L(s)= \frac{\Omega(s)}{s} \cdot \frac{16}{2 \cdot 6} 
+\]
+\[
+\Theta_L(s)= 1.3333 \frac{\Omega(s)}{s}
+\]
+
+Transfer function:
+
+\[
+H(s) = \frac{\Theta_L(s)}{E_a(s)} = \frac{1.3333}{s \left( 19.455 s^2 + 354.84 s + 116.73 \right)}
+\]
+
+\[
+\boxed{H(s) = \frac{1.3333}{s \left( 19.455 s^2 + 354.84 s + 116.73 \right)}}
+\]
