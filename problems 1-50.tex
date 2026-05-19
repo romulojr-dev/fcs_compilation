@@ -1,32 +1,65 @@
 ﻿\documentclass[11pt]{article}
-\usepackage{enumitem}
 
 \usepackage[paperwidth=8.5in, paperheight=13in, top=0.75in, bottom=0.75in, right=0.75in, left=1.25in]{geometry}
 
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath, amssymb, amsfonts, mathtools, bm, mathrsfs, esvect}
+\usepackage{amsmath, amssymb, amsfonts, mathtools, bm, mathrsfs, esvect, harpoon}
 
 \usepackage{graphicx, xcolor, tikz, pgfplots}
 \usepackage[siunitx, american]{circuitikz} % For Electrical Network problems
 
-\usetikzlibrary{shapes,arrows,positioning,calc,decorations.markings,patterns}
+\usetikzlibrary{
+    arrows.meta, 
+    positioning, 
+    decorations.pathmorphing, 
+    decorations.markings, 
+    patterns, 
+    calc, 
+    shapes.geometric
+}
+
+\pgfplotsset{compat=1.18}
+
+\usepackage{fancybox, verbatim, xspace, setspace, multicol, ifthen, calc, fancyhdr, enumitem, textcomp, array}
+
+
+% Styles
 \tikzset{
-    sumpoint/.style={
-        circle,
+    % BLOCK DIAGRAM ALGEBRA
+    spring/.style={
+        decoration={
+          coil,
+          aspect=0.6,
+          segment length=2.3mm,
+          amplitude=2.3mm,
+          pre length=3mm,
+          post length=3mm
+        },
+        decorate
+    },
+    block/.style={
+        rectangle,
         draw,
-        minimum size=7mm,
+        minimum height=10mm,
+        minimum width=10mm,
+        align=center
+    },
+    sumpoint/.style={
+        circle, 
+        draw, 
+        minimum size=7mm, 
         thick,
         path picture={
             \draw[black, thick]
-                (path picture bounding box.south west) -- (path picture bounding box.north east)
-                (path picture bounding box.north west) -- (path picture bounding box.south east);
+            (path picture bounding box.south west) -- (path picture bounding box.north east)
+            (path picture bounding box.north west) -- (path picture bounding box.south east);
         }
     },
     tpoint/.style={
-        circle,
-        fill=black,
-        inner sep=0pt,
-        minimum size=1.5mm
+        circle,         
+        fill=black,    
+        inner sep=0pt, 
+        minimum size=1.5mm 
     },
     wall/.style={
         pattern=north west lines,
@@ -37,33 +70,19 @@
     tbody/.style={
         rectangle,
         draw,
-        minimum height=27mm,
-        minimum width=20mm,
+        minimum height=27mm, 
+        minimum width=20mm, 
         align=center
     },
     mid arrow/.style={
         postaction={
-            decorate,
-            decoration={
-                markings,
-                mark=at position 0.5 with {\arrow[scale=1.5]{>}}
-            }
+          decorate,
+          decoration={
+            markings,
+            mark=at position 0.5 with {\arrow[scale=1.5]{>}}
+          }
         }
-    },
-    block/.style={
-        rectangle,
-        draw,
-        minimum width=1.5cm,
-        minimum height=1cm,
-        align=center
     }
-}
-
-% Arrow styles for Free Body Diagrams: springs (K) red solid, dampers (D) blue dashed, input torque (T) black
-\tikzset{
-        Karrow/.style={-Stealth, red, line width=1pt},
-        Darrow/.style={-Stealth, blue, dashed, line width=1pt},
-        Tarrow/.style={-Stealth, black, line width=1.25pt}
 }
 
 % Macros
@@ -226,7 +245,6 @@
         \fill #2 circle (3pt);
     }
 
-\sloppy
 \begin{document}
   \thispagestyle{empty} 
 
@@ -2921,37 +2939,57 @@ G(s) = \frac{\theta_3(s)}{T(s)}
 
 We assume clockwise rotation is positive.
 
-\begin{figure}[!ht]
-\centering
-\begin{tikzpicture}[scale=1.0, every node/.style={font=\large}]
-    % J1
-    \node[circle, draw, minimum size=3cm] (J1) at (0,0) {$J_1$};
-    \draw[Tarrow] (50:1.4cm) arc[start angle=50, end angle=10, radius=1.4cm] node[midway, right] {$T(t)$};
-    \draw[Karrow] (120:1.25cm) arc[start angle=120, end angle=160, radius=1.25cm] node[midway, left] {$K_1\,\theta_1$};
-    \draw[Darrow] (245:1.25cm) arc[start angle=245, end angle=205, radius=1.25cm] node[midway, below left] {$D_1\,\dot{\theta}_1$};
-    \draw[Karrow] (340:1.25cm) arc[start angle=340, end angle=300, radius=1.25cm] node[midway, right] {$(K_2)(\theta_1-\theta_2)$};
-    \draw[Darrow] (300:1.45cm) arc[start angle=300, end angle=260, radius=1.45cm] node[midway, below right] {$(D_2)(\dot{\theta}_1-\dot{\theta}_2)$};
-
-    % J2
-    \begin{scope}[shift={(4,0)}]
-        \node[circle, draw, minimum size=3cm] (J2) at (0,0) {$J_2$};
-        \draw[Karrow] (120:1.25cm) arc[start angle=120, end angle=160, radius=1.25cm] node[midway, left] {$(K_2)(\theta_2-\theta_1)$};
-        \draw[Darrow] (245:1.25cm) arc[start angle=245, end angle=205, radius=1.25cm] node[midway, below left] {$(D_2)(\dot{\theta}_2-\dot{\theta}_1)$};
-        \draw[Karrow] (340:1.25cm) arc[start angle=340, end angle=300, radius=1.25cm] node[midway, right] {$(K_3)(\theta_2-\theta_3)$};
-        \draw[Darrow] (300:1.45cm) arc[start angle=300, end angle=260, radius=1.45cm] node[midway, below right] {$(D_3)(\dot{\theta}_2-\dot{\theta}_3)$};
-        \node at (0,1.9) {$\theta_2$};
-    \end{scope}
-
-    % J3
-    \begin{scope}[shift={(8,0)}]
-        \node[circle, draw, minimum size=3cm] (J3) at (0,0) {$J_3$};
-        \draw[Karrow] (120:1.25cm) arc[start angle=120, end angle=160, radius=1.25cm] node[midway, left] {$(K_3)(\theta_3-\theta_2)$};
-        \draw[Darrow] (245:1.25cm) arc[start angle=245, end angle=205, radius=1.25cm] node[midway, below left] {$(D_3)(\dot{\theta}_3-\dot{\theta}_2)$};
-        \draw[Karrow] (340:1.25cm) arc[start angle=340, end angle=300, radius=1.25cm] node[midway, right] {$K_4\,\theta_3$};
-        \draw[Darrow] (300:1.45cm) arc[start angle=300, end angle=260, radius=1.45cm] node[midway, below right] {$D_4\,\dot{\theta}_3$};
-        \node at (0,1.9) {$\theta_3$};
-    \end{scope}
-\end{tikzpicture}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.9]
+            % Mass J1
+            \node[draw, circle, minimum size=2.5cm] (j1) {$J_1$};
+            % Positive direction arrow
+            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_1$};
+            % Applied Torque T(t) - clockwise
+            \draw[-{Stealth[length=2.5mm]}, thick, black!50!black] (135:2.0cm) arc (135:45:2.0cm) node[midway, above right] {$T(t)$};
+            % Torques on the left (from wall) - counter-clockwise
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.5cm) arc(200:160:1.5cm) node[midway, left=2mm]{$K_1\theta_1$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:205:1.5cm) node[midway, below left=2mm]{$D_1\frac{d\theta_1}{dt}$};
+            % Torques on the right (from J2) - counter-clockwise
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:320:1.5cm) node[midway, right=2mm]{$K_2(\theta_1-\theta_2)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (295:1.5cm) arc(295:275:1.5cm) node[midway, below right=2mm]{$D_2\left(\frac{d\theta_1}{dt}-\frac{d\theta_2}{dt}\right)$};
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.9]
+            % Mass J2
+            \node[draw, circle, minimum size=2.5cm] (j2) {$J_2$};
+             % Positive direction arrow
+            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_2$};
+            % Torques on the left (from J1) - counter-clockwise
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.5cm) arc(200:160:1.5cm) node[midway, left=2mm]{$K_2(\theta_2-\theta_1)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:205:1.5cm) node[midway, below left=2mm]{$D_2\left(\frac{d\theta_2}{dt}-\frac{d\theta_1}{dt}\right)$};
+            % Torques on the right (from J3) - counter-clockwise
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:320:1.5cm) node[midway, right=2mm]{$K_3(\theta_2-\theta_3)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (295:1.5cm) arc(295:275:1.5cm) node[midway, below right=2mm]{$D_3\left(\frac{d\theta_2}{dt}-\frac{d\theta_3}{dt}\right)$};
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.9]
+            % Mass J3
+            \node[draw, circle, minimum size=2.5cm] (j3) {$J_3$};
+             % Positive direction arrow
+            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_3$};
+            % Torques on the left (from J2) - counter-clockwise
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.5cm) arc(200:160:1.5cm) node[midway, left=2mm]{$K_3(\theta_3-\theta_2)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:205:1.5cm) node[midway, below left=2mm]{$D_3\left(\frac{d\theta_3}{dt}-\frac{d\theta_2}{dt}\right)$};
+            % Torques on the right (from wall) - counter-clockwise
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:320:1.5cm) node[midway, right=2mm]{$K_4\theta_3$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (295:1.5cm) arc(295:275:1.5cm) node[midway, below right=2mm]{$D_4\frac{d\theta_3}{dt}$};
+        \end{tikzpicture}
+    \end{minipage}
 \end{figure}
 
 \noindent\textbf{Equations of Motion}
@@ -3014,8 +3052,6 @@ Substituting the given numerical values:
 \noindent\textbf{Solving for the Transfer Function}
 \vspace{8pt}
 
-\noindent\textbf{Matrix Representation}
-
 The system can be expressed in matrix form $A\boldsymbol{\Theta} = \mathbf{b}$:
 $$
 \begin{bmatrix}
@@ -3024,19 +3060,13 @@ $$
 0 & -(s + 2) & s^2 + 5s + 3
 \end{bmatrix}
 \begin{bmatrix}
-\Theta_1(s) \\
-\Theta_2(s) \\
-\Theta_3(s)
+\Theta_1(s) \\ \Theta_2(s) \\ \Theta_3(s)
 \end{bmatrix}
 =
 \begin{bmatrix}
-T(s) \\
-0 \\
-0
+T(s) \\ 0 \\ 0
 \end{bmatrix}
 $$
-
-\noindent\textbf{Solving for $\Theta_3(s)$}
 
 Using Cramer's Rule to solve for $\Theta_3(s)$:
 $$ \Theta_3(s) = \frac{\det(A_3)}{\det(A)} $$
@@ -3048,8 +3078,7 @@ Determinant of $A$:
 $$ \det(A) = (2s^2 + 8s + 7)[(s^2 + 3s + 5)(s^2 + 5s + 3) - (s + 2)^2] - (2s + 3)^2(s^2 + 5s + 3) $$
 $$ \det(A) = 2s^6 + 24s^5 + 123s^4 + 356s^3 + 591s^2 + 499s + 160 $$
 
-\noindent\textbf{Final Transfer Function}
-
+The final transfer function is:
 \[
 \boxed{ \frac{\Theta_3(s)}{T(s)} = \frac{2s^2 + 7s + 6}{2s^6 + 24s^5 + 123s^4 + 356s^3 + 591s^2 + 499s + 160} }
 \]
@@ -3129,35 +3158,42 @@ G(s) = \frac{\theta_3(s)}{T(s)}
 
 We assume clockwise rotation is positive.
 
-\begin{figure}[!ht]
-\centering
-\begin{tikzpicture}[scale=1.0, every node/.style={font=\large}]
-    % J1
-    \node[circle, draw, minimum size=3cm] (J1) at (0,0) {$J_1$};
-    \draw[Tarrow] (50:1.4cm) arc[start angle=50, end angle=10, radius=1.4cm] node[midway, right] {$T(t)$};
-    \draw[Karrow] (200:1.25cm) arc[start angle=200, end angle=160, radius=1.25cm] node[midway, left] {$K_1\,\theta_1$};
-    \draw[Karrow] (340:1.25cm) arc[start angle=340, end angle=300, radius=1.25cm] node[midway, right] {$K_2(\theta_1-\theta_2)$};
-    \draw[Darrow] (295:1.45cm) arc[start angle=295, end angle=275, radius=1.45cm] node[midway, below right] {$D_1(\dot{\theta}_1-\dot{\theta}_2)$};
-
-    % J2
-    \begin{scope}[shift={(4,0)}]
-        \node[circle, draw, minimum size=3cm] (J2) at (0,0) {$J_2$};
-        \draw[Karrow] (120:1.25cm) arc[start angle=120, end angle=160, radius=1.25cm] node[midway, left] {$K_2(\theta_2-\theta_1)$};
-        \draw[Darrow] (245:1.25cm) arc[start angle=245, end angle=205, radius=1.25cm] node[midway, below left] {$D_1(\dot{\theta}_2-\dot{\theta}_1)$};
-        \draw[Karrow] (340:1.25cm) arc[start angle=340, end angle=300, radius=1.25cm] node[midway, right] {$K_3(\theta_2-\theta_3)$};
-        \draw[Darrow] (300:1.45cm) arc[start angle=300, end angle=260, radius=1.45cm] node[midway, below right] {$D_2(\dot{\theta}_2-\dot{\theta}_3)$};
-        \node at (0,1.9) {$\theta_2$};
-    \end{scope}
-
-    % J3
-    \begin{scope}[shift={(8,0)}]
-        \node[circle, draw, minimum size=3cm] (J3) at (0,0) {$J_3$};
-        \draw[Karrow] (120:1.25cm) arc[start angle=120, end angle=160, radius=1.25cm] node[midway, left] {$K_3(\theta_3-\theta_2)$};
-        \draw[Darrow] (245:1.25cm) arc[start angle=245, end angle=205, radius=1.25cm] node[midway, below left] {$D_2(\dot{\theta}_3-\dot{\theta}_2)$};
-        \draw[Karrow] (340:1.25cm) arc[start angle=340, end angle=300, radius=1.25cm] node[midway, right] {$K_4\,\theta_3$};
-        \node at (0,1.9) {$\theta_3$};
-    \end{scope}
-\end{tikzpicture}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.9]
+            \node[draw, circle, minimum size=2.5cm] (j1) {$J_1$};
+            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_1$};
+            \draw[-{Stealth[length=2.5mm]}, thick, black!50!black] (135:2.0cm) arc (135:45:2.0cm) node[midway, above right] {$T(t)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.5cm) arc(200:160:1.5cm) node[midway, left=2mm]{$K_1\theta_1$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:320:1.5cm) node[midway, right=2mm]{$K_2(\theta_1-\theta_2)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (295:1.5cm) arc(295:275:1.5cm) node[midway, below right=2mm]{$D_1\left(\frac{d\theta_1}{dt}-\frac{d\theta_2}{dt}\right)$};
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.9]
+            \node[draw, circle, minimum size=2.5cm] (j2) {$J_2$};
+            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_2$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.5cm) arc(200:160:1.5cm) node[midway, left=2mm]{$K_2(\theta_2-\theta_1)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:205:1.5cm) node[midway, below left=2mm]{$D_1\left(\frac{d\theta_2}{dt}-\frac{d\theta_1}{dt}\right)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:320:1.5cm) node[midway, right=2mm]{$K_3(\theta_2-\theta_3)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (295:1.5cm) arc(295:275:1.5cm) node[midway, below right=2mm]{$D_2\left(\frac{d\theta_2}{dt}-\frac{d\theta_3}{dt}\right)$};
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.9]
+            \node[draw, circle, minimum size=2.5cm] (j3) {$J_3$};
+            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_3$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.5cm) arc(200:160:1.5cm) node[midway, left=2mm]{$K_3(\theta_3-\theta_2)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:205:1.5cm) node[midway, below left=2mm]{$D_2\left(\frac{d\theta_3}{dt}-\frac{d\theta_2}{dt}\right)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:320:1.5cm) node[midway, right=2mm]{$K_4\theta_3$};
+        \end{tikzpicture}
+    \end{minipage}
 \end{figure}
 
 \noindent\textbf{Equations of Motion}
@@ -3327,31 +3363,38 @@ G(s) = \frac{\theta_3(s)}{T(s)}
 
 We assume clockwise rotation is positive.
 
-\begin{figure}[!ht]
-\centering
-\begin{tikzpicture}[scale=1.0, every node/.style={font=\large}]
-    % J1
-    \node[circle, draw, minimum size=3cm] (J1) at (0,0) {$J_1$};
-    \draw[Tarrow] (50:1.4cm) arc[start angle=50, end angle=10, radius=1.4cm] node[midway, right] {$T(t)$};
-    \draw[Darrow] (245:1.25cm) arc[start angle=245, end angle=205, radius=1.25cm] node[midway, below left] {$D_1\,\dot{\theta}_1$};
-    \node at (1.1,-0.3) {$(D_2..D_5)$};
-
-    % J2
-    \begin{scope}[shift={(4,0)}]
-        \node[circle, draw, minimum size=3cm] (J2) at (0,0) {$J_2$};
-        \node at (0,1.9) {$\theta_2$};
-        \node at (-1.3,-0.3) {$(D_2..D_5)$};
-        \node at (1.3,-0.3) {$(D_6..D_9)$};
-    \end{scope}
-
-    % J3
-    \begin{scope}[shift={(8,0)}]
-        \node[circle, draw, minimum size=3cm] (J3) at (0,0) {$J_3$};
-        \node at (0,1.9) {$\theta_3$};
-        \node at (-1.1,-0.3) {$(D_6..D_9)$};
-        \node at (1.0,-0.3) {$D_{10}$};
-    \end{scope}
-\end{tikzpicture}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.9]
+            \node[draw, circle, minimum size=2.5cm] (j1) {$J_1$};
+            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_1$};
+            \draw[-{Stealth[length=2.5mm]}, thick, black!50!black] (135:2.0cm) arc (135:45:2.0cm) node[midway, above right] {$T(t)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:205:1.5cm) node[midway, below left=2mm]{$D_1\frac{d\theta_1}{dt}$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:290:1.5cm) node[midway, right=2mm]{$(D_2..D_5)\left(\frac{d\theta_1}{dt}-\frac{d\theta_2}{dt}\right)$};
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.9]
+            \node[draw, circle, minimum size=2.5cm] (j2) {$J_2$};
+            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_2$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:180:1.5cm) node[midway, left=2mm]{$(D_2..D_5)\left(\frac{d\theta_2}{dt}-\frac{d\theta_1}{dt}\right)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:290:1.5cm) node[midway, right=2mm]{$(D_6..D_9)\left(\frac{d\theta_2}{dt}-\frac{d\theta_3}{dt}\right)$};
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.9]
+            \node[draw, circle, minimum size=2.5cm] (j3) {$J_3$};
+            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_3$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:180:1.5cm) node[midway, left=2mm]{$(D_6..D_9)\left(\frac{d\theta_3}{dt}-\frac{d\theta_2}{dt}\right)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:300:1.5cm) node[midway, right=2mm]{$D_{10}\frac{d\theta_3}{dt}$};
+        \end{tikzpicture}
+    \end{minipage}
 \end{figure}
 
 \noindent\textbf{Equations of Motion}
@@ -3441,10 +3484,9 @@ $$ \det(A) = (s^2 + 5s)[(s^2 + 8s)(s^2 + 5s) - (-4s)^2] - (-4s)^2(s^2 + 5s) $$
 $$ \det(A) = (s^2 + 5s)(s^4 + 13s^3 + 24s^2) - 16s^4 - 80s^3 $$
 $$ \det(A) = s^6 + 18s^5 + 73s^4 + 40s^3 $$
 
-\noindent\textbf{Final Transfer Function}
-
-\[
-\boxed{ \frac{\Theta_3(s)}{T(s)} = \frac{16s^2}{s^6 + 18s^5 + 73s^4 + 40s^3} }
+The final transfer function is:
+\[ 
+\boxed{ \frac{\Theta_3(s)}{T(s)} = \frac{16s^2}{s^6 + 18s^5 + 73s^4 + 40s^3} } 
 \]
 
 % Problem 19 - Rotational Mechanical System
@@ -3520,31 +3562,38 @@ G(s) = \frac{\theta_3(s)}{T(s)}
 
 We assume clockwise rotation is positive.
 
-\begin{figure}[!ht]
-\centering
-\begin{tikzpicture}[scale=1.0, every node/.style={font=\large}]
-    % J1
-    \node[circle, draw, minimum size=3cm] (J1) at (0,0) {$J_1$};
-    \draw[Tarrow] (50:1.4cm) arc[start angle=50, end angle=10, radius=1.4cm] node[midway, right] {$T(t)$};
-    \draw[Karrow] (120:1.25cm) arc[start angle=120, end angle=160, radius=1.25cm] node[midway, left] {$K_1\,\theta_1$};
-    \draw[Karrow] (340:1.25cm) arc[start angle=340, end angle=300, radius=1.25cm] node[midway, right] {$(K_2..K_5)(\theta_1-\theta_2)$};
-
-    % J2
-    \begin{scope}[shift={(4,0)}]
-        \node[circle, draw, minimum size=3cm] (J2) at (0,0) {$J_2$};
-        \node at (0,1.9) {$\theta_2$};
-        \node at (-1.3,-0.3) {$(K_2..K_5)$};
-        \node at (1.3,-0.3) {$(K_6..K_9)$};
-    \end{scope}
-
-    % J3
-    \begin{scope}[shift={(8,0)}]
-        \node[circle, draw, minimum size=3cm] (J3) at (0,0) {$J_3$};
-        \node at (0,1.9) {$\theta_3$};
-        \node at (-1.1,-0.3) {$(K_6..K_9)$};
-        \node at (1.0,-0.3) {$K_{10}$};
-    \end{scope}
-\end{tikzpicture}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.9]
+            \node[draw, circle, minimum size=2.5cm] (j1) {$J_1$};
+            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_1$};
+            \draw[-{Stealth[length=2.5mm]}, thick, black!50!black] (135:2.0cm) arc (135:45:2.0cm) node[midway, above right] {$T(t)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.5cm) arc(200:160:1.5cm) node[midway, left=2mm]{$K_1\theta_1$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:290:1.5cm) node[midway, right=2mm]{$(K_2..K_5)(\theta_1-\theta_2)$};
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.9]
+            \node[draw, circle, minimum size=2.5cm] (j2) {$J_2$};
+            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_2$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:180:1.5cm) node[midway, left=2mm]{$(K_2..K_5)(\theta_2-\theta_1)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:290:1.5cm) node[midway, right=2mm]{$(K_6..K_9)(\theta_2-\theta_3)$};
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.9]
+            \node[draw, circle, minimum size=2.5cm] (j3) {$J_3$};
+            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_3$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:180:1.5cm) node[midway, left=2mm]{$(K_6..K_9)(\theta_3-\theta_2)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:300:1.5cm) node[midway, right=2mm]{$K_{10}\theta_3$};
+        \end{tikzpicture}
+    \end{minipage}
 \end{figure}
 
 \noindent\textbf{Equations of Motion}
@@ -3634,10 +3683,9 @@ $$ \det(A) = (s^2 + 5)[(s^2 + 8)(s^2 + 5) - (-4)^2] - (-4)^2(s^2 + 5) $$
 $$ \det(A) = (s^2 + 5)(s^4 + 13s^2 + 24) - 16s^2 - 80 $$
 $$ \det(A) = s^6 + 18s^4 + 73s^2 + 40 $$
 
-\noindent\textbf{Final Transfer Function}
-
-\[
-\boxed{ \frac{\Theta_3(s)}{T(s)} = \frac{16}{s^6 + 18s^4 + 73s^2 + 40} }
+The final transfer function is:
+\[ 
+\boxed{ \frac{\Theta_3(s)}{T(s)} = \frac{16}{s^6 + 18s^4 + 73s^2 + 40} } 
 \]
 
 % Problem 20 - Rotational Mechanical System
