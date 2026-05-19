@@ -1,18 +1,10 @@
 adjustments need to be made:
-- change date to May 2026
-- Problem 1: the solution section makes use of quantity K, make it simple and "just substitute" the value K to the equations
-- Problem 6: remove "As per drawing" in given section
-- Problem 7: there is no problem statement "For the translational mechanical system diagram shown below, determine the transfer function
-G(s) = X1(s)/F(s)."
-- Problem 8: there is no K5, K6, D5, and D6 in the given
-- Problem 9: M3 is incorrectly labeled in the figure; there is a "page break" in the solution section before the "Solving the System using Cramer's Rule" subsection
-- Problem 12: there is no K1, K2, K3, K4, K5, K6, D1, D2, D3, D4, D5, D6 in the given section.
-- Problem 14: there is a "page break" in the solution section before the "Solving the System using Cramer's Rule" subsection
 - Problem 16: in the solution section, fix the figure for Free-Body Diagram
 - Problem 17: in the solution section, fix the figure for Free-Body Diagram
 - Problem 18: there should be no K1, K2, K3, K4 in the given section; in the solution section, fix the figure for Free-Body Diagram; in the solution section, there is a "page break" before the "Laplace Transform" subsection
 - Problem 19: in the solution section, fix the figure for Free-Body Diagram
 - Problem 20: there should be no K4 and K5 in given section; 
+- Problem 24: tumagos yung solution sa pader HAAHAHAH
 - Problem 29: D5 and D6 isn't properly labeled in the problem figure
 - Problem 30: given section not properly formatted, align all the "D" values in a "column"
 - Problem 36: there is no given and required section.
@@ -27,3 +19,13 @@ G(s) = X1(s)/F(s)."
 - Problem 45: open-loop form (problem statement, required section); wrong text explanation
 - Problems 46 to 50: adjust the figure the labels are not clearly seen; make the given section "As per drawing"; Make the required C(s)/R(s) only; remove the substituting given values in final answer
 - Problem 50: Final Answer fraction is not properly formatted
+
+-> buong block digram, edit daw way ng pagkakagawa
+-> subtitle na paarang nasa dulo ng page ay inext page na lang
+-> maarte sa fraction gusto isang fraction lang talagaa
+
+tatluhan
+Problems 16, 17, 18, 19, 
+
+dalawahan
+Problems 20, 21, 22, 23, 24, 25

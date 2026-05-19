@@ -1,0 +1,298 @@
+% Spacing Setup
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\usetikzlibrary{arrows.meta}
+% TikZ Predetermined Elements 
+\tikzset{
+    coil spring/.pic={
+        % Parameters: length of straight lines and coil
+        \def\Lbefore{0.5}   % length of line before coil
+        \def\Lafter{0.5}    % length of line after coil
+        \def\coilLength{1}  % length of the coil itself
+
+        % Draw left line
+        \draw (0,0) -- (\Lbefore,0);
+
+        % Draw coil in the middle
+        \draw[decorate, decoration={coil, aspect=0.5, segment length=2mm, amplitude=2mm}]
+        (\Lbefore,0) -- (\Lbefore+\coilLength,0);
+
+
+        % Draw right line
+        \draw (\Lbefore+\coilLength,0) -- (\Lbefore+\coilLength+\Lafter,0);
+    },
+    damper/.pic={
+        % The damper drawing
+        \draw (0,0) -- (1.4,0);          
+        \draw (1.4,-0.2) -- (1.4,0.2);  
+        \draw (1.7,0.3) -- (1.7,-0.3) -- (1,-0.3);
+        \draw (1.7,0.3) -- (1,0.3);  
+        \draw (1.7,0) -- (2.8,0);       
+    },
+    curvedarrow/.pic={
+        \draw[<-, line width=1pt] (30:1cm) arc[start angle=30, end angle=100, radius=1cm];
+    },
+}
+
+\textbf{Given:}
+\[
+J_1 = 5\ \mathrm{kg\cdot m^2},\quad J_2 = 4\ \mathrm{kg\cdot m^2},\quad J_3 = 2\ \mathrm{kg\cdot m^2}
+\]
+\[
+k_1 = 2\ \mathrm{N\cdot m/rad},\quad k_2 = 8\ \mathrm{N\cdot m/rad},\quad k_3 = 8\ \mathrm{N\cdot m/rad}
+\]
+\[
+b_1 = 2\ \mathrm{N\cdot m\cdot s/rad},\quad b_2 = 1\ \mathrm{N\cdot m\cdot s/rad},\quad b_3 = 4\ \mathrm{N\cdot m\cdot s/rad}
+\]
+\[
+T(t) \text{ applied at second rotor}
+\]
+\[
+\theta_1(t),\ \theta_2(t),\ \theta_3(t)
+\]
+
+\textbf{Required:}
+\[
+H(s) = \frac{\theta_3(s)}{T(s)}
+\]
+
+\textbf{Solution:}
+
+Free Body Diagram
+
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}[scale=1.5, every node/.style={font=\large}]
+
+    % Circle for J1
+    \node[circle, draw, minimum size=3cm] (inertia) at (0,0) {$J_1$};
+
+    % theta1
+    \draw[<-, line width=1pt] (70:1.2cm) arc[start angle=70, end angle=110, radius=1.2cm];
+    \node at (0,1.8) {$\theta_1$};
+
+    % b1
+    \draw[<-, line width=1pt] (50:1.2cm) arc[start angle=50, end angle=10, radius=1.2cm];
+    \node at (1.3,0.8) {$b_1$};
+    
+    % b2
+    \draw[->, line width=1pt] (310:1.2cm) arc[start angle=310, end angle=350, radius=1.2cm];
+    \node[anchor=west] at (1.3,-0.7) {$b_2$};
+
+    % k1
+    \draw[->, line width=1pt] (240:1.2cm) arc[start angle=240, end angle=290, radius=1.2cm];
+    \node[anchor=east] at (-0.1,-1.4) {$K_1$};
+
+\begin{scope}[shift={(4,0)}]
+
+    % Circle for J2
+    \node[circle, draw, minimum size=3cm] (inertia) at (0,0) {$J_2$};
+
+    % theta2
+    \draw[<-, line width=1pt] (70:1.2cm) arc[start angle=70, end angle=110, radius=1.2cm];
+    \node at (0,1.8) {$\theta_2$};
+
+    % torque
+    \draw[->, line width=1pt] (50:1.2cm) arc[start angle=50, end angle=10, radius=1.2cm];
+    \node at (1.3,0.8) {$T$};
+    
+    % b2
+    \draw[->, line width=1pt] (310:1.2cm) arc[start angle=310, end angle=350, radius=1.2cm];
+    \node[anchor=west] at (1.3,-0.7) {$b_2$};
+
+    % k1
+    \draw[->, line width=1pt] (240:1.2cm) arc[start angle=240, end angle=290, radius=1.2cm];
+    \node[anchor=east] at (0.2,-1.4) {$K_1$};
+
+    % k2
+    \draw[->, line width=1pt] (180:1.2cm) arc[start angle=180, end angle=230, radius=1.2cm];
+    \node[anchor=east] at (-1.3,-0.5) {$K_2$};
+
+\end{scope}
+\begin{scope}[shift={(8,0)}]
+
+    % Circle for J3
+    \node[circle, draw, minimum size=3cm] (inertia) at (0,0) {$J_3$};
+
+    % theta3
+    \draw[<-, line width=1pt] (70:1.2cm) arc[start angle=70, end angle=110, radius=1.2cm];
+    \node at (0,1.8) {$\theta_3$};
+
+    % K1
+    \draw[<-, line width=1pt] (50:1.2cm) arc[start angle=50, end angle=10, radius=1.2cm];
+    \node at (1.3,0.8) {$K_1$};
+    
+    % b
+    \draw[->, line width=1pt] (310:1.2cm) arc[start angle=310, end angle=350, radius=1.2cm];
+    \node[anchor=west] at (1.3,-0.7) {$b_1$};
+
+    % k2
+    \draw[->, line width=1pt] (240:1.2cm) arc[start angle=240, end angle=290, radius=1.2cm];
+    \node[anchor=east] at (0.2,-1.4) {$K_2$};
+
+\end{scope}
+\end{tikzpicture}
+\end{figure}
+
+For Inertia 1:
+\[
+J_1 s^2 \theta_1(s) + b_1 \left[\theta_1(s) - 0\right] + b_2 \left[\theta_1(s) - \theta_2(s)\right] + k_1 \left[\theta_1(s) - 0\right] + k_2 \left[\theta_1(s) - \theta_2(s)\right] = 0
+\]
+\[
+( J_1 s^2 + b_1 + b_2 + k_1 + k_2 ) \theta_1(s) - (b_2 + k_2) \theta_2(s) = 0
+\]
+
+For Inertia 2:
+\[
+0 =\ J_2 s^2 \theta_2(s) 
+    + (b_2 + k_2)\big[\theta_2(s) - \theta_1(s)\big] 
+    + (b_3 + k_3)\big[\theta_2(s) - \theta_3(s)\big]
+\]
+\[
+-(b_2 + k_2)\theta_1(s) 
++ (J_2 s^2 + b_2 + b_3 + k_2 + k_3)\theta_2(s) 
+- (b_3 + k_3) \theta_3(s) 
+= 0
+\]
+
+For Inertia 3:
+\[
+J_3 s^2 \theta_3(s) + b_3 \left[\theta_3(s) - \theta_2(s)\right] + k_3 \left[\theta_3(s) - \theta_2(s)\right] = T(s)
+\]
+\[
+-(b_3 + k_3)\theta_2(s) + (J_3 s^2 + b_3 + k_3) \theta_3(s) = T(s)
+\]
+
+Substitute numerical values:
+
+Inertia 1:
+\[
+(5 s^2 + 2 + 1 + 2 + 8) \theta_1 - (1 + 8) \theta_2 = 0
+\]
+\[
+(5 s^2 + 13)\theta_1 - 9 \theta_2 = 0
+\]
+
+Inertia 2:
+\[
+-(1+8)\theta_1 + (4 s^2 + 1 + 4 + 8 + 8)\theta_2 - (4+8)\theta_3 = 0
+\]
+\[
+-9 \theta_1 + (4 s^2 + 21)\theta_2 - 12 \theta_3 = 0
+\]
+
+Inertia 3:
+\[
+-(4+8)\theta_2 + (2 s^2 + 4 + 8)\theta_3 = T(s)
+\]
+\[
+-12 \theta_2 + (2 s^2 + 12) \theta_3 = T(s)
+\]
+
+Solve the system using determinants (Cramer's Rule):
+
+\[
+\begin{bmatrix}
+5s^2 + 13 & -9 & 0 \\
+-9 & 4s^2 + 21 & -12 \\
+0 & -12 & 2s^2 + 12
+\end{bmatrix}
+\begin{bmatrix}
+\theta_1 \\ \theta_2 \\ \theta_3
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 \\ 0 \\ T(s)
+\end{bmatrix}
+\]
+
+Determinant of coefficient matrix:
+
+\[
+\Delta = 
+\begin{vmatrix}
+5s^2 + 13 & -9 & 0 \\
+-9 & 4s^2 + 21 & -12 \\
+0 & -12 & 2s^2 + 12
+\end{vmatrix}
+\]
+
+Expand along first row:
+\[
+\Delta = (5s^2+13)\begin{vmatrix}4s^2+21 & -12 \\ -12 & 2s^2+12\end{vmatrix} - (-9) \begin{vmatrix}-9 & -12 \\ 0 & 2s^2+12 \end{vmatrix}
+\]
+
+Compute subdeterminants:
+\[
+\begin{vmatrix}
+4s^2+21 & -12 \\
+-12 & 2s^2+12
+\end{vmatrix}
+= (4s^2+21)(2s^2+12) - (-12)^2  = 8s^4 + 120s^2 + 108
+\]
+
+\[
+\begin{vmatrix}
+-9 & -12 \\
+0 & 2s^2+12
+\end{vmatrix}
+= (-9)(2s^2+12) - (0)(-12) = -18s^2 - 108
+\]
+
+\[
+\begin{vmatrix}
+-9 & -12 \\
+0 & 2s^2+12
+\end{vmatrix}
+= -9(2s^2+12) = -18s^2 - 108
+\]
+
+\[
+\Delta = (5s^2+13)(8 s^4 + 120 s^2 + 108) + 9(-18 s^2 -108)
+\]
+\[
+\Delta = (5s^2+13)(8 s^4 + 120 s^2 + 108) - 162 s^2 - 972
+\]
+
+Multiply:
+\[
+(5s^2)(8 s^4 + 120 s^2 + 108) = 40 s^6 + 600 s^4 + 540 s^2
+\]
+\[
+13(8 s^4 + 120 s^2 + 108) = 104 s^4 + 1560 s^2 + 1404
+\]
+\[
+(40 s^6 + 704 s^4 + 2100 s^2 + 1404) - (162 s^2 + 972) = 40 s^6 + 704 s^4 + 1938 s^2 + 432
+\]
+
+Determinant for \(\theta_3\):
+
+\[
+\Delta_3 = 
+\begin{vmatrix}
+5 s^2 + 13 & -9 & 0 \\
+-9 & 4s^2 + 21 & 0 \\
+0 & -12 & T(s)
+\end{vmatrix}
+= T(s) \begin{vmatrix}5s^2 + 13 & -9 \\ -9 & 4s^2 + 21 \end{vmatrix}
+\]
+
+\[
+\begin{vmatrix}5s^2 + 13 & -9 \\ -9 & 4s^2 + 21 \end{vmatrix} 
+= (5s^2 +13)(4s^2+21) - (-9)(-9) 
+\]
+\[
+= 20 s^4 + 105 s^2 + 273 - 81 
+\]
+\[
+= 20 s^4 + 105 s^2 + 192
+\]
+
+Transfer function:
+\[
+H(s) = \frac{\theta_3(s)}{T(s)} = \frac{\Delta_3}{\Delta} = \frac{20 s^4 + 105 s^2 + 192}{40 s^6 + 704 s^4 + 1938 s^2 + 432}
+\]
+
+\[
+\boxed{H(s) = \frac{20 s^4 + 105 s^2 + 192}{40 s^6 + 704 s^4 + 1938 s^2 + 432}}
+\]

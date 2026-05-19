@@ -1,4 +1,4 @@
-﻿\documentclass[11pt]{article}
+\documentclass[11pt]{article}
 \usepackage{enumitem}
 
 \usepackage[paperwidth=8.5in, paperheight=13in, top=0.75in, bottom=0.75in, right=0.75in, left=1.25in]{geometry}
@@ -9,57 +9,6 @@
 \usepackage{graphicx, xcolor, tikz, pgfplots}
 \usepackage[siunitx, american]{circuitikz} % For Electrical Network problems
 
-\usetikzlibrary{shapes,arrows,positioning,calc,decorations.markings,patterns}
-\tikzset{
-    sumpoint/.style={
-        circle,
-        draw,
-        minimum size=7mm,
-        thick,
-        path picture={
-            \draw[black, thick]
-                (path picture bounding box.south west) -- (path picture bounding box.north east)
-                (path picture bounding box.north west) -- (path picture bounding box.south east);
-        }
-    },
-    tpoint/.style={
-        circle,
-        fill=black,
-        inner sep=0pt,
-        minimum size=1.5mm
-    },
-    wall/.style={
-        pattern=north west lines,
-        draw,
-        minimum width=2mm,
-        minimum height=30mm
-    },
-    tbody/.style={
-        rectangle,
-        draw,
-        minimum height=27mm,
-        minimum width=20mm,
-        align=center
-    },
-    mid arrow/.style={
-        postaction={
-            decorate,
-            decoration={
-                markings,
-                mark=at position 0.5 with {\arrow[scale=1.5]{>}}
-            }
-        }
-    },
-    block/.style={
-        rectangle,
-        draw,
-        minimum width=1.5cm,
-        minimum height=1cm,
-        align=center
-    }
-}
-
-% Arrow styles for Free Body Diagrams: springs (K) red solid, dampers (D) blue dashed, input torque (T) black
 \tikzset{
         Karrow/.style={-Stealth, red, line width=1pt},
         Darrow/.style={-Stealth, blue, dashed, line width=1pt},
@@ -3129,35 +3078,42 @@ G(s) = \frac{\theta_3(s)}{T(s)}
 
 We assume clockwise rotation is positive.
 
-\begin{figure}[!ht]
-\centering
-\begin{tikzpicture}[scale=1.0, every node/.style={font=\large}]
-    % J1
-    \node[circle, draw, minimum size=3cm] (J1) at (0,0) {$J_1$};
-    \draw[Tarrow] (50:1.4cm) arc[start angle=50, end angle=10, radius=1.4cm] node[midway, right] {$T(t)$};
-    \draw[Karrow] (200:1.25cm) arc[start angle=200, end angle=160, radius=1.25cm] node[midway, left] {$K_1\,\theta_1$};
-    \draw[Karrow] (340:1.25cm) arc[start angle=340, end angle=300, radius=1.25cm] node[midway, right] {$K_2(\theta_1-\theta_2)$};
-    \draw[Darrow] (295:1.45cm) arc[start angle=295, end angle=275, radius=1.45cm] node[midway, below right] {$D_1(\dot{\theta}_1-\dot{\theta}_2)$};
-
-    % J2
-    \begin{scope}[shift={(4,0)}]
-        \node[circle, draw, minimum size=3cm] (J2) at (0,0) {$J_2$};
-        \draw[Karrow] (120:1.25cm) arc[start angle=120, end angle=160, radius=1.25cm] node[midway, left] {$K_2(\theta_2-\theta_1)$};
-        \draw[Darrow] (245:1.25cm) arc[start angle=245, end angle=205, radius=1.25cm] node[midway, below left] {$D_1(\dot{\theta}_2-\dot{\theta}_1)$};
-        \draw[Karrow] (340:1.25cm) arc[start angle=340, end angle=300, radius=1.25cm] node[midway, right] {$K_3(\theta_2-\theta_3)$};
-        \draw[Darrow] (300:1.45cm) arc[start angle=300, end angle=260, radius=1.45cm] node[midway, below right] {$D_2(\dot{\theta}_2-\dot{\theta}_3)$};
-        \node at (0,1.9) {$\theta_2$};
-    \end{scope}
-
-    % J3
-    \begin{scope}[shift={(8,0)}]
-        \node[circle, draw, minimum size=3cm] (J3) at (0,0) {$J_3$};
-        \draw[Karrow] (120:1.25cm) arc[start angle=120, end angle=160, radius=1.25cm] node[midway, left] {$K_3(\theta_3-\theta_2)$};
-        \draw[Darrow] (245:1.25cm) arc[start angle=245, end angle=205, radius=1.25cm] node[midway, below left] {$D_2(\dot{\theta}_3-\dot{\theta}_2)$};
-        \draw[Karrow] (340:1.25cm) arc[start angle=340, end angle=300, radius=1.25cm] node[midway, right] {$K_4\,\theta_3$};
-        \node at (0,1.9) {$\theta_3$};
-    \end{scope}
-\end{tikzpicture}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.31\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.85]
+            \node[draw, circle, minimum size=2.5cm] (j1) {$J_1$};
+            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_1$};
+            \draw[-{Stealth[length=2.5mm]}, thick, black!50!black] (135:2.0cm) arc (135:45:2.0cm) node[midway, above right] {$T(t)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.5cm) arc(200:160:1.5cm) node[midway, left=2mm]{$K_1\theta_1$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:320:1.5cm) node[midway, right=2mm]{$K_2(\theta_1-\theta_2)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (295:1.5cm) arc(295:275:1.5cm) node[midway, below right=2mm]{$D_1\left(\frac{d\theta_1}{dt}-\frac{d\theta_2}{dt}\right)$};
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.31\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.85]
+            \node[draw, circle, minimum size=2.5cm] (j2) {$J_2$};
+            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_2$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.5cm) arc(200:160:1.5cm) node[midway, left=2mm]{$K_2(\theta_2-\theta_1)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:205:1.5cm) node[midway, below left=2mm]{$D_1\left(\frac{d\theta_2}{dt}-\frac{d\theta_1}{dt}\right)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:320:1.5cm) node[midway, right=2mm]{$K_3(\theta_2-\theta_3)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (295:1.5cm) arc(295:275:1.5cm) node[midway, below right=2mm]{$D_2\left(\frac{d\theta_2}{dt}-\frac{d\theta_3}{dt}\right)$};
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.31\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.85]
+            \node[draw, circle, minimum size=2.5cm] (j3) {$J_3$};
+            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_3$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.5cm) arc(200:160:1.5cm) node[midway, left=2mm]{$K_3(\theta_3-\theta_2)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:205:1.5cm) node[midway, below left=2mm]{$D_2\left(\frac{d\theta_3}{dt}-\frac{d\theta_2}{dt}\right)$};
+            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:320:1.5cm) node[midway, right=2mm]{$K_4\theta_3$};
+        \end{tikzpicture}
+    \end{minipage}
 \end{figure}
 
 \noindent\textbf{Equations of Motion}
@@ -8825,3 +8781,7 @@ Substituting the given values:
 \end{document}
 
 
+
+\begin{document}
+Test document.
+\end{document}

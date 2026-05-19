@@ -1,0 +1,9 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "pdflatex": true,
+        "Set-Content": true,
+        "Out-File": true,
+        "12..60": true,
+        "40..60": true
+    }
+}

@@ -1,10 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.18)  19 MAY 2026 01:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.18)  19 MAY 2026 01:38
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/romul/OneDrive/Desktop/fcs_compilation/problems 1-50.tex"
-(c:/Users/romul/OneDrive/Desktop/fcs_compilation/problems 1-50.tex
+**"./problems 1-50_fixed.tex"
+(problems 1-50_fixed.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
 (C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -823,124 +822,31 @@ Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \backup@length=\skip60
 \ar@cellbox=\box79
 )))
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
-z/libraries\tikzlibraryshapes.code.tex
-File: tikzlibraryshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
-z/libraries\tikzlibraryshapes.geometric.code.tex
-File: tikzlibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\
-pgflibraryshapes.geometric.code.tex
-File: pgflibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-))
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
-z/libraries\tikzlibraryshapes.misc.code.tex
-File: tikzlibraryshapes.misc.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\
-pgflibraryshapes.misc.code.tex
-File: pgflibraryshapes.misc.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-))
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
-z/libraries\tikzlibraryshapes.symbols.code.tex
-File: tikzlibraryshapes.symbols.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\
-pgflibraryshapes.symbols.code.tex
-File: pgflibraryshapes.symbols.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-))
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
-z/libraries\tikzlibraryshapes.arrows.code.tex
-File: tikzlibraryshapes.arrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\
-pgflibraryshapes.arrows.code.tex
-File: pgflibraryshapes.arrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-))
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
-z/libraries\tikzlibraryshapes.callouts.code.tex
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\
-pgflibraryshapes.callouts.code.tex))
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
-z/libraries\tikzlibraryshapes.multipart.code.tex
-File: tikzlibraryshapes.multipart.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\
-pgflibraryshapes.multipart.code.tex
-File: pgflibraryshapes.multipart.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfnodepartlowerbox=\box80
-\pgfnodeparttwobox=\box81
-\pgfnodepartthreebox=\box82
-\pgfnodepartfourbox=\box83
-\pgfnodeparttwentybox=\box84
-\pgfnodepartnineteenbox=\box85
-\pgfnodeparteighteenbox=\box86
-\pgfnodepartseventeenbox=\box87
-\pgfnodepartsixteenbox=\box88
-\pgfnodepartfifteenbox=\box89
-\pgfnodepartfourteenbox=\box90
-\pgfnodepartthirteenbox=\box91
-\pgfnodeparttwelvebox=\box92
-\pgfnodepartelevenbox=\box93
-\pgfnodeparttenbox=\box94
-\pgfnodepartninebox=\box95
-\pgfnodeparteightbox=\box96
-\pgfnodepartsevenbox=\box97
-\pgfnodepartsixbox=\box98
-\pgfnodepartfivebox=\box99
-)))
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
-z/libraries\tikzlibraryarrows.code.tex
-File: tikzlibraryarrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibr
-aryarrows.code.tex
-File: pgflibraryarrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\arrowsize=\dimen331
-))
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
-z/libraries\tikzlibrarypositioning.code.tex
-File: tikzlibrarypositioning.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-)
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
-z/libraries\tikzlibrarydecorations.markings.code.tex
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorat
-ions\pgflibrarydecorations.markings.code.tex))
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
-z/libraries\tikzlibrarypatterns.code.tex
-File: tikzlibrarypatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-
-(C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibr
-arypatterns.code.tex
-File: pgflibrarypatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-))
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 230.
+h' as default language. on input line 179.
 
 (C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
 File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count355
-) (problems 1-50.aux)
-\openout1 = `"problems 1-50.aux"'.
+)
+No file "problems 1-50_fixed".aux.
+\openout1 = `"problems 1-50_fixed.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 230.
-LaTeX Font Info:    ... okay on input line 230.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 230.
-LaTeX Font Info:    ... okay on input line 230.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 230.
-LaTeX Font Info:    ... okay on input line 230.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 230.
-LaTeX Font Info:    ... okay on input line 230.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 230.
-LaTeX Font Info:    ... okay on input line 230.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 230.
-LaTeX Font Info:    ... okay on input line 230.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 230.
-LaTeX Font Info:    ... okay on input line 230.
-
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 179.
+LaTeX Font Info:    ... okay on input line 179.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 179.
+LaTeX Font Info:    ... okay on input line 179.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 179.
+LaTeX Font Info:    ... okay on input line 179.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 179.
+LaTeX Font Info:    ... okay on input line 179.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 179.
+LaTeX Font Info:    ... okay on input line 179.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 179.
+LaTeX Font Info:    ... okay on input line 179.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 179.
+LaTeX Font Info:    ... okay on input line 179.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -980,13 +886,13 @@ LaTeX Font Info:    ... okay on input line 230.
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count356
-\scratchdimen=\dimen332
-\scratchbox=\box100
+\scratchdimen=\dimen331
+\scratchbox=\box80
 \nofMPsegments=\count357
 \nofMParguments=\count358
 \everyMPshowfont=\toks48
 \MPscratchCnt=\count359
-\MPscratchDim=\dimen333
+\MPscratchDim=\dimen332
 \MPnumerator=\count360
 \makeMPintoPDFobject=\count361
 \everyMPtoPDFconversion=\toks49
@@ -1005,7 +911,7 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into 
 your preamble.
- on input line 230.
+ on input line 179.
 
 
 (C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/latex/translations/dicts\tran
@@ -1014,389 +920,67 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 230.
+or `english'. on input line 179.
 <pup-logo.png, id=4, 770.88pt x 769.87625pt>
 File: pup-logo.png Graphic file (type png)
 <use pup-logo.png>
-Package pdftex.def Info: pup-logo.png  used on input line 236.
+Package pdftex.def Info: pup-logo.png  used on input line 185.
 (pdftex.def)             Requested size: 93.94955pt x 93.82608pt.
  [1
 
 {C:/Users/romul/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./pup-logo.p
 ng>]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 299
+LaTeX Font Info:    Trying to load font information for U+msa on input line 248
 .
 
 (C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 299
+LaTeX Font Info:    Trying to load font information for U+msb on input line 248
 .
 
 (C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 29
-9.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 24
+8.
 
 (C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Trying to load font information for U+esvect on input line 
-299.
+248.
 
 (C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/latex/esvect\uesvect.fd
 File: uesvect.fd 
 )
-Underfull \hbox (badness 10000) in paragraph at lines 437--438
+Underfull \hbox (badness 10000) in paragraph at lines 386--387
 
  []
 
 [1] [2] [3] [5] [5] [6] [7]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-[9] [10]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-[2] [3]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-[12] [13]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-[13] [14]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-[14] [15]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-[16] [17]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-[18] [19]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-[20] [21]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-[22] [23]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-[24] [25] [25] [26] [27] [28]
-Underfull \hbox (badness 10000) in paragraph at lines 3257--3261
 
- []
-
-[29] [30] [31]
-Underfull \hbox (badness 10000) in paragraph at lines 3454--3458
-
- []
-
-[31] [32]
-Underfull \hbox (badness 10000) in paragraph at lines 3647--3651
-
- []
-
-
-Overfull \hbox (31.62328pt too wide) in paragraph at lines 3719--3720
- [][] 
- []
-
-
-Overfull \hbox (16.55193pt too wide) in paragraph at lines 3730--3731
- [][] 
- []
-
-[33] [34]
-Underfull \hbox (badness 10000) in paragraph at lines 3818--3822
-
- []
-
-
-Overfull \hbox (49.78833pt too wide) in paragraph at lines 3898--3899
- [][] 
- []
-
-
-Overfull \hbox (49.78833pt too wide) in paragraph at lines 3908--3909
- [][] 
- []
-
-[35] [36]
-Underfull \hbox (badness 10000) in paragraph at lines 3995--3999
-
- []
-
-
-Overfull \hbox (38.38577pt too wide) in paragraph at lines 4074--4075
- [][] 
- []
-
-
-Overfull \hbox (38.38577pt too wide) in paragraph at lines 4084--4085
- [][] 
- []
-
-[37] [38]
-Underfull \hbox (badness 10000) in paragraph at lines 4171--4175
-
- []
-
-
-Overfull \hbox (48.43893pt too wide) in paragraph at lines 4263--4264
- [][] 
- []
-
-
-Overfull \hbox (48.43893pt too wide) in paragraph at lines 4282--4283
- [][] 
- []
-
-
-Overfull \hbox (16.41815pt too wide) detected at line 4298
-[]
- []
-
-
-Overfull \hbox (1.50253pt too wide) detected at line 4304
-[]
- []
-
-[39] [40]
-Underfull \hbox (badness 10000) in paragraph at lines 4370--4374
-
- []
-
-
-Overfull \hbox (103.30539pt too wide) in paragraph at lines 4461--4462
- [][] 
- []
-
-
-Overfull \hbox (1.11754pt too wide) in paragraph at lines 4476--4477
- [][] 
- []
-
-
-Overfull \hbox (180.3149pt too wide) detected at line 4492
-[]
- []
-
-
-Overfull \hbox (1.50253pt too wide) detected at line 4498
-[]
- []
-
-[41] [42]
-Underfull \hbox (badness 10000) in paragraph at lines 4564--4568
-
- []
-
-
-Overfull \hbox (103.30539pt too wide) in paragraph at lines 4654--4655
- [][] 
- []
-
-
-Overfull \hbox (1.11754pt too wide) in paragraph at lines 4669--4670
- [][] 
- []
-
-
-Overfull \hbox (180.3149pt too wide) detected at line 4685
-[]
- []
-
-
-Overfull \hbox (1.50253pt too wide) detected at line 4691
-[]
- []
-
-[43] [44] [45] [46] [46] [47] [47] [48] [49] [50] [50] [51]
-Underfull \hbox (badness 10000) in paragraph at lines 5744--5745
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5749--5750
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5756--5757
-
- []
-
-[51]
-Underfull \hbox (badness 10000) in paragraph at lines 5791--5792
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5802--5803
-
- []
-
-[52]
-Underfull \hbox (badness 10000) in paragraph at lines 5873--5874
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5878--5879
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5885--5886
-
- []
-
-[52]
-Underfull \hbox (badness 10000) in paragraph at lines 5920--5921
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5931--5932
-
- []
-
-[53]
-Underfull \hbox (badness 10000) in paragraph at lines 6001--6002
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6006--6007
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6013--6014
-
- []
-
-[54]
-Underfull \hbox (badness 10000) in paragraph at lines 6048--6049
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6059--6060
-
- []
-
-[55]
-Underfull \hbox (badness 10000) in paragraph at lines 6129--6130
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6134--6135
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6141--6142
-
- []
-
-[56]
-Underfull \hbox (badness 10000) in paragraph at lines 6176--6177
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6187--6188
-
- []
-
-[57]
-Underfull \hbox (badness 10000) in paragraph at lines 6257--6258
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6262--6263
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6269--6270
-
- []
-
-[58]
-Underfull \hbox (badness 10000) in paragraph at lines 6304--6305
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6315--6316
-
- []
-
-[59]
-Underfull \hbox (badness 10000) in paragraph at lines 6325--6329
-
- []
-
-[0] [60] [61] [62] [63] [64] [64] [65] [66] [67]
-Overfull \hbox (93.18655pt too wide) in paragraph at lines 7727--7728
- [] 
- []
-
-[67] [68] [69] [70] [71] [72]
-Overfull \hbox (4.67308pt too wide) detected at line 8359
-[] \OT1/cmr/m/n/10 = []
- []
-
-[73] [74] [75] [1] [2] [77]
-Overfull \hbox (26.2062pt too wide) detected at line 8821
-[] \OT1/cmr/m/n/10 = []
- []
-
-[78] (problems 1-50.aux)
- ***********
-LaTeX2e <2025-11-01>
-L3 programming layer <2026-03-20>
- ***********
- ) 
+! Package pgfkeys Error: I do not know the key '/tikz/wall' and I am going to i
+gnore it. Perhaps you misspelled it.
+
+See the pgfkeys package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.909         \node[wall]
+                          (W) at (-0.5,1) {};
+This error message was generated by an \errmessage
+command, so I can't give any explicit help.
+Pretend that you're Hercule Poirot: Examine all clues,
+and deduce the truth by order and method.
+
+ 
 Here is how much of TeX's memory you used:
- 53593 strings out of 467691
- 1498503 string characters out of 5414987
- 2259772 words of memory out of 5000000
- 82059 multiletter control sequences out of 15000+600000
- 647489 words of font info for 121 fonts, out of 8000000 for 9000
+ 50169 strings out of 467691
+ 1407248 string characters out of 5414987
+ 2152949 words of memory out of 5000000
+ 78721 multiletter control sequences out of 15000+600000
+ 637150 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,13n,94p,835b,1059s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmbx10.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmbx12.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmbxti10.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/romul/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/romul/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/romul/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/rom
-ul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/U
-sers/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.p
-fb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmr12.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmr6.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmr7.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmr8.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/romul/AppData/Local/Programs/M
-iKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/romul/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on "problems 1-50.pdf" (92 pages, 674411 bytes).
-PDF statistics:
- 385 PDF objects out of 1000 (max. 8388607)
- 0 named destinations out of 1000 (max. 500000)
- 22 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 88i,13n,94p,795b,956s stack positions out of 10000i,1000n,20000p,200000b,200000s
+!  ==> Fatal error occurred, no output PDF file produced!
