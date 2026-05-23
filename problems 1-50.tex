@@ -2907,8 +2907,7 @@ G(s) = \frac{3s + 3}{6s^4 + 18s^3 + 33s^2 + 18s + 15}
 \end{center}
 \noindent\rule{\textwidth}{1pt}
 
-\vspace{12pt}
-
+\vspace{12pt}   
 \noindent\textbf{\textit{Given:}}
 \[
 \begin{aligned}
@@ -2928,160 +2927,165 @@ G(s) = \frac{\theta_3(s)}{T(s)}
 
 \vspace{12pt}
 
+\noindent \textbf{\textit{Solution:}}\\
 
-\noindent\textbf{\textit{Solution:}}
+% Start of Solution
+\begin{enumerate}[label=(\alph*), itemindent=*, leftmargin=*, nolistsep]
+    
+    \item Draw the Free Body Diagrams of the provided masses
+\vspace{10pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_1$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                % Circle
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_1$};
+                % Left-hand Arrows
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$2s^2\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$8s\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(210:1.75) arc[start angle=210, end angle=245, radius=1.75];
+                \node at (-2,-1.25){$7\theta_1(s)$};
+                % Right-hand Arrows
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=15, radius=1.75];
+                \node at (1.75,1.5){$T(s)$};
+                \draw[->, thick] (0,0) ++(10:1.75) arc[start angle=10, end angle=-25, radius=1.75];
+                \node at (2.4,0.1){$2s\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(-30:1.75) arc[start angle=-30, end angle=-65, radius=1.75];
+                \node at (2,-1.25){$3\theta_2(s)$};
+            \end{tikzpicture}
+    
+            % Equations under J1
+            \vspace{15pt}
+    
+            $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+            $T(s) - (2s^2 + 8s + 7)\theta_1(s) + (2s + 3)\theta_2(s) = 0$ \\ \vspace{10pt}
+            $T(s) = (2s^2 + 8s + 7)\theta_1(s) - (2s + 3)\theta_2(s)$
 
-\vspace{12pt}
+    \end{center}
 
-\noindent\textbf{Free-Body Diagrams (FBDs)}
+\vspace{15pt}
+    \begin{center}
+        %---------------- RIGHT SIDE: J2 ----------------%
+            \textbf{Free Body Diagram at $J_2$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                % Circle
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_2$};
+                % Left-hand Arrows
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$3s\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(210:1.75) arc[start angle=210, end angle=245, radius=1.75];
+                \node at (-2,-1.25){$5\theta_2(s)$};
+                % Right-hand Arrows
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=25, radius=1.75];
+                \node at (1.75,1.5){$2s\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(20:1.75) arc[start angle=20, end angle=-5, radius=1.75];
+                \node at (2.25,0.6){$3\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(-10:1.75) arc[start angle=-10, end angle=-35, radius=1.75];
+                \node at (2.25,-0.5){$s\theta_3(s)$};
+                \draw[->, thick] (0,0) ++(-40:1.75) arc[start angle=-40, end angle=-65, radius=1.75];
+                \node at (1.7,-1.45){$2\theta_3(s)$};
+            \end{tikzpicture}
+    
+            % Equations under J2
+    
+    \vspace{15pt}
+    
 
-\vspace{12pt}
+        $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+        $0 = (2s + 3)\theta_1(s) - (s^2 + 3s + 5)\theta_2(s) + (s + 2)\theta_3(s)$\\ \vspace{10pt}
+        $0 = -(2s + 3)\theta_1(s) + (s^2 + 3s + 5)\theta_2(s) - (s + 2)\theta_3(s)$
 
-We assume clockwise rotation is positive.
+    \end{center}
 
-\begin{figure}[h!]
-    \centering
-    \begin{minipage}{0.32\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=0.9]
-            % Mass J1
-            \node[draw, circle, minimum size=2.5cm] (j1) {$J_1$};
-            % Positive direction arrow
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_1$};
-            % Applied Torque T(t) - clockwise
-            \draw[-{Stealth[length=2.5mm]}, thick, black!50!black] (135:2.0cm) arc (135:45:2.0cm) node[midway, above right] {$T(t)$};
-            % Torques on the left (from wall) - counter-clockwise
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.5cm) arc(200:160:1.5cm) node[midway, left=2mm]{$K_1\theta_1$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:205:1.5cm) node[midway, below left=2mm]{$D_1\frac{d\theta_1}{dt}$};
-            % Torques on the right (from J2) - counter-clockwise
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:320:1.5cm) node[midway, right=2mm]{$K_2(\theta_1-\theta_2)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (295:1.5cm) arc(295:275:1.5cm) node[midway, below right=2mm]{$D_2\left(\frac{d\theta_1}{dt}-\frac{d\theta_2}{dt}\right)$};
-        \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.32\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=0.9]
-            % Mass J2
-            \node[draw, circle, minimum size=2.5cm] (j2) {$J_2$};
-             % Positive direction arrow
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_2$};
-            % Torques on the left (from J1) - counter-clockwise
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.5cm) arc(200:160:1.5cm) node[midway, left=2mm]{$K_2(\theta_2-\theta_1)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:205:1.5cm) node[midway, below left=2mm]{$D_2\left(\frac{d\theta_2}{dt}-\frac{d\theta_1}{dt}\right)$};
-            % Torques on the right (from J3) - counter-clockwise
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:320:1.5cm) node[midway, right=2mm]{$K_3(\theta_2-\theta_3)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (295:1.5cm) arc(295:275:1.5cm) node[midway, below right=2mm]{$D_3\left(\frac{d\theta_2}{dt}-\frac{d\theta_3}{dt}\right)$};
-        \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.32\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=0.9]
-            % Mass J3
-            \node[draw, circle, minimum size=2.5cm] (j3) {$J_3$};
-             % Positive direction arrow
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_3$};
-            % Torques on the left (from J2) - counter-clockwise
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.5cm) arc(200:160:1.5cm) node[midway, left=2mm]{$K_3(\theta_3-\theta_2)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:205:1.5cm) node[midway, below left=2mm]{$D_3\left(\frac{d\theta_3}{dt}-\frac{d\theta_2}{dt}\right)$};
-            % Torques on the right (from wall) - counter-clockwise
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:320:1.5cm) node[midway, right=2mm]{$K_4\theta_3$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (295:1.5cm) arc(295:275:1.5cm) node[midway, below right=2mm]{$D_4\frac{d\theta_3}{dt}$};
-        \end{tikzpicture}
-    \end{minipage}
-\end{figure}
+    \vspace{15pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_3$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                % Circle
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_3$};
+                % Left-hand Arrows
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_3(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$5s\theta_3(s)$};
+                \draw[->, thick] (0,0) ++(210:1.75) arc[start angle=210, end angle=245, radius=1.75];
+                \node at (-2,-1.25){$3\theta_3(s)$};
+                % Right-hand Arrows
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=15, radius=1.75];
+                \node at (1.75,1.5){$s\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(10:1.75) arc[start angle=10, end angle=-25, radius=1.75];
+                \node at (2.4,0.1){$2\theta_2(s)$};
+            \end{tikzpicture}
+    
+            % Equations under J3
+            \vspace{15pt}
+    
+            $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+            $0 = (s + 2)\theta_2(s) - (s^2 + 5s + 3)\theta_3(s)$ \\ \vspace{10pt}
+            $0 = -(s + 2)\theta_2(s) + (s^2 + 5s + 3)\theta_3(s)$ 
 
-\noindent\textbf{Equations of Motion}
+    \end{center}
+\vspace{15pt}
+    \item Write the displacement equations and provide the matrix form
+\begin{center}
+    T(s) $= (2s^2 + 8s + 7)\theta_1(s) - (2s + 3)\theta_2(s)$\\
+    0 $= -(2s + 3)\theta_1(s) + (s^2 + 3s + 5)\theta_2(s) - (s + 2)\theta_3(s)$\\
+    0 $= -(s + 2)\theta_2(s) + (s^2 + 5s + 3)\theta_3(s)$\\
+    \[
+        \begin{bmatrix}
+        (2s^2 + 8s + 7) & -(2s + 3) & 0\\
+        -(2s + 3) & (s^2 + 3s + 5) & -(s + 2)\\
+        0 & -(s + 2) & (s^2 + 5s + 3)\\
+        \end{bmatrix}
+        \begin{bmatrix}
+        \theta_1(s) \\
+        \theta_2(s) \\
+        \theta_3(s)
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        T(s)\\
+        0\\
+        0
+        \end{bmatrix}
+    \]\\
+\end{center}
+\vspace{15pt}
+    \item Apply Cramer's Rule to get the value of the Transfer Function
+\begin{center}
+    \[
+        \theta_3(s) = 
+            \frac{\begin{vmatrix}
+                (2s^2 + 8s + 7) & -(2s + 3) & T(s)\\
+                -(2s + 3) & (s^2 + 3s + 5) & 0\\
+                0 & -(s + 2) & 0\\
+            \end{vmatrix}
+        }{\begin{vmatrix}
+                (2s^2 + 8s + 7) & -(2s + 3) & 0\\
+                -(2s + 3) & (s^2 + 3s + 5) & -(s + 2)\\
+                0 & -(s + 2) & (s^2 + 5s + 3)\\
+            \end{vmatrix}
+        }
+    \]
+    \[
+    \theta_3(s) = \frac{(2s^2 + 7s + 6)T(s)}{2s^6 + 24s^5 + 111s^4 + 260s^3 + 335s^2 + 217s + 50}
+    \] 
 
-\vspace{8pt}
+    \[
+    \boxed{\frac{\theta_3(s)}{T(s)} = \frac{2s^2 + 7s + 6}{2s^6 + 24s^5 + 111s^4 + 260s^3 + 335s^2 + 217s + 50}}
+    \] 
 
-\noindent We apply Newton's second law for rotation ($\sum \tau = J \frac{d^2\theta}{dt^2}$) to each mass.
-
-\vspace{8pt}
-
-{For Inertia 1 ($J_1$):}
-\begin{align*}
-    J_1 \frac{d^2\theta_1}{dt^2} + D_1 \frac{d\theta_1}{dt} + K_1 \theta_1 + D_2\left(\frac{d\theta_1}{dt} - \frac{d\theta_2}{dt}\right) + K_2(\theta_1 - \theta_2) &= T(t) \\
-    J_1 \frac{d^2\theta_1}{dt^2} + (D_1 + D_2)\frac{d\theta_1}{dt} + (K_1 + K_2)\theta_1 - D_2\frac{d\theta_2}{dt} - K_2\theta_2 &= T(t)
-\end{align*}
-
-{For Inertia 2 ($J_2$):}
-\begin{align*}
-    J_2 \frac{d^2\theta_2}{dt^2} + D_2\left(\frac{d\theta_2}{dt} - \frac{d\theta_1}{dt}\right) + K_2(\theta_2 - \theta_1) + D_3\left(\frac{d\theta_2}{dt} - \frac{d\theta_3}{dt}\right) + K_3(\theta_2 - \theta_3) &= 0 \\
-    J_2 \frac{d^2\theta_2}{dt^2} + (D_2 + D_3)\frac{d\theta_2}{dt} + (K_2 + K_3)\theta_2 - D_2\frac{d\theta_1}{dt} - K_2\theta_1 - D_3\frac{d\theta_3}{dt} - K_3\theta_3 &= 0
-\end{align*}
-
-{For Inertia 3 ($J_3$):}
-\begin{align*}
-    J_3 \frac{d^2\theta_3}{dt^2} + D_3\left(\frac{d\theta_3}{dt} - \frac{d\theta_2}{dt}\right) + K_3(\theta_3 - \theta_2) + D_4 \frac{d\theta_3}{dt} + K_4 \theta_3 &= 0 \\
-    J_3 \frac{d^2\theta_3}{dt^2} + (D_3 + D_4)\frac{d\theta_3}{dt} + (K_3 + K_4)\theta_3 - D_3\frac{d\theta_2}{dt} - K_3\theta_2 &= 0
-\end{align*}
-
-\newpage
-\noindent\textbf{Laplace Transform}
-
-\vspace{12pt}
-
-We take the Laplace transform of the equations, assuming zero initial conditions.
-
-\vspace{8pt}
-
-Equation for Inertia 1:
-\[
-[J_1 s^2 + (D_1 + D_2)s + (K_1 + K_2)]\Theta_1(s) - [D_2s + K_2]\Theta_2(s) = T(s)
-\]
-
-Equation for Inertia 2:
-\[
--[D_2s + K_2]\Theta_1(s) + [J_2 s^2 + (D_2 + D_3)s + (K_2 + K_3)]\Theta_2(s) - [D_3s + K_3]\Theta_3(s) = 0
-\]
-
-Equation for Inertia 3:
-\[
--[D_3s + K_3]\Theta_2(s) + [J_3 s^2 + (D_3 + D_4)s + (K_3 + K_4)]\Theta_3(s) = 0
-\]
-
-Substituting the given numerical values:
-\begin{align}
-    (2s^2 + 8s + 7)\Theta_1(s) - (2s + 3)\Theta_2(s) &= T(s) \tag{1} \\
-    -(2s + 3)\Theta_1(s) + (s^2 + 3s + 5)\Theta_2(s) - (s + 2)\Theta_3(s) &= 0 \tag{2} \\
-    -(s + 2)\Theta_2(s) + (s^2 + 5s + 3)\Theta_3(s) &= 0 \tag{3}
-\end{align}
-
-\noindent\textbf{Solving for the Transfer Function}
-\vspace{8pt}
-
-The system can be expressed in matrix form $A\boldsymbol{\Theta} = \mathbf{b}$:
-$$
-\begin{bmatrix}
-2s^2 + 8s + 7 & -(2s + 3) & 0 \\
--(2s + 3) & s^2 + 3s + 5 & -(s + 2) \\
-0 & -(s + 2) & s^2 + 5s + 3
-\end{bmatrix}
-\begin{bmatrix}
-\Theta_1(s) \\ \Theta_2(s) \\ \Theta_3(s)
-\end{bmatrix}
-=
-\begin{bmatrix}
-T(s) \\ 0 \\ 0
-\end{bmatrix}
-$$
-
-Using Cramer's Rule to solve for $\Theta_3(s)$:
-$$ \Theta_3(s) = \frac{\det(A_3)}{\det(A)} $$
-
-Determinant of $A_3$:
-$$ \det(A_3) = T(s) \begin{vmatrix} -(2s + 3) & s^2 + 3s + 5 \\ 0 & -(s + 2) \end{vmatrix} = T(s)(2s + 3)(s + 2) = T(s)(2s^2 + 7s + 6) $$
-
-Determinant of $A$:
-$$ \det(A) = (2s^2 + 8s + 7)[(s^2 + 3s + 5)(s^2 + 5s + 3) - (s + 2)^2] - (2s + 3)^2(s^2 + 5s + 3) $$
-$$ \det(A) = 2s^6 + 24s^5 + 123s^4 + 356s^3 + 591s^2 + 499s + 160 $$
-
-The final transfer function is:
-\[
-\boxed{ \frac{\Theta_3(s)}{T(s)} = \frac{2s^2 + 7s + 6}{2s^6 + 24s^5 + 123s^4 + 356s^3 + 591s^2 + 499s + 160} }
-\]
+\end{center}
+\end{enumerate}
 
 % Problem 17 - Rotational Mechanical System
 
@@ -3148,144 +3152,166 @@ G(s) = \frac{\theta_3(s)}{T(s)}
 
 \vspace{12pt}
 
-\noindent \textbf{\textit{Solution:}}
+\noindent \textbf{\textit{Solution:}}\\
 
-\vspace{12pt}
+% Start of Solution
+\begin{enumerate}[label=(\alph*),itemindent=*, itemindent=*, leftmargin=*, nolistsep]
+    
+    \item Draw the Free Body Diagrams of the provided masses
+\vspace{10pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_1$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                % Circle
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_1$};
+                % Left-hand Arrows
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$2s^2\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$8s\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(210:1.75) arc[start angle=210, end angle=245, radius=1.75];
+                \node at (-2,-1.25){$7\theta_1(s)$};
+                % Right-hand Arrows
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=15, radius=1.75];
+                \node at (1.75,1.5){$T(s)$};
+                \draw[->, thick] (0,0) ++(10:1.75) arc[start angle=10, end angle=-25, radius=1.75];
+                \node at (2.4,0.1){$2s\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(-30:1.75) arc[start angle=-30, end angle=-65, radius=1.75];
+                \node at (2,-1.25){$3\theta_2(s)$};
+            \end{tikzpicture}
+    
+            % Equations under J1
+            \vspace{15pt}
+    
+            $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+            $T(s) - (2s^2 + 8s + 7)\theta_1(s) + (2s + 3)\theta_2(s) = 0$ \\ \vspace{10pt}
+            $T(s) = (2s^2 + 8s + 7)\theta_1(s) - (2s + 3)\theta_2(s)$
 
-\noindent\textbf{Free-Body Diagrams (FBDs)}
+    \end{center}
 
-\vspace{12pt}
+\vspace{15pt}
+    \begin{center}
+        %---------------- RIGHT SIDE: J2 ----------------%
+            \textbf{Free Body Diagram at $J_2$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                % Circle
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_2$};
+                % Left-hand Arrows
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$3s\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(210:1.75) arc[start angle=210, end angle=245, radius=1.75];
+                \node at (-2,-1.25){$5\theta_2(s)$};
+                % Right-hand Arrows
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=25, radius=1.75];
+                \node at (1.75,1.5){$2s\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(20:1.75) arc[start angle=20, end angle=-5, radius=1.75];
+                \node at (2.25,0.6){$3\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(-10:1.75) arc[start angle=-10, end angle=-35, radius=1.75];
+                \node at (2.25,-0.5){$s\theta_3(s)$};
+                \draw[->, thick] (0,0) ++(-40:1.75) arc[start angle=-40, end angle=-65, radius=1.75];
+                \node at (1.7,-1.45){$2\theta_3(s)$};
+            \end{tikzpicture}
+    
+            % Equations under J2
+    
+    \vspace{15pt}
+    
 
-We assume clockwise rotation is positive.
+        $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+        $0 = -(2s + 3)\theta_1(s) - (s^2 + 3s + 5)\theta_2(s) + (s + 2)\theta_3(s)$\\ \vspace{10pt}
+        $0 = (2s + 3)\theta_1(s) + (s^2 + 3s + 5)\theta_2(s) - (s + 2)\theta_3(s)$
 
-\begin{figure}[h!]
-    \centering
-    \begin{minipage}{0.32\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=0.9]
-            \node[draw, circle, minimum size=2.5cm] (j1) {$J_1$};
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_1$};
-            \draw[-{Stealth[length=2.5mm]}, thick, black!50!black] (135:2.0cm) arc (135:45:2.0cm) node[midway, above right] {$T(t)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.5cm) arc(200:160:1.5cm) node[midway, left=2mm]{$K_1\theta_1$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:320:1.5cm) node[midway, right=2mm]{$K_2(\theta_1-\theta_2)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (295:1.5cm) arc(295:275:1.5cm) node[midway, below right=2mm]{$D_1\left(\frac{d\theta_1}{dt}-\frac{d\theta_2}{dt}\right)$};
-        \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.32\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=0.9]
-            \node[draw, circle, minimum size=2.5cm] (j2) {$J_2$};
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_2$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.5cm) arc(200:160:1.5cm) node[midway, left=2mm]{$K_2(\theta_2-\theta_1)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:205:1.5cm) node[midway, below left=2mm]{$D_1\left(\frac{d\theta_2}{dt}-\frac{d\theta_1}{dt}\right)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:320:1.5cm) node[midway, right=2mm]{$K_3(\theta_2-\theta_3)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (295:1.5cm) arc(295:275:1.5cm) node[midway, below right=2mm]{$D_2\left(\frac{d\theta_2}{dt}-\frac{d\theta_3}{dt}\right)$};
-        \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.32\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=0.9]
-            \node[draw, circle, minimum size=2.5cm] (j3) {$J_3$};
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_3$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.5cm) arc(200:160:1.5cm) node[midway, left=2mm]{$K_3(\theta_3-\theta_2)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:205:1.5cm) node[midway, below left=2mm]{$D_2\left(\frac{d\theta_3}{dt}-\frac{d\theta_2}{dt}\right)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:320:1.5cm) node[midway, right=2mm]{$K_4\theta_3$};
-        \end{tikzpicture}
-    \end{minipage}
-\end{figure}
+    \end{center}
 
-\noindent\textbf{Equations of Motion}
+    \vspace{15pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_3$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                % Circle
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_3$};
+                % Left-hand Arrows
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_3(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$5s\theta_3(s)$};
+                \draw[->, thick] (0,0) ++(210:1.75) arc[start angle=210, end angle=245, radius=1.75];
+                \node at (-2,-1.25){$3\theta_3(s)$};
+                % Right-hand Arrows
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=15, radius=1.75];
+                \node at (1.75,1.5){$s\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(10:1.75) arc[start angle=10, end angle=-25, radius=1.75];
+                \node at (2.4,0.1){$2\theta_2(s)$};
+            \end{tikzpicture}
+    
+            % Equations under J3
+            \vspace{15pt}
+    
+            $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+            $0 = -(s + 2)\theta_2(s) - (s^2 + 5s + 3)\theta_3(s)$ \\ \vspace{10pt}
+            $0 = (s + 2)\theta_2(s) + (s^2 + 5s + 3)\theta_3(s)$ 
 
-\vspace{8pt}
+    \end{center}
+\vspace{15pt}
+    \item Write the displacement equations and provide the matrix form
+\begin{center}
+    T(s) $= (2s^2 + 8s + 7)\theta_1(s) - (2s + 3)\theta_2(s)$\\
+    0 $= (2s + 3)\theta_1(s) + (s^2 + 3s + 5)\theta_2(s) - (s + 2)\theta_3(s)$\\
+    0 $= (s + 2)\theta_2(s) + (s^2 + 5s + 3)\theta_3(s)$\\
+    \[
+        \begin{bmatrix}
+        (2s^2 + 8s + 7) & -(2s + 3) & 0\\
+        (2s + 3) & (s^2 + 3s + 5) & -(s + 2)\\
+        0 & (s + 2) & (s^2 + 5s + 3)\\
+        \end{bmatrix}
+        \begin{bmatrix}
+        \theta_1(s) \\
+        \theta_2(s) \\
+        \theta_3(s)
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        T(s)\\
+        0\\
+        0
+        \end{bmatrix}
+    \]\\
+\end{center}
+\vspace{15pt}
+    \item Apply Cramer's Rule to get the value of the Transfer Function
+\begin{center}
+    \[
+        \theta_3(s) = 
+            \frac{\begin{vmatrix}
+                (2s^2 + 8s + 7) & -(2s + 3) & T(s)\\
+                (2s + 3) & (s^2 + 3s + 5) & 0\\
+                0 & (s + 2) & 0\\
+            \end{vmatrix}
+        }{\begin{vmatrix}
+                (2s^2 + 8s + 7) & -(2s + 3) & 0\\
+                (2s + 3) & (s^2 + 3s + 5) & -(s + 2)\\
+                0 & (s + 2) & (s^2 + 5s + 3)\\
+            \end{vmatrix}
+        }
+    \]
+    \[
+    \theta_3(s) = \frac{(2s^2 + 7s + 6)T(s)}{2s^6 + 24s^5 + 123s^4 + 356s^3 + 591s^2 + 499s + 160}
+    \] 
 
-\noindent We apply Newton's second law for rotation ($\sum \tau = J \frac{d^2\theta}{dt^2}$) to each mass.
+    \[
+    \boxed{\frac{\theta_3(s)}{T(s)} = \frac{2s^2 + 7s + 6}{2s^6 + 24s^5 + 123s^4 + 356s^3 + 591s^2 + 499s + 160}}
+    \] 
 
-\vspace{8pt}
+\end{center}
+\end{enumerate}
 
-{For Inertia 1 ($J_1$):}
-\begin{align*}
-    J_1 \frac{d^2\theta_1}{dt^2} + D_1\left(\frac{d\theta_1}{dt} - \frac{d\theta_2}{dt}\right) + K_1 \theta_1 + K_2(\theta_1 - \theta_2) &= T(t) \\
-    J_1 \frac{d^2\theta_1}{dt^2} + D_1\frac{d\theta_1}{dt} + (K_1 + K_2)\theta_1 - D_1\frac{d\theta_2}{dt} - K_2\theta_2 &= T(t)
-\end{align*}
-
-{For Inertia 2 ($J_2$):}
-\begin{align*}
-    J_2 \frac{d^2\theta_2}{dt^2} + D_1\left(\frac{d\theta_2}{dt} - \frac{d\theta_1}{dt}\right) + K_2(\theta_2 - \theta_1) + D_2\left(\frac{d\theta_2}{dt} - \frac{d\theta_3}{dt}\right) + K_3(\theta_2 - \theta_3) &= 0 \\
-    J_2 \frac{d^2\theta_2}{dt^2} + (D_1 + D_2)\frac{d\theta_2}{dt} + (K_2 + K_3)\theta_2 - D_1\frac{d\theta_1}{dt} - K_2\theta_1 - D_2\frac{d\theta_3}{dt} - K_3\theta_3 &= 0
-\end{align*}
-
-{For Inertia 3 ($J_3$):}
-\begin{align*}
-    J_3 \frac{d^2\theta_3}{dt^2} + D_2\left(\frac{d\theta_3}{dt} - \frac{d\theta_2}{dt}\right) + K_3(\theta_3 - \theta_2) + K_4\theta_3 &= 0 \\
-    J_3 \frac{d^2\theta_3}{dt^2} + D_2\frac{d\theta_3}{dt} + (K_3 + K_4)\theta_3 - D_2\frac{d\theta_2}{dt} - K_3\theta_2 &= 0
-\end{align*}
-
-\newpage
-\noindent\textbf{Laplace Transform}
-
-\vspace{12pt}
-
-We take the Laplace transform of the equations, assuming zero initial conditions.
-
-\vspace{8pt}
-
-Equation for Inertia 1:
-\[
-[J_1 s^2 + D_1 s + (K_1 + K_2)]\Theta_1(s) - [D_1s + K_2]\Theta_2(s) = T(s)
-\]
-
-Equation for Inertia 2:
-\[
--[D_1s + K_2]\Theta_1(s) + [J_2 s^2 + (D_1 + D_2)s + (K_2 + K_3)]\Theta_2(s) - [D_2s + K_3]\Theta_3(s) = 0
-\]
-
-Equation for Inertia 3:
-\[
--[D_2s + K_3]\Theta_2(s) + [J_3 s^2 + D_2s + (K_3 + K_4)]\Theta_3(s) = 0
-\]
-
-Substituting the given numerical values:
-\begin{align}
-    (s^2 + s + 5)\Theta_1(s) - (s + 3)\Theta_2(s) &= T(s) \tag{1} \\
-    -(s + 3)\Theta_1(s) + (2s^2 + 2s + 4)\Theta_2(s) - (s + 1)\Theta_3(s) &= 0 \tag{2} \\
-    -(s + 1)\Theta_2(s) + (s^2 + s + 2)\Theta_3(s) &= 0 \tag{3}
-\end{align}
-
-\noindent\textbf{Solving for the Transfer Function}
-\vspace{8pt}
-
-The system can be expressed in matrix form $A\boldsymbol{\Theta} = \mathbf{b}$:
-$$ 
-\begin{bmatrix} 
-s^2 + s + 5 & -(s + 3) & 0 \\ 
--(s + 3) & 2s^2 + 2s + 4 & -(s + 1) \\ 
-0 & -(s + 1) & s^2 + s + 2 
-\end{bmatrix} 
-\begin{bmatrix} 
-\Theta_1(s) \\ \Theta_2(s) \\ \Theta_3(s) 
-\end{bmatrix} 
-= 
-\begin{bmatrix} 
-T(s) \\ 0 \\ 0 
-\end{bmatrix} 
-$$
-
-Using Cramer's Rule to solve for $\Theta_3(s)$:
-$$ \Theta_3(s) = \frac{\det(A_3)}{\det(A)} $$
-
-Determinant of $A_3$:
-$$ \det(A_3) = T(s) \begin{vmatrix} -(s + 3) & 2s^2 + 2s + 4 \\ 0 & -(s + 1) \end{vmatrix} = T(s)(s + 3)(s + 1) = T(s)(s^2 + 4s + 3) $$
-
-Determinant of $A$:
-$$ \det(A) = (s^2 + s + 5)[(2s^2 + 2s + 4)(s^2 + s + 2) - (s + 1)^2] - (s + 3)^2(s^2 + s + 2) $$
-$$ \det(A) = 2s^6 + 6s^5 + 22s^4 + 28s^3 + 41s^2 + 16s + 17 $$
-
-The final transfer function is:
-\[ 
-\boxed{ \frac{\Theta_3(s)}{T(s)} = \frac{s^2 + 4s + 3}{2s^6 + 6s^5 + 22s^4 + 28s^3 + 41s^2 + 16s + 17} } 
-\]
 % Problem 18 - Rotational Mechanical System
 
 \newpage
@@ -3331,16 +3357,16 @@ The final transfer function is:
 \noindent\textbf{\textit{Given:}}
 \[
 \begin{aligned}
-J_1 &= 1\, \text{kg}\cdot\text{m}^2 & K_1 &= 2\, \text{N}\cdot\text{m/rad} & D_1 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
-J_2 &= 1\, \text{kg}\cdot\text{m}^2 & K_2 &= 3\, \text{N}\cdot\text{m/rad} & D_2 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
-J_3 &= 1\, \text{kg}\cdot\text{m}^2 & K_3 &= 1\, \text{N}\cdot\text{m/rad} & D_3 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
-& & K_4 &= 1\, \text{N}\cdot\text{m/rad} & D_4 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
-& & & & D_5 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
-& & & & D_6 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
-& & & & D_7 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
-& & & & D_8 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
-& & & & D_9 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
-& & & & D_{10} &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad}
+J_1 &= 1\, \text{kg}\cdot\text{m}^2 & D_1 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
+J_2 &= 1\, \text{kg}\cdot\text{m}^2 & D_2 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
+J_3 &= 1\, \text{kg}\cdot\text{m}^2 & D_3 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
+& & D_4 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
+& & D_5 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
+& & D_6 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
+& & D_7 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
+& & D_8 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
+& & D_9 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
+& & D_{10} &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad}
 \end{aligned}
 \]
 
@@ -3353,141 +3379,135 @@ G(s) = \frac{\theta_3(s)}{T(s)}
 
 \vspace{12pt}
 
-\noindent \textbf{\textit{Solution:}}
+\noindent \textbf{\textit{Solution:}}\\
 
-\vspace{12pt}
+\begin{enumerate}[label=(\alph*),itemindent=*, leftmargin=*, nolistsep]
+    
+    \item Draw the Free Body Diagrams of the provided masses
+\vspace{10pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_1$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_1$};
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$5s\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=15, radius=1.75];
+                \node at (1.75,1.5){$T(s)$};
+                \draw[->, thick] (0,0) ++(10:1.75) arc[start angle=10, end angle=-25, radius=1.75];
+                \node at (2.4,0.1){$4s\theta_2(s)$};
+            \end{tikzpicture}
+    
+            \vspace{15pt}
+    
+            $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+            $T(s) - (s^2 + 5s)\theta_1(s) + 4s\theta_2(s) = 0$ \\ \vspace{10pt}
+            $T(s) = (s^2 + 5s)\theta_1(s) - 4s\theta_2(s)$
 
-\noindent\textbf{Free-Body Diagrams (FBDs)}
+    \end{center}
 
-\vspace{12pt}
+\vspace{15pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_2$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_2$};
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$8s\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=25, radius=1.75];
+                \node at (1.75,1.5){$4s\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(20:1.75) arc[start angle=20, end angle=-5, radius=1.75];
+                \node at (2.25,0.6){$4s\theta_3(s)$};
+            \end{tikzpicture}
+    
+    \vspace{15pt}
+    
+        $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+        $0 = 4s\theta_1(s) - (s^2 + 8s)\theta_2(s) + 4s\theta_3(s)$\\ \vspace{10pt}
+        $0 = -4s\theta_1(s) + (s^2 + 8s)\theta_2(s) - 4s\theta_3(s)$
 
-We assume clockwise rotation is positive.
+    \end{center}
 
-\begin{figure}[h!]
-    \centering
-    \begin{minipage}{0.32\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=0.9]
-            \node[draw, circle, minimum size=2.5cm] (j1) {$J_1$};
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_1$};
-            \draw[-{Stealth[length=2.5mm]}, thick, black!50!black] (135:2.0cm) arc (135:45:2.0cm) node[midway, above right] {$T(t)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:205:1.5cm) node[midway, below left=2mm]{$D_1\frac{d\theta_1}{dt}$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:290:1.5cm) node[midway, right=2mm]{$(D_2..D_5)\left(\frac{d\theta_1}{dt}-\frac{d\theta_2}{dt}\right)$};
-        \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.32\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=0.9]
-            \node[draw, circle, minimum size=2.5cm] (j2) {$J_2$};
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_2$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:180:1.5cm) node[midway, left=2mm]{$(D_2..D_5)\left(\frac{d\theta_2}{dt}-\frac{d\theta_1}{dt}\right)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:290:1.5cm) node[midway, right=2mm]{$(D_6..D_9)\left(\frac{d\theta_2}{dt}-\frac{d\theta_3}{dt}\right)$};
-        \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.32\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=0.9]
-            \node[draw, circle, minimum size=2.5cm] (j3) {$J_3$};
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_3$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:180:1.5cm) node[midway, left=2mm]{$(D_6..D_9)\left(\frac{d\theta_3}{dt}-\frac{d\theta_2}{dt}\right)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:300:1.5cm) node[midway, right=2mm]{$D_{10}\frac{d\theta_3}{dt}$};
-        \end{tikzpicture}
-    \end{minipage}
-\end{figure}
+    \vspace{15pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_3$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_3$};
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_3(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$5s\theta_3(s)$};
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=15, radius=1.75];
+                \node at (1.75,1.5){$4s\theta_2(s)$};
+            \end{tikzpicture}
+    
+            \vspace{15pt}
+    
+            $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+            $0 = 4s\theta_2(s) - (s^2 + 5s)\theta_3(s)$ \\ \vspace{10pt}
+            $0 = -4s\theta_2(s) + (s^2 + 5s)\theta_3(s)$ 
 
-\noindent\textbf{Equations of Motion}
+    \end{center}
+\vspace{15pt}
+    \item Write the displacement equations and provide the matrix form
+\begin{center}
+    T(s) $= (s^2 + 5s)\theta_1(s) - 4s\theta_2(s)$\\
+    0 $= -4s\theta_1(s) + (s^2 + 8s)\theta_2(s) - 4s\theta_3(s)$\\
+    0 $= -4s\theta_2(s) + (s^2 + 5s)\theta_3(s)$\\
+    \[
+        \begin{bmatrix}
+        (s^2 + 5s) & -4s & 0\\
+        -4s & (s^2 + 8s) & -4s\\
+        0 & -4s & (s^2 + 5s)\\
+        \end{bmatrix}
+        \begin{bmatrix}
+        \theta_1(s) \\
+        \theta_2(s) \\
+        \theta_3(s)
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        T(s)\\
+        0\\
+        0
+        \end{bmatrix}
+    \]\\
+\end{center}
+\vspace{15pt}
+    \item Apply Cramer's Rule to get the value of the Transfer Function
+\begin{center}
+    \[
+        \theta_3(s) = 
+            \frac{\begin{vmatrix}
+                (s^2 + 5s) & -4s & T(s)\\
+                -4s & (s^2 + 8s) & 0\\
+                0 & -4s & 0\\
+            \end{vmatrix}
+        }{\begin{vmatrix}
+                (s^2 + 5s) & -4s & 0\\
+                -4s & (s^2 + 8s) & -4s\\
+                0 & -4s & (s^2 + 5s)\\
+            \end{vmatrix}
+        }
+    \]
+    \[
+    \theta_3(s) = \frac{16s^2 T(s)}{s^6 + 18s^5 + 73s^4 + 40s^3}
+    \] 
 
-\vspace{8pt}
+    \[
+    \boxed{\frac{\theta_3(s)}{T(s)} = \frac{16s^2}{s^6 + 18s^5 + 73s^4 + 40s^3}}
+    \] 
 
-\noindent We apply Newton's second law for rotation ($\sum \tau = J \frac{d^2\theta}{dt^2}$) to each mass.
-
-\vspace{8pt}
-
-{For Inertia 1 ($J_1$):}
-\begin{align*}
-    J_1 \frac{d^2\theta_1}{dt^2} + D_1 \frac{d\theta_1}{dt} + (D_2+D_3+D_4+D_5)\left(\frac{d\theta_1}{dt} - \frac{d\theta_2}{dt}\right) &= T(t) \\
-    J_1 \frac{d^2\theta_1}{dt^2} + (D_1+D_2+D_3+D_4+D_5)\frac{d\theta_1}{dt} - (D_2+D_3+D_4+D_5)\frac{d\theta_2}{dt} &= T(t)
-\end{align*}
-
-{For Inertia 2 ($J_2$):}
-\begin{align*}
-    J_2 \frac{d^2\theta_2}{dt^2} + (D_2+D_3+D_4+D_5)\left(\frac{d\theta_2}{dt} - \frac{d\theta_1}{dt}\right) + (D_6+D_7+D_8+D_9)\left(\frac{d\theta_2}{dt} - \frac{d\theta_3}{dt}\right) &= 0 \\
-    J_2 \frac{d^2\theta_2}{dt^2} + (D_2..D_9)\frac{d\theta_2}{dt} - (D_2+D_3+D_4+D_5)\frac{d\theta_1}{dt} - (D_6+D_7+D_8+D_9)\frac{d\theta_3}{dt} &= 0
-\end{align*}
-
-{For Inertia 3 ($J_3$):}
-\begin{align*}
-    J_3 \frac{d^2\theta_3}{dt^2} + (D_6+D_7+D_8+D_9)\left(\frac{d\theta_3}{dt} - \frac{d\theta_2}{dt}\right) + D_{10}\frac{d\theta_3}{dt} &= 0 \\
-    J_3 \frac{d^2\theta_3}{dt^2} + (D_6+D_7+D_8+D_9+D_{10})\frac{d\theta_3}{dt} - (D_6+D_7+D_8+D_9)\frac{d\theta_2}{dt} &= 0
-\end{align*}
-
-\newpage
-\noindent\textbf{Laplace Transform}
-
-\vspace{12pt}
-
-We take the Laplace transform of the equations, assuming zero initial conditions.
-
-\vspace{8pt}
-
-Equation for Inertia 1:
-\[
-[J_1 s^2 + (D_1..D_5)s]\Theta_1(s) - [(D_2..D_5)s]\Theta_2(s) = T(s)
-\]
-
-Equation for Inertia 2:
-\[
--[(D_2..D_5)s]\Theta_1(s) + [J_2 s^2 + (D_2..D_9)s]\Theta_2(s) - [(D_6..D_9)s]\Theta_3(s) = 0
-\]
-
-Equation for Inertia 3:
-\[
--[(D_6..D_9)s]\Theta_2(s) + [J_3 s^2 + (D_6..D_{10})s]\Theta_3(s) = 0
-\]
-
-Substituting the given numerical values (all elements equal to 1):
-\begin{align}
-    (s^2 + 5s)\Theta_1(s) - 4s\Theta_2(s) &= T(s) \tag{1} \\
-    -4s\Theta_1(s) + (s^2 + 8s)\Theta_2(s) - 4s\Theta_3(s) &= 0 \tag{2} \\
-    -4s\Theta_2(s) + (s^2 + 5s)\Theta_3(s) &= 0 \tag{3}
-\end{align}
-
-\noindent\textbf{Solving for the Transfer Function}
-\vspace{8pt}
-
-The system can be expressed in matrix form $A\boldsymbol{\Theta} = \mathbf{b}$:
-$$ 
-\begin{bmatrix} 
-s^2 + 5s & -4s & 0 \\ 
--4s & s^2 + 8s & -4s \\ 
-0 & -4s & s^2 + 5s 
-\end{bmatrix} 
-\begin{bmatrix} 
-\Theta_1(s) \\ \Theta_2(s) \\ \Theta_3(s) 
-\end{bmatrix} 
-= 
-\begin{bmatrix} 
-T(s) \\ 0 \\ 0 
-\end{bmatrix} 
-$$
-
-Using Cramer's Rule to solve for $\Theta_3(s)$:
-$$ \Theta_3(s) = \frac{\det(A_3)}{\det(A)} $$
-
-Determinant of $A_3$:
-$$ \det(A_3) = T(s) \begin{vmatrix} -4s & s^2 + 8s \\ 0 & -4s \end{vmatrix} = T(s)(-4s)(-4s) = 16s^2T(s) $$
-
-Determinant of $A$:
-$$ \det(A) = (s^2 + 5s)[(s^2 + 8s)(s^2 + 5s) - (-4s)^2] - (-4s)^2(s^2 + 5s) $$
-$$ \det(A) = (s^2 + 5s)(s^4 + 13s^3 + 24s^2) - 16s^4 - 80s^3 $$
-$$ \det(A) = s^6 + 18s^5 + 73s^4 + 40s^3 $$
-
-The final transfer function is:
-\[ 
-\boxed{ \frac{\Theta_3(s)}{T(s)} = \frac{16s^2}{s^6 + 18s^5 + 73s^4 + 40s^3} } 
-\]
+\end{center}
+\end{enumerate}
 
 % Problem 19 - Rotational Mechanical System
 
@@ -3529,7 +3549,6 @@ The final transfer function is:
 }
 \end{center}
 \noindent\rule{\textwidth}{1pt}
-
 \vspace{12pt}
 
 \noindent\textbf{\textit{Given:}}
@@ -3552,141 +3571,134 @@ G(s) = \frac{\theta_3(s)}{T(s)}
 
 \vspace{12pt}
 
-\noindent \textbf{\textit{Solution:}}
 
-\vspace{12pt}
+\noindent \textbf{\textit{Solution:}}\\
 
-\noindent\textbf{Free-Body Diagrams (FBDs)}
+\begin{enumerate}[label=(\alph*),itemindent=*, leftmargin=*, nolistsep]
+    
+    \item Draw the Free Body Diagrams of the provided masses
+\vspace{10pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_1$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_1$};
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$5\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=15, radius=1.75];
+                \node at (1.75,1.5){$T(s)$};
+                \draw[->, thick] (0,0) ++(10:1.75) arc[start angle=10, end angle=-25, radius=1.75];
+                \node at (2.4,0.1){$4\theta_2(s)$};
+            \end{tikzpicture}
+    
+            \vspace{15pt}
+    
+            $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+            $T(s) - (s^2 + 5)\theta_1(s) + 4\theta_2(s) = 0$ \\ \vspace{10pt}
+            $T(s) = (s^2 + 5)\theta_1(s) - 4\theta_2(s)$
 
-\vspace{12pt}
+    \end{center}
 
-We assume clockwise rotation is positive.
+\vspace{15pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_2$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_2$};
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$8\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=25, radius=1.75];
+                \node at (1.75,1.5){$4\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(20:1.75) arc[start angle=20, end angle=-5, radius=1.75];
+                \node at (2.25,0.6){$4\theta_3(s)$};
+            \end{tikzpicture}
+    
+    \vspace{15pt}
+        $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+        $0 = 4\theta_1(s) - (s^2 + 8)\theta_2(s) + 4\theta_3(s)$\\ \vspace{10pt}
+        $0 = -4\theta_1(s) + (s^2 + 8)\theta_2(s) - 4\theta_3(s)$
+    \end{center}
 
-\begin{figure}[h!]
-    \centering
-    \begin{minipage}{0.32\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=0.9]
-            \node[draw, circle, minimum size=2.5cm] (j1) {$J_1$};
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_1$};
-            \draw[-{Stealth[length=2.5mm]}, thick, black!50!black] (135:2.0cm) arc (135:45:2.0cm) node[midway, above right] {$T(t)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.5cm) arc(200:160:1.5cm) node[midway, left=2mm]{$K_1\theta_1$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:290:1.5cm) node[midway, right=2mm]{$(K_2..K_5)(\theta_1-\theta_2)$};
-        \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.32\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=0.9]
-            \node[draw, circle, minimum size=2.5cm] (j2) {$J_2$};
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_2$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:180:1.5cm) node[midway, left=2mm]{$(K_2..K_5)(\theta_2-\theta_1)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:290:1.5cm) node[midway, right=2mm]{$(K_6..K_9)(\theta_2-\theta_3)$};
-        \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.32\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=0.9]
-            \node[draw, circle, minimum size=2.5cm] (j3) {$J_3$};
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.5cm) arc (120:60:1.5cm) node[midway, above] {$\theta_3$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.5cm) arc(245:180:1.5cm) node[midway, left=2mm]{$(K_6..K_9)(\theta_3-\theta_2)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.5cm) arc(340:300:1.5cm) node[midway, right=2mm]{$K_{10}\theta_3$};
-        \end{tikzpicture}
-    \end{minipage}
-\end{figure}
+    \vspace{15pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_3$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_3$};
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_3(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$5\theta_3(s)$};
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=15, radius=1.75];
+                \node at (1.75,1.5){$4\theta_2(s)$};
+            \end{tikzpicture}
+    
+            \vspace{15pt}
+    
+            $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+            $0 = 4\theta_2(s) - (s^2 + 5)\theta_3(s)$ \\ \vspace{10pt}
+            $0 = -4\theta_2(s) + (s^2 + 5)\theta_3(s)$ 
 
-\noindent\textbf{Equations of Motion}
+    \end{center}
+\vspace{15pt}
+    \item Write the displacement equations and provide the matrix form
+\begin{center}
+    T(s) $= (s^2 + 5)\theta_1(s) - 4\theta_2(s)$\\
+    0 $= -4\theta_1(s) + (s^2 + 8)\theta_2(s) - 4\theta_3(s)$\\
+    0 $= -4\theta_2(s) + (s^2 + 5)\theta_3(s)$\\
+    \[
+        \begin{bmatrix}
+        (s^2 + 5) & -4 & 0\\
+        -4 & (s^2 + 8) & -4\\
+        0 & -4 & (s^2 + 5)\\
+        \end{bmatrix}
+        \begin{bmatrix}
+        \theta_1(s) \\
+        \theta_2(s) \\
+        \theta_3(s)
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        T(s)\\
+        0\\
+        0
+        \end{bmatrix}
+    \]\\
+\end{center}
+\vspace{15pt}
+    \item Apply Cramer's Rule to get the value of the Transfer Function
+\begin{center}
+    \[
+        \theta_3(s) = 
+            \frac{\begin{vmatrix}
+                (s^2 + 5) & -4 & T(s)\\
+                -4 & (s^2 + 8) & 0\\
+                0 & -4 & 0\\
+            \end{vmatrix}
+        }{\begin{vmatrix}
+                (s^2 + 5) & -4 & 0\\
+                -4 & (s^2 + 8) & -4\\
+                0 & -4 & (s^2 + 5)\\
+            \end{vmatrix}
+        }
+    \]
+    \[
+    \theta_3(s) = \frac{16 T(s)}{s^6 + 18s^4 + 73s^2 + 40}
+    \] 
 
-\vspace{8pt}
+    \[
+    \boxed{\frac{\theta_3(s)}{T(s)} = \frac{16}{s^6 + 18s^4 + 73s^2 + 40}}
+    \] 
 
-\noindent We apply Newton's second law for rotation ($\sum \tau = J \frac{d^2\theta}{dt^2}$) to each mass.
-
-\vspace{8pt}
-
-{For Inertia 1 ($J_1$):}
-\begin{align*}
-    J_1 \frac{d^2\theta_1}{dt^2} + K_1 \theta_1 + (K_2+K_3+K_4+K_5)(\theta_1 - \theta_2) &= T(t) \\
-    J_1 \frac{d^2\theta_1}{dt^2} + (K_1+K_2+K_3+K_4+K_5)\theta_1 - (K_2+K_3+K_4+K_5)\theta_2 &= T(t)
-\end{align*}
-
-{For Inertia 2 ($J_2$):}
-\begin{align*}
-    J_2 \frac{d^2\theta_2}{dt^2} + (K_2+K_3+K_4+K_5)(\theta_2 - \theta_1) + (K_6+K_7+K_8+K_9)(\theta_2 - \theta_3) &= 0 \\
-    J_2 \frac{d^2\theta_2}{dt^2} + (K_2..K_9)\theta_2 - (K_2+K_3+K_4+K_5)\theta_1 - (K_6+K_7+K_8+K_9)\theta_3 &= 0
-\end{align*}
-
-{For Inertia 3 ($J_3$):}
-\begin{align*}
-    J_3 \frac{d^2\theta_3}{dt^2} + (K_6+K_7+K_8+K_9)(\theta_3 - \theta_2) + K_{10}\theta_3 &= 0 \\
-    J_3 \frac{d^2\theta_3}{dt^2} + (K_6+K_7+K_8+K_9+K_{10})\theta_3 - (K_6+K_7+K_8+K_9)\theta_2 &= 0
-\end{align*}
-
-\newpage
-\noindent\textbf{Laplace Transform}
-
-\vspace{12pt}
-
-We take the Laplace transform of the equations, assuming zero initial conditions.
-
-\vspace{8pt}
-
-Equation for Inertia 1:
-\[
-[J_1 s^2 + (K_1..K_5)]\Theta_1(s) - [K_2..K_5]\Theta_2(s) = T(s)
-\]
-
-Equation for Inertia 2:
-\[
--[K_2..K_5]\Theta_1(s) + [J_2 s^2 + (K_2..K_9)]\Theta_2(s) - [K_6..K_9]\Theta_3(s) = 0
-\]
-
-Equation for Inertia 3:
-\[
--[K_6..K_9]\Theta_2(s) + [J_3 s^2 + (K_6..K_{10})]\Theta_3(s) = 0
-\]
-
-Substituting the given numerical values (all elements equal to 1):
-\begin{align}
-    (s^2 + 5)\Theta_1(s) - 4\Theta_2(s) &= T(s) \tag{1} \\
-    -4\Theta_1(s) + (s^2 + 8)\Theta_2(s) - 4\Theta_3(s) &= 0 \tag{2} \\
-    -4\Theta_2(s) + (s^2 + 5)\Theta_3(s) &= 0 \tag{3}
-\end{align}
-
-\noindent\textbf{Solving for the Transfer Function}
-\vspace{8pt}
-
-The system can be expressed in matrix form $A\boldsymbol{\Theta} = \mathbf{b}$:
-$$ 
-\begin{bmatrix} 
-s^2 + 5 & -4 & 0 \\ 
--4 & s^2 + 8 & -4 \\ 
-0 & -4 & s^2 + 5 
-\end{bmatrix} 
-\begin{bmatrix} 
-\Theta_1(s) \\ \Theta_2(s) \\ \Theta_3(s) 
-\end{bmatrix} 
-= 
-\begin{bmatrix} 
-T(s) \\ 0 \\ 0 
-\end{bmatrix} 
-$$
-
-Using Cramer's Rule to solve for $\Theta_3(s)$:
-$$ \Theta_3(s) = \frac{\det(A_3)}{\det(A)} $$
-
-Determinant of $A_3$:
-$$ \det(A_3) = T(s) \begin{vmatrix} -4 & s^2 + 8 \\ 0 & -4 \end{vmatrix} = T(s)(-4)(-4) = 16T(s) $$
-
-Determinant of $A$:
-$$ \det(A) = (s^2 + 5)[(s^2 + 8)(s^2 + 5) - (-4)^2] - (-4)^2(s^2 + 5) $$
-$$ \det(A) = (s^2 + 5)(s^4 + 13s^2 + 24) - 16s^2 - 80 $$
-$$ \det(A) = s^6 + 18s^4 + 73s^2 + 40 $$
-
-The final transfer function is:
-\[ 
-\boxed{ \frac{\Theta_3(s)}{T(s)} = \frac{16}{s^6 + 18s^4 + 73s^2 + 40} } 
-\]
+\end{center}
+\end{enumerate}
 
 % Problem 20 - Rotational Mechanical System
 
@@ -3719,7 +3731,6 @@ The final transfer function is:
 }
 \end{center}
 \noindent\rule{\textwidth}{1pt}
-
 \vspace{12pt}
 
 \noindent\textbf{\textit{Given:}}
@@ -3727,9 +3738,8 @@ The final transfer function is:
 \begin{aligned}
 J_1 &= 2\, \text{kg}\cdot\text{m}^2 & K_1 &= 4\, \text{N}\cdot\text{m/rad} & D_1 &= 6\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
 J_2 &= 1\, \text{kg}\cdot\text{m}^2 & K_2 &= 5\, \text{N}\cdot\text{m/rad} & D_2 &= 2\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
-J_3 &= 1\, \text{kg}\cdot\text{m}^2 & K_3 &= 3\, \text{N}\cdot\text{m/rad} & D_3 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
-& & K_4 &= 2\, \text{N}\cdot\text{m/rad} & D_4 &= 4\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
-& & K_5 &= 1\, \text{N}\cdot\text{m/rad} & & 
+& & K_3 &= 3\, \text{N}\cdot\text{m/rad} & D_3 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} \\
+& & & & D_4 &= 4\, \text{N}\cdot\text{m}\cdot\text{s/rad} 
 \end{aligned}
 \]
 
@@ -3742,122 +3752,113 @@ G(s) = \frac{\theta_2(s)}{T(s)}
 
 \vspace{12pt}
 
-\noindent \textbf{\textit{Solution:}}
+\noindent \textbf{\textit{Solution:}}\\
 
-\vspace{12pt}
+\begin{enumerate}[label=(\alph*),itemindent=*, leftmargin=*, nolistsep]
+    
+    \item Draw the Free Body Diagrams of the provided masses
+\vspace{10pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_1$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_1$};
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$3s\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(210:1.75) arc[start angle=210, end angle=245, radius=1.75];
+                \node at (-2,-1.25){$3\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=15, radius=1.75];
+                \node at (1.75,1.5){$T(s)$};
+                \draw[->, thick] (0,0) ++(10:1.75) arc[start angle=10, end angle=-25, radius=1.75];
+                \node at (2.4,0.1){$2s\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(-30:1.75) arc[start angle=-30, end angle=-65, radius=1.75];
+                \node at (2,-1.25){$1\theta_2(s)$};
+            \end{tikzpicture}
+    
+            \vspace{15pt}
+    
+            $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+            $T(s) - (s^2 + 3s + 3)\theta_1(s) + (2s + 1)\theta_2(s) = 0$ \\ \vspace{10pt}
+            $T(s) = (s^2 + 3s + 3)\theta_1(s) - (2s + 1)\theta_2(s)$
 
-\noindent\textbf{Free-Body Diagrams (FBDs)}
+    \end{center}
 
-\vspace{12pt}
+\vspace{15pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_2$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_2$};
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$3s\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(210:1.75) arc[start angle=210, end angle=245, radius=1.75];
+                \node at (-2,-1.25){$1\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=25, radius=1.75];
+                \node at (1.75,1.5){$2s\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(20:1.75) arc[start angle=20, end angle=-5, radius=1.75];
+                \node at (2.25,0.6){$1\theta_1(s)$};
+            \end{tikzpicture}
+    
+    \vspace{15pt}
+    
+        $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+        $0 = (2s + 1)\theta_1(s) - (s^2 + 3s + 1)\theta_2(s)$\\ \vspace{10pt}
+        $0 = -(2s + 1)\theta_1(s) + (s^2 + 3s + 1)\theta_2(s)$
 
-We assume clockwise rotation is positive.
+    \end{center}
 
-\begin{figure}[h!]
-    \centering
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=1]
-            \node[draw, circle, minimum size=3cm] (j1) {$J_1$};
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.8cm) arc (120:60:1.8cm) node[midway, above] {$\theta_1$};
-            \draw[-{Stealth[length=2.5mm]}, thick, black!50!black] (135:2.35cm) arc (135:45:2.35cm) node[midway, above right] {$T(t)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.8cm) arc(200:160:1.8cm) node[midway, left=2mm]{$(K_1+K_2)\theta_1$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.8cm) arc(245:205:1.8cm) node[midway, below left=2mm]{$D_1\frac{d\theta_1}{dt}$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.8cm) arc(340:320:1.8cm) node[midway, right=2mm]{$K_3(\theta_1-\theta_2)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (295:1.8cm) arc(295:275:1.8cm) node[midway, below right=2mm]{$(D_2+D_3)\left(\frac{d\theta_1}{dt}-\frac{d\theta_2}{dt}\right)$};
-        \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=1]
-            \node[draw, circle, minimum size=3cm] (j2) {$J_2$};
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.8cm) arc (120:60:1.8cm) node[midway, above] {$\theta_2$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.8cm) arc(200:160:1.8cm) node[midway, left=2mm]{$K_3(\theta_2-\theta_1)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.8cm) arc(245:205:1.8cm) node[midway, below left=2mm]{$(D_2+D_3)\left(\frac{d\theta_2}{dt}-\frac{d\theta_1}{dt}\right)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.8cm) arc(340:320:1.8cm) node[midway, right=2mm]{$D_4\frac{d\theta_2}{dt}$};
-        \end{tikzpicture}
-    \end{minipage}
-\end{figure}
+\vspace{15pt}
+    \item Write the displacement equations and provide the matrix form
+\begin{center}
+    T(s) $= (s^2 + 3s + 3)\theta_1(s) - (2s + 1)\theta_2(s)$\\
+    0 $= -(2s + 1)\theta_1(s) + (s^2 + 3s + 1)\theta_2(s)$\\
+    \[
+        \begin{bmatrix}
+        (s^2 + 3s + 3) & -(2s + 1) \\
+        -(2s + 1) & (s^2 + 3s + 1)
+        \end{bmatrix}
+        \begin{bmatrix}
+        \theta_1(s) \\
+        \theta_2(s)
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        T(s)\\
+        0
+        \end{bmatrix}
+    \]\\
+\end{center}
+\vspace{15pt}
+    \item Apply Cramer's Rule to get the value of the Transfer Function
+\begin{center}
+    \[
+        \theta_2(s) = 
+            \frac{\begin{vmatrix}
+                (s^2 + 3s + 3) & T(s)\\
+                -(2s + 1) & 0
+            \end{vmatrix}
+        }{\begin{vmatrix}
+                (s^2 + 3s + 3) & -(2s + 1) \\
+                -(2s + 1) & (s^2 + 3s + 1)
+            \end{vmatrix}
+        }
+    \]
+    \[
+    \theta_2(s) = \frac{(2s+1)T(s)}{s^4 + 6s^3 + 9s^2 + 8s + 2}
+    \] 
 
-\noindent\textbf{Equations of Motion}
+    \[
+    \boxed{\frac{\theta_2(s)}{T(s)} = \frac{2s+1}{s^4 + 6s^3 + 9s^2 + 8s + 2}}
+    \] 
 
-\vspace{8pt}
-
-\noindent We apply Newton's second law for rotation ($\sum \tau = J \frac{d^2\theta}{dt^2}$) to each mass.
-
-\vspace{8pt}
-
-{For Inertia 1 ($J_1$):}
-\begin{align*}
-    J_1 \frac{d^2\theta_1}{dt^2} + D_1 \frac{d\theta_1}{dt} + (K_1+K_2) \theta_1 + (D_2+D_3)\left(\frac{d\theta_1}{dt} - \frac{d\theta_2}{dt}\right) + K_3(\theta_1 - \theta_2) &= T(t) \\
-    J_1 \frac{d^2\theta_1}{dt^2} + (D_1+D_2+D_3)\frac{d\theta_1}{dt} + (K_1+K_2+K_3)\theta_1 - (D_2+D_3)\frac{d\theta_2}{dt} - K_3\theta_2 &= T(t)
-\end{align*}
-
-{For Inertia 2 ($J_2$):}
-\begin{align*}
-    J_2 \frac{d^2\theta_2}{dt^2} + D_4 \frac{d\theta_2}{dt} + (D_2+D_3)\left(\frac{d\theta_2}{dt} - \frac{d\theta_1}{dt}\right) + K_3(\theta_2 - \theta_1) &= 0 \\
-    J_2 \frac{d^2\theta_2}{dt^2} + (D_2+D_3+D_4)\frac{d\theta_2}{dt} + K_3\theta_2 - (D_2+D_3)\frac{d\theta_1}{dt} - K_3\theta_1 &= 0
-\end{align*}
-
-\newpage
-\noindent\textbf{Laplace Transform}
-
-\vspace{12pt}
-
-We take the Laplace transform of the equations, assuming zero initial conditions.
-
-\vspace{8pt}
-
-Equation for Inertia 1:
-\[
-[J_1 s^2 + (D_1+D_2+D_3)s + (K_1+K_2+K_3)]\Theta_1(s) - [(D_2+D_3)s + K_3]\Theta_2(s) = T(s)
-\]
-
-Equation for Inertia 2:
-\[
--[(D_2+D_3)s + K_3]\Theta_1(s) + [J_2 s^2 + (D_2+D_3+D_4)s + K_3]\Theta_2(s) = 0
-\]
-
-Substituting the given numerical values:
-\begin{align}
-    (2s^2 + 9s + 12)\Theta_1(s) - (3s + 3)\Theta_2(s) &= T(s) \tag{1} \\
-    -(3s + 3)\Theta_1(s) + (s^2 + 7s + 3)\Theta_2(s) &= 0 \tag{2}
-\end{align}
-
-\noindent\textbf{Solving for the Transfer Function}
-\vspace{8pt}
-
-From equation (2), we express $\Theta_1(s)$ in terms of $\Theta_2(s)$:
-\[
-\Theta_1(s) = \frac{s^2 + 7s + 3}{3s + 3} \Theta_2(s)
-\]
-
-Substitute this into equation (1):
-\[
-(2s^2 + 9s + 12) \left( \frac{s^2 + 7s + 3}{3s + 3} \Theta_2(s) \right) - (3s + 3)\Theta_2(s) = T(s)
-\]
-
-Factor out $\Theta_2(s)$:
-\[
-\left[ \frac{(2s^2 + 9s + 12)(s^2 + 7s + 3) - (3s + 3)^2}{3s + 3} \right] \Theta_2(s) = T(s)
-\]
-
-Rearrange to find the transfer function $\dfrac{\Theta_2(s)}{T(s)}$:
-\[
-\frac{\Theta_2(s)}{T(s)} = \frac{3s + 3}{(2s^2 + 9s + 12)(s^2 + 7s + 3) - (3s + 3)^2}
-\]
-
-Expand and simplify the denominator:
-\begin{align*}
-    \text{Denominator} &= (2s^4 + 14s^3 + 6s^2 + 9s^3 + 63s^2 + 27s + 12s^2 + 84s + 36) - (9s^2 + 18s + 9) \\
-    &= (2s^4 + 23s^3 + 81s^2 + 111s + 36) - (9s^2 + 18s + 9) \\
-    &= 2s^4 + 23s^3 + 72s^2 + 93s + 27
-\end{align*}
-
-The final transfer function is:
-\[
-\boxed{\frac{\Theta_2(s)}{T(s)} = \frac{3s + 3}{2s^4 + 23s^3 + 72s^2 + 93s + 27}}
-\]
+\end{center}
+\end{enumerate}
 
 % Problem 21 - Rotational Mechanical System
 
@@ -3901,7 +3902,6 @@ The final transfer function is:
 }
 \end{center}
 \noindent\rule{\textwidth}{1pt}
-
 \vspace{12pt}
 
 \noindent\textbf{\textit{Given:}}
@@ -3923,118 +3923,108 @@ G(s) = \frac{\theta_2(s)}{T(s)}
 
 \vspace{12pt}
 
-\noindent \textbf{\textit{Solution:}}
+\noindent \textbf{\textit{Solution:}}\\
+\begin{enumerate}[label=(\alph*),itemindent=*, leftmargin=*, nolistsep]
+    
+    \item Draw the Free Body Diagrams of the provided masses
+\vspace{10pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_1$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_1$};
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$4s\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(210:1.75) arc[start angle=210, end angle=245, radius=1.75];
+                \node at (-2,-1.25){$4\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=15, radius=1.75];
+                \node at (1.75,1.5){$T(s)$};
+                \draw[->, thick] (0,0) ++(10:1.75) arc[start angle=10, end angle=-25, radius=1.75];
+                \node at (2.4,0.1){$4s\theta_2(s)$};
+            \end{tikzpicture}
+    
+            \vspace{15pt}
+    
+            $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+            $T(s) - (s^2 + 4s + 4)\theta_1(s) + 4s\theta_2(s) = 0$ \\ \vspace{10pt}
+            $T(s) = (s^2 + 4s + 4)\theta_1(s) - 4s\theta_2(s)$
 
-\vspace{12pt}
+    \end{center}
 
-\noindent\textbf{Free-Body Diagrams (FBDs)}
+\vspace{15pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_2$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_2$};
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$4s\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(210:1.75) arc[start angle=210, end angle=245, radius=1.75];
+                \node at (-2,-1.25){$4\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=25, radius=1.75];
+                \node at (1.75,1.5){$4s\theta_1(s)$};
+            \end{tikzpicture}
+    
+    \vspace{15pt}
+    
+        $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+        $0 = 4s\theta_1(s) - (s^2 + 4s + 4)\theta_2(s)$\\ \vspace{10pt}
+        $0 = -4s\theta_1(s) + (s^2 + 4s + 4)\theta_2(s)$
 
-\vspace{12pt}
+    \end{center}
 
-We assume clockwise rotation is positive.
+\vspace{15pt}
+    \item Write the displacement equations and provide the matrix form
+\begin{center}
+    T(s) $= (s^2 + 4s + 4)\theta_1(s) - 4s\theta_2(s)$\\
+    0 $= -4s\theta_1(s) + (s^2 + 4s + 4)\theta_2(s)$\\
+    \[
+        \begin{bmatrix}
+        (s^2 + 4s + 4) & -4s \\
+        -4s & (s^2 + 4s + 4)
+        \end{bmatrix}
+        \begin{bmatrix}
+        \theta_1(s) \\
+        \theta_2(s)
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        T(s)\\
+        0
+        \end{bmatrix}
+    \]\\
+\end{center}
+\vspace{15pt}
+    \item Apply Cramer's Rule to get the value of the Transfer Function
+\begin{center}
+    \[
+        \theta_2(s) = 
+            \frac{\begin{vmatrix}
+                (s^2 + 4s + 4) & T(s)\\
+                -4s & 0
+            \end{vmatrix}
+        }{\begin{vmatrix}
+                (s^2 + 4s + 4) & -4s \\
+                -4s & (s^2 + 4s + 4)
+            \end{vmatrix}
+        }
+    \]
+    \[
+    \theta_2(s) = \frac{4s T(s)}{s^4 + 8s^3 + 8s^2 + 32s + 16}
+    \] 
 
-\begin{figure}[h!]
-    \centering
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=1]
-            \node[draw, circle, minimum size=3cm] (j1) {$J_1$};
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.8cm) arc (120:60:1.8cm) node[midway, above] {$\theta_1$};
-            \draw[-{Stealth[length=2.5mm]}, thick, black!50!black] (135:2.35cm) arc (135:45:2.35cm) node[midway, above right] {$T(t)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.8cm) arc(200:160:1.8cm) node[midway, left=2mm]{$(K_1..K_4)\theta_1$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.8cm) arc(340:320:1.8cm) node[midway, right=2mm]{$(D_1..D_4)\left(\frac{d\theta_1}{dt}-\frac{d\theta_2}{dt}\right)$};
-        \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=1]
-            \node[draw, circle, minimum size=3cm] (j2) {$J_2$};
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.8cm) arc (120:60:1.8cm) node[midway, above] {$\theta_2$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.8cm) arc(200:160:1.8cm) node[midway, left=2mm]{$(D_1..D_4)\left(\frac{d\theta_2}{dt}-\frac{d\theta_1}{dt}\right)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.8cm) arc(340:320:1.8cm) node[midway, right=2mm]{$(K_5..K_8)\theta_2$};
-        \end{tikzpicture}
-    \end{minipage}
-\end{figure}
+    \[
+    \boxed{\frac{\theta_2(s)}{T(s)} = \frac{4s}{s^4 + 8s^3 + 8s^2 + 32s + 16}}
+    \] 
 
-\noindent\textbf{Equations of Motion}
-
-\vspace{8pt}
-
-\noindent We apply Newton's second law for rotation ($\sum \tau = J \frac{d^2\theta}{dt^2}$) to each mass.
-
-\vspace{8pt}
-
-{For Inertia 1 ($J_1$):}
-\begin{align*}
-    J_1 \frac{d^2\theta_1}{dt^2} + (K_1+K_2+K_3+K_4) \theta_1 + (D_1+D_2+D_3+D_4)\left(\frac{d\theta_1}{dt} - \frac{d\theta_2}{dt}\right) &= T(t) \\
-    J_1 \frac{d^2\theta_1}{dt^2} + (D_1+D_2+D_3+D_4)\frac{d\theta_1}{dt} + (K_1+K_2+K_3+K_4)\theta_1 - (D_1+D_2+D_3+D_4)\frac{d\theta_2}{dt} &= T(t)
-\end{align*}
-
-{For Inertia 2 ($J_2$):}
-\begin{align*}
-    J_2 \frac{d^2\theta_2}{dt^2} + (D_1+D_2+D_3+D_4)\left(\frac{d\theta_2}{dt} - \frac{d\theta_1}{dt}\right) + (K_5+K_6+K_7+K_8)\theta_2 &= 0 \\
-    J_2 \frac{d^2\theta_2}{dt^2} + (D_1+D_2+D_3+D_4)\frac{d\theta_2}{dt} + (K_5+K_6+K_7+K_8)\theta_2 - (D_1+D_2+D_3+D_4)\frac{d\theta_1}{dt} &= 0
-\end{align*}
-
-\newpage
-\noindent\textbf{Laplace Transform}
-
-\vspace{12pt}
-
-We take the Laplace transform of the equations, assuming zero initial conditions.
-
-\vspace{8pt}
-
-Equation for Inertia 1:
-\[
-[J_1 s^2 + (D_1..D_4)s + (K_1..K_4)]\Theta_1(s) - [(D_1..D_4)s]\Theta_2(s) = T(s)
-\]
-
-Equation for Inertia 2:
-\[
--[(D_1..D_4)s]\Theta_1(s) + [J_2 s^2 + (D_1..D_4)s + (K_5..K_8)]\Theta_2(s) = 0
-\]
-
-Substituting the given numerical values:
-\begin{align}
-    (s^2 + 4s + 4)\Theta_1(s) - 4s\Theta_2(s) &= T(s) \tag{1} \\
-    -4s\Theta_1(s) + (s^2 + 4s + 4)\Theta_2(s) &= 0 \tag{2}
-\end{align}
-
-\noindent\textbf{Solving for the Transfer Function}
-\vspace{8pt}
-
-From equation (2), we express $\Theta_1(s)$ in terms of $\Theta_2(s)$:
-\[
-\Theta_1(s) = \frac{s^2 + 4s + 4}{4s} \Theta_2(s)
-\]
-
-Substitute this into equation (1):
-\[
-(s^2 + 4s + 4) \left( \frac{s^2 + 4s + 4}{4s} \Theta_2(s) \right) - 4s\Theta_2(s) = T(s)
-\]
-
-Factor out $\Theta_2(s)$:
-\[
-\left[ \frac{(s^2 + 4s + 4)^2 - 16s^2}{4s} \right] \Theta_2(s) = T(s)
-\]
-
-Rearrange to find the transfer function $\dfrac{\Theta_2(s)}{T(s)}$:
-\[
-\frac{\Theta_2(s)}{T(s)} = \frac{4s}{(s^2 + 4s + 4)^2 - 16s^2}
-\]
-
-Expand and simplify the denominator:
-\begin{align*}
-    \text{Denominator} &= (s^4 + 8s^3 + 24s^2 + 32s + 16) - 16s^2 \\
-    &= s^4 + 8s^3 + 8s^2 + 32s + 16
-\end{align*}
-
-The final transfer function is:
-\[
-\boxed{\frac{\Theta_2(s)}{T(s)} = \frac{4s}{s^4 + 8s^3 + 8s^2 + 32s + 16}}
-\]
+\end{center}
+\end{enumerate}
 
 % Problem 22 - Rotational Mechanical System
 
@@ -4099,118 +4089,108 @@ G(s) = \frac{\theta_2(s)}{T(s)}
 
 \vspace{12pt}
 
-\noindent \textbf{\textit{Solution:}}
+\noindent \textbf{\textit{Solution:}}\\
+\begin{enumerate}[label=(\alph*),itemindent=*, leftmargin=*, nolistsep]
+    
+    \item Draw the Free Body Diagrams of the provided masses
+\vspace{10pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_1$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_1$};
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$4s\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(210:1.75) arc[start angle=210, end angle=245, radius=1.75];
+                \node at (-2,-1.25){$4\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=15, radius=1.75];
+                \node at (1.75,1.5){$T(s)$};
+                \draw[->, thick] (0,0) ++(10:1.75) arc[start angle=10, end angle=-25, radius=1.75];
+                \node at (2.4,0.1){$4s\theta_2(s)$};
+            \end{tikzpicture}
+    
+            \vspace{15pt}
+    
+            $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+            $T(s) - (s^2 + 4s + 4)\theta_1(s) + 4s\theta_2(s) = 0$ \\ \vspace{10pt}
+            $T(s) = (s^2 + 4s + 4)\theta_1(s) - 4s\theta_2(s)$
 
-\vspace{12pt}
+    \end{center}
 
-\noindent\textbf{Free-Body Diagrams (FBDs)}
+\vspace{15pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_2$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_2$};
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$4s\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(210:1.75) arc[start angle=210, end angle=245, radius=1.75];
+                \node at (-2,-1.25){$4\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=25, radius=1.75];
+                \node at (1.75,1.5){$4s\theta_1(s)$};
+            \end{tikzpicture}
+    
+    \vspace{15pt}
+    
+        $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+        $0 = 4s\theta_1(s) - (s^2 + 4s + 4)\theta_2(s)$\\ \vspace{10pt}
+        $0 = -4s\theta_1(s) + (s^2 + 4s + 4)\theta_2(s)$
 
-\vspace{12pt}
+    \end{center}
 
-We assume clockwise rotation is positive.
+\vspace{15pt}
+    \item Write the displacement equations and provide the matrix form
+\begin{center}
+    T(s) $= (s^2 + 4s + 4)\theta_1(s) - 4s\theta_2(s)$\\
+    0 $= -4s\theta_1(s) + (s^2 + 4s + 4)\theta_2(s)$\\
+    \[
+        \begin{bmatrix}
+        (s^2 + 4s + 4) & -4s \\
+        -4s & (s^2 + 4s + 4)
+        \end{bmatrix}
+        \begin{bmatrix}
+        \theta_1(s) \\
+        \theta_2(s)
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        T(s)\\
+        0
+        \end{bmatrix}
+    \]\\
+\end{center}
+\vspace{15pt}
+    \item Apply Cramer's Rule to get the value of the Transfer Function
+\begin{center}
+    \[
+        \theta_2(s) = 
+            \frac{\begin{vmatrix}
+                (s^2 + 4s + 4) & T(s)\\
+                -4s & 0
+            \end{vmatrix}
+        }{\begin{vmatrix}
+                (s^2 + 4s + 4) & -4s \\
+                -4s & (s^2 + 4s + 4)
+            \end{vmatrix}
+        }
+    \]
+    \[
+    \theta_2(s) = \frac{4s T(s)}{s^4 + 8s^3 + 8s^2 + 32s + 16}
+    \] 
 
-\begin{figure}[h!]
-    \centering
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=1]
-            \node[draw, circle, minimum size=3cm] (j1) {$J_1$};
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.8cm) arc (120:60:1.8cm) node[midway, above] {$\theta_1$};
-            \draw[-{Stealth[length=2.5mm]}, thick, black!50!black] (135:2.35cm) arc (135:45:2.35cm) node[midway, above right] {$T(t)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.8cm) arc(200:160:1.8cm) node[midway, left=2mm]{$(D_1..D_4)\frac{d\theta_1}{dt}$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.8cm) arc(340:320:1.8cm) node[midway, right=2mm]{$(K_1..K_4)(\theta_1-\theta_2)$};
-        \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=1]
-            \node[draw, circle, minimum size=3cm] (j2) {$J_2$};
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.8cm) arc (120:60:1.8cm) node[midway, above] {$\theta_2$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.8cm) arc(200:160:1.8cm) node[midway, left=2mm]{$(K_1..K_4)(\theta_2-\theta_1)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.8cm) arc(340:320:1.8cm) node[midway, right=2mm]{$(D_5..D_8)\frac{d\theta_2}{dt}$};
-        \end{tikzpicture}
-    \end{minipage}
-\end{figure}
+    \[
+    \boxed{\frac{\theta_2(s)}{T(s)} = \frac{4s}{s^4 + 8s^3 + 8s^2 + 32s + 16}}
+    \] 
 
-\noindent\textbf{Equations of Motion}
-
-\vspace{8pt}
-
-\noindent We apply Newton's second law for rotation ($\sum \tau = J \frac{d^2\theta}{dt^2}$) to each mass.
-
-\vspace{8pt}
-
-{For Inertia 1 ($J_1$):}
-\begin{align*}
-    J_1 \frac{d^2\theta_1}{dt^2} + (D_1+D_2+D_3+D_4)\frac{d\theta_1}{dt} + (K_1+K_2+K_3+K_4)(\theta_1 - \theta_2) &= T(t) \\
-    J_1 \frac{d^2\theta_1}{dt^2} + (D_1+D_2+D_3+D_4)\frac{d\theta_1}{dt} + (K_1+K_2+K_3+K_4)\theta_1 - (K_1+K_2+K_3+K_4)\theta_2 &= T(t)
-\end{align*}
-
-{For Inertia 2 ($J_2$):}
-\begin{align*}
-    J_2 \frac{d^2\theta_2}{dt^2} + (D_5+D_6+D_7+D_8)\frac{d\theta_2}{dt} + (K_1+K_2+K_3+K_4)(\theta_2 - \theta_1) &= 0 \\
-    J_2 \frac{d^2\theta_2}{dt^2} + (D_5+D_6+D_7+D_8)\frac{d\theta_2}{dt} + (K_1+K_2+K_3+K_4)\theta_2 - (K_1+K_2+K_3+K_4)\theta_1 &= 0
-\end{align*}
-
-\newpage
-\noindent\textbf{Laplace Transform}
-
-\vspace{12pt}
-
-We take the Laplace transform of the equations, assuming zero initial conditions.
-
-\vspace{8pt}
-
-Equation for Inertia 1:
-\[
-[J_1 s^2 + (D_1..D_4)s + (K_1..K_4)]\Theta_1(s) - [K_1..K_4]\Theta_2(s) = T(s)
-\]
-
-Equation for Inertia 2:
-\[
--[K_1..K_4]\Theta_1(s) + [J_2 s^2 + (D_5..D_8)s + (K_1..K_4)]\Theta_2(s) = 0
-\]
-
-Substituting the given numerical values:
-\begin{align}
-    (s^2 + 4s + 4)\Theta_1(s) - 4\Theta_2(s) &= T(s) \tag{1} \\
-    -4\Theta_1(s) + (s^2 + 4s + 4)\Theta_2(s) &= 0 \tag{2}
-\end{align}
-
-\noindent\textbf{Solving for the Transfer Function}
-\vspace{8pt}
-
-From equation (2), we express $\Theta_1(s)$ in terms of $\Theta_2(s)$:
-\[
-\Theta_1(s) = \frac{s^2 + 4s + 4}{4} \Theta_2(s)
-\]
-
-Substitute this into equation (1):
-\[
-(s^2 + 4s + 4) \left( \frac{s^2 + 4s + 4}{4} \Theta_2(s) \right) - 4\Theta_2(s) = T(s)
-\]
-
-Factor out $\Theta_2(s)$:
-\[
-\left[ \frac{(s^2 + 4s + 4)^2 - 16}{4} \right] \Theta_2(s) = T(s)
-\]
-
-Rearrange to find the transfer function $\dfrac{\Theta_2(s)}{T(s)}$:
-\[
-\frac{\Theta_2(s)}{T(s)} = \frac{4}{(s^2 + 4s + 4)^2 - 16}
-\]
-
-Expand and simplify the denominator:
-\begin{align*}
-    \text{Denominator} &= (s^4 + 8s^3 + 24s^2 + 32s + 16) - 16 \\
-    &= s^4 + 8s^3 + 24s^2 + 32s
-\end{align*}
-
-The final transfer function is:
-\[
-\boxed{\frac{\Theta_2(s)}{T(s)} = \frac{4}{s^4 + 8s^3 + 24s^2 + 32s}}
-\]
+\end{center}
+\end{enumerate}
 
 % Problem 23 - Rotational Mechanical System
 
@@ -4276,140 +4256,112 @@ G(s) = \frac{\theta_2(s)}{T(s)}
 
 \vspace{12pt}
 
+\noindent \textbf{\textit{Solution:}}\\
+\begin{enumerate}[label=(\alph*),itemindent=*, leftmargin=*, nolistsep]
+    
+    \item Draw the Free Body Diagrams of the provided masses
+\vspace{10pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_1$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_1$};
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$4s\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(210:1.75) arc[start angle=210, end angle=245, radius=1.75];
+                \node at (-2,-1.25){$4\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=15, radius=1.75];
+                \node at (1.75,1.5){$T(s)$};
+                \draw[->, thick] (0,0) ++(10:1.75) arc[start angle=10, end angle=-25, radius=1.75];
+                \node at (2.4,0.1){$2s\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(-30:1.75) arc[start angle=-30, end angle=-65, radius=1.75];
+                \node at (2,-1.25){$2\theta_2(s)$};
+            \end{tikzpicture}
+    
+            \vspace{15pt}
+    
+            $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+            $T(s) - (s^2 + 4s + 4)\theta_1(s) + (2s + 2)\theta_2(s) = 0$ \\ \vspace{10pt}
+            $T(s) = (s^2 + 4s + 4)\theta_1(s) - (2s + 2)\theta_2(s)$
 
-\noindent\textbf{\textit{Solution:}}
+    \end{center}
 
-\vspace{12pt}
+\vspace{15pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_2$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_2$};
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$4s\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(210:1.75) arc[start angle=210, end angle=245, radius=1.75];
+                \node at (-2,-1.25){$4\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=25, radius=1.75];
+                \node at (1.75,1.5){$2s\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(20:1.75) arc[start angle=20, end angle=-5, radius=1.75];
+                \node at (2.25,0.6){$2\theta_1(s)$};
+            \end{tikzpicture}
+    
+    \vspace{15pt}
+    
+        $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+        $0 = (2s + 2)\theta_1(s) - (s^2 + 4s + 4)\theta_2(s)$\\ \vspace{10pt}
+        $0 = -(2s + 2)\theta_1(s) + (s^2 + 4s + 4)\theta_2(s)$
 
-\noindent\textbf{Free-Body Diagrams (FBDs)}
+    \end{center}
 
-\vspace{12pt}
+\vspace{15pt}
+    \item Write the displacement equations and provide the matrix form
+\begin{center}
+    T(s) $= (s^2 + 4s + 4)\theta_1(s) - (2s + 2)\theta_2(s)$\\
+    0 $= -(2s + 2)\theta_1(s) + (s^2 + 4s + 4)\theta_2(s)$\\
+    \[
+        \begin{bmatrix}
+        (s^2 + 4s + 4) & -(2s + 2) \\
+        -(2s + 2) & (s^2 + 4s + 4)
+        \end{bmatrix}
+        \begin{bmatrix}
+        \theta_1(s) \\
+        \theta_2(s)
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        T(s)\\
+        0
+        \end{bmatrix}
+    \]\\
+\end{center}
+\vspace{15pt}
+    \item Apply Cramer's Rule to get the value of the Transfer Function
+\begin{center}
+    \[
+        \theta_2(s) = 
+            \frac{\begin{vmatrix}
+                (s^2 + 4s + 4) & T(s)\\
+                -(2s + 2) & 0
+            \end{vmatrix}
+        }{\begin{vmatrix}
+                (s^2 + 4s + 4) & -(2s + 2) \\
+                -(2s + 2) & (s^2 + 4s + 4)
+            \end{vmatrix}
+        }
+    \]
+    \[
+    \theta_2(s) = \frac{(2s+2)T(s)}{s^4 + 8s^3 + 20s^2 + 24s + 12}
+    \] 
 
-We assume clockwise rotation is positive.
+    \[
+    \boxed{\frac{\theta_2(s)}{T(s)} = \frac{2s+2}{s^4 + 8s^3 + 20s^2 + 24s + 12}}
+    \] 
 
-\begin{figure}[h!]
-    \centering
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=1]
-            % Mass J1
-            \node[draw, circle, minimum size=3cm] (j1) {$J_1$};
-            % Positive direction arrow
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.8cm) arc (120:60:1.8cm) node[midway, above] {$\theta_1$};
-            
-            % Applied Torque T(t) - clockwise
-            \draw[-{Stealth[length=2.5mm]}, thick, black!50!black] (135:2.35cm) arc (135:40:2.35cm) node[midway, above right] {$T(t)$};
-            
-            % Torques on the left (from wall) - counter-clockwise
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.8cm) arc(200:160:1.8cm) node[midway, left=2mm]{$(K_1+K_2)\theta_1$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.8cm) arc(245:205:1.8cm) node[midway, below left=2mm]{$(D_1+D_2)\frac{d\theta_1}{dt}$};
-            
-            % Torques on the right (from J2) - counter-clockwise
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.8cm) arc(340:320:1.8cm) node[midway, right=2mm]{$(K_3+K_4)(\theta_1-\theta_2)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (295:1.8cm) arc(295:275:1.8cm) node[midway, below right=2mm]{$(D_3+D_4)\left(\frac{d\theta_1}{dt}-\frac{d\theta_2}{dt}\right)$};
-            
-        \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=1]
-            % Mass J2
-            \node[draw, circle, minimum size=3cm] (j2) {$J_2$};
-             % Positive direction arrow
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.8cm) arc (120:60:1.8cm) node[midway, above] {$\theta_2$};
-            
-            % Torques on the left (from J1) - counter-clockwise
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.8cm) arc(200:160:1.8cm) node[midway, left=2mm]{$(K_3+K_4)(\theta_2-\theta_1)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.8cm) arc(245:205:1.8cm) node[midway, below left=2mm]{$(D_3+D_4)\left(\frac{d\theta_2}{dt}-\frac{d\theta_1}{dt}\right)$};
-            
-            % Torques on the right (from wall) - counter-clockwise
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.8cm) arc(340:320:1.8cm) node[midway, right=2mm]{$(K_5+K_6)\theta_2$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (295:1.8cm) arc(295:275:1.8cm) node[midway, below right=2mm]{$(D_5+D_6)\frac{d\theta_2}{dt}$};
-            
-        \end{tikzpicture}
-    \end{minipage}
-\end{figure}
-
-\noindent\textbf{Equations of Motion}
-
-\vspace{8pt}
-
-\noindent We apply Newton's second law for rotation ($\sum \tau = J \frac{d^2\theta}{dt^2}$) to each mass.
-
-\vspace{8pt}
-
-{For Inertia 1 ($J_1$):}
-\begin{align*}
-    J_1 \frac{d^2\theta_1}{dt^2} + (D_1+D_2) \frac{d\theta_1}{dt} + (K_1+K_2) \theta_1 + (D_3+D_4)\left(\frac{d\theta_1}{dt} - \frac{d\theta_2}{dt}\right) + (K_3+K_4)(\theta_1 - \theta_2) &= T(t) \\
-    J_1 \frac{d^2\theta_1}{dt^2} + (D_1+D_2+D_3+D_4)\frac{d\theta_1}{dt} + (K_1+K_2+K_3+K_4)\theta_1 - (D_3+D_4)\frac{d\theta_2}{dt} - (K_3+K_4)\theta_2 &= T(t)
-\end{align*}
-
-{For Inertia 2 ($J_2$):}
-\begin{align*}
-    J_2 \frac{d^2\theta_2}{dt^2} + (D_5+D_6) \frac{d\theta_2}{dt} + (K_5+K_6) \theta_2 + (D_3+D_4)\left(\frac{d\theta_2}{dt} - \frac{d\theta_1}{dt}\right) + (K_3+K_4)(\theta_2 - \theta_1) &= 0 \\
-    J_2 \frac{d^2\theta_2}{dt^2} + (D_3+D_4+D_5+D_6)\frac{d\theta_2}{dt} + (K_3+K_4+K_5+K_6)\theta_2 - (D_3+D_4)\frac{d\theta_1}{dt} - (K_3+K_4)\theta_1 &= 0
-\end{align*}
-
-\newpage
-\noindent\textbf{Laplace Transform}
-
-\vspace{12pt}
-
-We take the Laplace transform of the equations, assuming zero initial conditions.
-
-\vspace{8pt}
-
-Equation for Inertia 1:
-\[
-[J_1 s^2 + (D_1+D_2+D_3+D_4)s + (K_1+K_2+K_3+K_4)]\Theta_1(s) - [(D_3+D_4)s + (K_3+K_4)]\Theta_2(s) = T(s)
-\]
-
-Equation for Inertia 2:
-\[
--[(D_3+D_4)s + (K_3+K_4)]\Theta_1(s) + [J_2 s^2 + (D_3+D_4+D_5+D_6)s + (K_3+K_4+K_5+K_6)]\Theta_2(s) = 0
-\]
-
-Substituting the given numerical values:
-\begin{align}
-    (s^2 + 4s + 4)\Theta_1(s) - (2s + 2)\Theta_2(s) &= T(s) \tag{1} \\
-    -(2s + 2)\Theta_1(s) + (s^2 + 4s + 4)\Theta_2(s) &= 0 \tag{2}
-\end{align}
-
-\noindent\textbf{Solving for the Transfer Function}
-\vspace{8pt}
-
-From equation (2), we express $\Theta_1(s)$ in terms of $\Theta_2(s)$:
-\[
-\Theta_1(s) = \frac{s^2 + 4s + 4}{2s + 2} \Theta_2(s)
-\]
-
-Substitute this into equation (1):
-\[
-(s^2 + 4s + 4) \left( \frac{s^2 + 4s + 4}{2s + 2} \Theta_2(s) \right) - (2s + 2)\Theta_2(s) = T(s)
-\]
-
-Factor out $\Theta_2(s)$:
-\[
-\left[ \frac{(s^2 + 4s + 4)^2 - (2s + 2)^2}{2s + 2} \right] \Theta_2(s) = T(s)
-\]
-
-Rearrange to find the transfer function $\dfrac{\Theta_2(s)}{T(s)}$:
-\[
-\frac{\Theta_2(s)}{T(s)} = \frac{2s + 2}{(s^2 + 4s + 4)^2 - (2s + 2)^2}
-\]
-
-Expand and simplify the denominator:
-\begin{align*}
-    \text{Denominator} &= (s^4 + 8s^3 + 24s^2 + 32s + 16) - (4s^2 + 8s + 4) \\
-    &= s^4 + 8s^3 + 20s^2 + 24s + 12
-\end{align*}
-
-The final transfer function is:
-\[
-\boxed{\frac{\Theta_2(s)}{T(s)} = \frac{2s + 2}{s^4 + 8s^3 + 20s^2 + 24s + 12}}
-\]
-
+\end{center}
+\end{enumerate}
 
 % Problem 24 - Rotational Mechanical System
 
@@ -4474,136 +4426,112 @@ G(s) = \frac{\theta_2(s)}{T(s)}
 
 \vspace{12pt}
 
+\noindent \textbf{\textit{Solution:}}\\
+\begin{enumerate}[label=(\alph*),itemindent=*, leftmargin=*, nolistsep]
+    
+    \item Draw the Free Body Diagrams of the provided masses
+\vspace{10pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_1$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_1$};
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$6s\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(210:1.75) arc[start angle=210, end angle=245, radius=1.75];
+                \node at (-2,-1.25){$6\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=15, radius=1.75];
+                \node at (1.75,1.5){$T(s)$};
+                \draw[->, thick] (0,0) ++(10:1.75) arc[start angle=10, end angle=-25, radius=1.75];
+                \node at (2.4,0.1){$3s\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(-30:1.75) arc[start angle=-30, end angle=-65, radius=1.75];
+                \node at (2,-1.25){$3\theta_2(s)$};
+            \end{tikzpicture}
+    
+            \vspace{15pt}
+    
+            $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+            $T(s) - (s^2 + 6s + 6)\theta_1(s) + (3s + 3)\theta_2(s) = 0$ \\ \vspace{10pt}
+            $T(s) = (s^2 + 6s + 6)\theta_1(s) - (3s + 3)\theta_2(s)$
 
-\noindent\textbf{\textit{Solution:}}
+    \end{center}
 
-\vspace{12pt}
+\vspace{15pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_2$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_2$};
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$3s\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(210:1.75) arc[start angle=210, end angle=245, radius=1.75];
+                \node at (-2,-1.25){$3\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=25, radius=1.75];
+                \node at (1.75,1.5){$3s\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(20:1.75) arc[start angle=20, end angle=-5, radius=1.75];
+                \node at (2.25,0.6){$3\theta_1(s)$};
+            \end{tikzpicture}
+    
+    \vspace{15pt}
+    
+        $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+        $0 = (3s + 3)\theta_1(s) - (s^2 + 3s + 3)\theta_2(s)$\\ \vspace{10pt}
+        $0 = -(3s + 3)\theta_1(s) + (s^2 + 3s + 3)\theta_2(s)$
 
-\noindent\textbf{Free-Body Diagrams (FBDs)}
+    \end{center}
 
-\vspace{12pt}
+\vspace{15pt}
+    \item Write the displacement equations and provide the matrix form
+\begin{center}
+    T(s) $= (s^2 + 6s + 6)\theta_1(s) - (3s + 3)\theta_2(s)$\\
+    0 $= -(3s + 3)\theta_1(s) + (s^2 + 3s + 3)\theta_2(s)$\\
+    \[
+        \begin{bmatrix}
+        (s^2 + 6s + 6) & -(3s + 3) \\
+        -(3s + 3) & (s^2 + 3s + 3)
+        \end{bmatrix}
+        \begin{bmatrix}
+        \theta_1(s) \\
+        \theta_2(s)
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        T(s)\\
+        0
+        \end{bmatrix}
+    \]\\
+\end{center}
+\vspace{15pt}
+    \item Apply Cramer's Rule to get the value of the Transfer Function
+\begin{center}
+    \[
+        \theta_2(s) = 
+            \frac{\begin{vmatrix}
+                (s^2 + 6s + 6) & T(s)\\
+                -(3s + 3) & 0
+            \end{vmatrix}
+        }{\begin{vmatrix}
+                (s^2 + 6s + 6) & -(3s + 3) \\
+                -(3s + 3) & (s^2 + 3s + 3)
+            \end{vmatrix}
+        }
+    \]
+    \[
+    \theta_2(s) = \frac{(3s+3)T(s)}{s^4 + 9s^3 + 18s^2 + 18s + 9}
+    \] 
 
-We assume clockwise rotation is positive.
+    \[
+    \boxed{\frac{\theta_2(s)}{T(s)} = \frac{3s+3}{s^4 + 9s^3 + 18s^2 + 18s + 9}}
+    \] 
 
-\begin{figure}[h!]
-    \centering
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=1]
-            % Mass J1
-            \node[draw, circle, minimum size=3cm] (j1) {$J_1$};
-            % Positive direction arrow
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.8cm) arc (120:60:1.8cm) node[midway, above] {$\theta_1$};
-            
-            % Applied Torque T(t) - clockwise
-            \draw[-{Stealth[length=2.5mm]}, thick, black!50!black] (135:2.35cm) arc (135:40:2.35cm) node[midway, above right] {$T(t)$};
-            
-            % Torques on the left (from wall) - counter-clockwise
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.8cm) arc(200:160:1.8cm) node[midway, left=2mm]{$(K_1+K_2+K_3)\theta_1$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.8cm) arc(245:205:1.8cm) node[midway, below left=2mm]{$(D_1+D_2+D_3)\frac{d\theta_1}{dt}$};
-            
-            % Torques on the right (from J2) - counter-clockwise
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.8cm) arc(340:320:1.8cm) node[midway, right=2mm]{$(K_4+K_5+K_6)(\theta_1-\theta_2)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (295:1.8cm) arc(295:275:1.8cm) node[midway, below right=2mm]{$(D_4+D_5+D_6)\left(\frac{d\theta_1}{dt}-\frac{d\theta_2}{dt}\right)$};
-            
-        \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=1]
-            % Mass J2
-            \node[draw, circle, minimum size=3cm] (j2) {$J_2$};
-             % Positive direction arrow
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.8cm) arc (120:60:1.8cm) node[midway, above] {$\theta_2$};
-            
-            % Torques on the left (from J1) - counter-clockwise
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.8cm) arc(200:160:1.8cm) node[midway, left=2mm]{$(K_4+K_5+K_6)(\theta_2-\theta_1)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.8cm) arc(245:205:1.8cm) node[midway, below left=2mm]{$(D_4+D_5+D_6)\left(\frac{d\theta_2}{dt}-\frac{d\theta_1}{dt}\right)$};
-            
-        \end{tikzpicture}
-    \end{minipage}
-\end{figure}
-
-\noindent\textbf{Equations of Motion}
-
-\vspace{8pt}
-
-\noindent We apply Newton's second law for rotation ($\sum \tau = J \frac{d^2\theta}{dt^2}$) to each mass.
-
-\vspace{8pt}
-
-{For Inertia 1 ($J_1$):}
-\begin{align*}
-    J_1 \frac{d^2\theta_1}{dt^2} + (D_1+D_2+D_3) \frac{d\theta_1}{dt} + (K_1+K_2+K_3) \theta_1 + (D_4+D_5+D_6)\left(\frac{d\theta_1}{dt} - \frac{d\theta_2}{dt}\right) + (K_4+K_5+K_6)(\theta_1 - \theta_2) &= T(t) \\
-    J_1 \frac{d^2\theta_1}{dt^2} + (D_1+D_2+D_3+D_4+D_5+D_6)\frac{d\theta_1}{dt} + (K_1+K_2+K_3+K_4+K_5+K_6)\theta_1 - (D_4+D_5+D_6)\frac{d\theta_2}{dt} - (K_4+K_5+K_6)\theta_2 &= T(t)
-\end{align*}
-
-{For Inertia 2 ($J_2$):}
-\begin{align*}
-    J_2 \frac{d^2\theta_2}{dt^2} + (D_4+D_5+D_6)\left(\frac{d\theta_2}{dt} - \frac{d\theta_1}{dt}\right) + (K_4+K_5+K_6)(\theta_2 - \theta_1) &= 0 \\
-    J_2 \frac{d^2\theta_2}{dt^2} + (D_4+D_5+D_6)\frac{d\theta_2}{dt} + (K_4+K_5+K_6)\theta_2 - (D_4+D_5+D_6)\frac{d\theta_1}{dt} - (K_4+K_5+K_6)\theta_1 &= 0
-\end{align*}
-
-\newpage
-\noindent\textbf{Laplace Transform}
-
-\vspace{12pt}
-
-We take the Laplace transform of the equations, assuming zero initial conditions.
-
-\vspace{8pt}
-
-Equation for Inertia 1:
-\[
-[J_1 s^2 + (D_1..D_6)s + (K_1..K_6)]\Theta_1(s) - [(D_4+D_5+D_6)s + (K_4+K_5+K_6)]\Theta_2(s) = T(s)
-\]
-
-Equation for Inertia 2:
-\[
--[(D_4+D_5+D_6)s + (K_4+K_5+K_6)]\Theta_1(s) + [J_2 s^2 + (D_4+D_5+D_6)s + (K_4+K_5+K_6)]\Theta_2(s) = 0
-\]
-
-Substituting the given numerical values:
-\begin{align}
-    (s^2 + 6s + 6)\Theta_1(s) - (3s + 3)\Theta_2(s) &= T(s) \tag{1} \\
-    -(3s + 3)\Theta_1(s) + (s^2 + 3s + 3)\Theta_2(s) &= 0 \tag{2}
-\end{align}
-
-\noindent\textbf{Solving for the Transfer Function}
-\vspace{8pt}
-
-From equation (2), we express $\Theta_1(s)$ in terms of $\Theta_2(s)$:
-\[
-\Theta_1(s) = \frac{s^2 + 3s + 3}{3s + 3} \Theta_2(s)
-\]
-
-Substitute this into equation (1):
-\[
-(s^2 + 6s + 6) \left( \frac{s^2 + 3s + 3}{3s + 3} \Theta_2(s) \right) - (3s + 3)\Theta_2(s) = T(s)
-\]
-
-Factor out $\Theta_2(s)$:
-\[
-\left[ \frac{(s^2 + 6s + 6)(s^2 + 3s + 3) - (3s + 3)^2}{3s + 3} \right] \Theta_2(s) = T(s)
-\]
-
-Rearrange to find the transfer function $\dfrac{\Theta_2(s)}{T(s)}$:
-\[
-\frac{\Theta_2(s)}{T(s)} = \frac{3s + 3}{(s^2 + 6s + 6)(s^2 + 3s + 3) - (3s + 3)^2}
-\]
-
-Expand and simplify the denominator:
-\begin{align*}
-    \text{Denominator} &= (s^4 + 9s^3 + 27s^2 + 36s + 18) - (9s^2 + 18s + 9) \\
-    &= s^4 + 9s^3 + 18s^2 + 18s + 9
-\end{align*}
-
-The final transfer function is:
-\[
-\boxed{\frac{\Theta_2(s)}{T(s)} = \frac{3s + 3}{s^4 + 9s^3 + 18s^2 + 18s + 9}}
-\]
-
+\end{center}
+\end{enumerate}
 
 % Problem 25 - Rotational Mechanical System
 
@@ -4668,134 +4596,112 @@ G(s) = \frac{\theta_2(s)}{T(s)}
 
 \vspace{12pt}
 
-\noindent\textbf{\textit{Solution:}}
+\noindent \textbf{\textit{Solution:}}\\
+\begin{enumerate}[label=(\alph*),itemindent=*, leftmargin=*, nolistsep]
+    
+    \item Draw the Free Body Diagrams of the provided masses
+\vspace{10pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_1$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_1$};
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$6s\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(210:1.75) arc[start angle=210, end angle=245, radius=1.75];
+                \node at (-2,-1.25){$7\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=15, radius=1.75];
+                \node at (1.75,1.5){$T(s)$};
+                \draw[->, thick] (0,0) ++(10:1.75) arc[start angle=10, end angle=-25, radius=1.75];
+                \node at (2.4,0.1){$3s\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(-30:1.75) arc[start angle=-30, end angle=-65, radius=1.75];
+                \node at (2,-1.25){$3\theta_2(s)$};
+            \end{tikzpicture}
+    
+            \vspace{15pt}
+    
+            $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+            $T(s) - (s^2 + 6s + 7)\theta_1(s) + (3s + 3)\theta_2(s) = 0$ \\ \vspace{10pt}
+            $T(s) = (s^2 + 6s + 7)\theta_1(s) - (3s + 3)\theta_2(s)$
 
-\vspace{12pt}
+    \end{center}
 
-\noindent\textbf{Free-Body Diagrams (FBDs)}
+\vspace{15pt}
+    \begin{center}
+            \textbf{Free Body Diagram at $J_2$} \\[6pt]
+            \vspace{15pt}
+            \begin{tikzpicture}
+                \draw (0,0) circle (1.5);
+                \node at (0,0) {$J_2$};
+                \draw[->, thick] (0,0) ++(130:1.75) arc[start angle=130, end angle=165, radius=1.75];
+                \node at (-1.75,1.5){$s^2\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(170:1.75) arc[start angle=170, end angle=205, radius=1.75];
+                \node at (-2.4,0.1){$3s\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(210:1.75) arc[start angle=210, end angle=245, radius=1.75];
+                \node at (-2,-1.25){$3\theta_2(s)$};
+                \draw[->, thick] (0,0) ++(50:1.75) arc[start angle=50, end angle=25, radius=1.75];
+                \node at (1.75,1.5){$3s\theta_1(s)$};
+                \draw[->, thick] (0,0) ++(20:1.75) arc[start angle=20, end angle=-5, radius=1.75];
+                \node at (2.25,0.6){$3\theta_1(s)$};
+            \end{tikzpicture}
+    
+    \vspace{15pt}
+    
+        $\sum T_0 = 0 \quad\text{(clockwise, +)}$ \\ \vspace{10pt}
+        $0 = (3s + 3)\theta_1(s) - (s^2 + 3s + 3)\theta_2(s)$\\ \vspace{10pt}
+        $0 = -(3s + 3)\theta_1(s) + (s^2 + 3s + 3)\theta_2(s)$
 
-\vspace{12pt}
+    \end{center}
 
-We assume clockwise rotation is positive.
+\vspace{15pt}
+    \item Write the displacement equations and provide the matrix form
+\begin{center}
+    T(s) $= (s^2 + 6s + 7)\theta_1(s) - (3s + 3)\theta_2(s)$\\
+    0 $= -(3s + 3)\theta_1(s) + (s^2 + 3s + 3)\theta_2(s)$\\
+    \[
+        \begin{bmatrix}
+        (s^2 + 6s + 7) & -(3s + 3) \\
+        -(3s + 3) & (s^2 + 3s + 3)
+        \end{bmatrix}
+        \begin{bmatrix}
+        \theta_1(s) \\
+        \theta_2(s)
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        T(s)\\
+        0
+        \end{bmatrix}
+    \]\\
+\end{center}
+\vspace{15pt}
+    \item Apply Cramer's Rule to get the value of the Transfer Function
+\begin{center}
+    \[
+        \theta_2(s) = 
+            \frac{\begin{vmatrix}
+                (s^2 + 6s + 7) & T(s)\\
+                -(3s + 3) & 0
+            \end{vmatrix}
+        }{\begin{vmatrix}
+                (s^2 + 6s + 7) & -(3s + 3) \\
+                -(3s + 3) & (s^2 + 3s + 3)
+            \end{vmatrix}
+        }
+    \]
+    \[
+    \theta_2(s) = \frac{(3s+3)T(s)}{s^4 + 9s^3 + 19s^2 + 21s + 12}
+    \] 
 
-\begin{figure}[h!]
-    \centering
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=1]
-            % Mass J1
-            \node[draw, circle, minimum size=3cm] (j1) {$J_1$};
-            % Positive direction arrow
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.8cm) arc (120:60:1.8cm) node[midway, above] {$\theta_1$};
-            
-            % Applied Torque T(t) - clockwise
-            \draw[-{Stealth[length=2.5mm]}, thick, black!50!black] (135:2.35cm) arc (135:40:2.35cm) node[midway, above right] {$T(t)$};
-            
-            % Torques on the left (from wall) - counter-clockwise
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.8cm) arc(200:160:1.8cm) node[midway, left=2mm]{$(K_1+K_2+K_3)\theta_1$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.8cm) arc(245:205:1.8cm) node[midway, below left=2mm]{$(D_1+D_2+D_3)\frac{d\theta_1}{dt}$};
-            
-            % Torques on the right (from J2) - counter-clockwise
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (340:1.8cm) arc(340:320:1.8cm) node[midway, right=2mm]{$(K_4+K_5+K_6)(\theta_1-\theta_2)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (295:1.8cm) arc(295:275:1.8cm) node[midway, below right=2mm]{$(D_4+D_5+D_6)\left(\frac{d\theta_1}{dt}-\frac{d\theta_2}{dt}\right)$};
-            
-        \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=1]
-            % Mass J2
-            \node[draw, circle, minimum size=3cm] (j2) {$J_2$};
-             % Positive direction arrow
-            \draw[-{Stealth[length=2.5mm]}, thick] (120:1.8cm) arc (120:60:1.8cm) node[midway, above] {$\theta_2$};
-            
-            % Torques on the left (from J1) - counter-clockwise
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (200:1.8cm) arc(200:160:1.8cm) node[midway, left=2mm]{$(K_4+K_5+K_6)(\theta_2-\theta_1)$};
-            \draw[{Stealth[length=2.5mm]}-, thick, black] (245:1.8cm) arc(245:205:1.8cm) node[midway, below left=2mm]{$(D_4+D_5+D_6)\left(\frac{d\theta_2}{dt}-\frac{d\theta_1}{dt}\right)$};
-            
-        \end{tikzpicture}
-    \end{minipage}
-\end{figure}
+    \[
+    \boxed{\frac{\theta_2(s)}{T(s)} = \frac{3s+3}{s^4 + 9s^3 + 19s^2 + 21s + 12}}
+    \] 
 
-\noindent\textbf{Equations of Motion}
-
-\vspace{8pt}
-
-\noindent We apply Newton's second law for rotation ($\sum \tau = J \frac{d^2\theta}{dt^2}$) to each mass.
-
-\vspace{8pt}
-
-{For Inertia 1 ($J_1$):}
-\begin{align*}
-    J_1 \frac{d^2\theta_1}{dt^2} + (D_1+D_2+D_3) \frac{d\theta_1}{dt} + (K_1+K_2+K_3) \theta_1 + (D_4+D_5+D_6)\left(\frac{d\theta_1}{dt} - \frac{d\theta_2}{dt}\right) + (K_4+K_5+K_6)(\theta_1 - \theta_2) &= T(t) \\
-    J_1 \frac{d^2\theta_1}{dt^2} + (D_1+D_2+D_3+D_4+D_5+D_6)\frac{d\theta_1}{dt} + (K_1+K_2+K_3+K_4+K_5+K_6)\theta_1 - (D_4+D_5+D_6)\frac{d\theta_2}{dt} - (K_4+K_5+K_6)\theta_2 &= T(t)
-\end{align*}
-
-{For Inertia 2 ($J_2$):}
-\begin{align*}
-    J_2 \frac{d^2\theta_2}{dt^2} + (D_4+D_5+D_6)\left(\frac{d\theta_2}{dt} - \frac{d\theta_1}{dt}\right) + (K_4+K_5+K_6)(\theta_2 - \theta_1) &= 0 \\
-    J_2 \frac{d^2\theta_2}{dt^2} + (D_4+D_5+D_6)\frac{d\theta_2}{dt} + (K_4+K_5+K_6)\theta_2 - (D_4+D_5+D_6)\frac{d\theta_1}{dt} - (K_4+K_5+K_6)\theta_1 &= 0
-\end{align*}
-
-\newpage
-\noindent\textbf{Laplace Transform}
-
-\vspace{12pt}
-
-We take the Laplace transform of the equations, assuming zero initial conditions.
-
-\vspace{8pt}
-
-Equation for Inertia 1:
-\[
-[J_1 s^2 + (D_1..D_6)s + (K_1..K_6)]\Theta_1(s) - [(D_4+D_5+D_6)s + (K_4+K_5+K_6)]\Theta_2(s) = T(s)
-\]
-
-Equation for Inertia 2:
-\[
--[(D_4+D_5+D_6)s + (K_4+K_5+K_6)]\Theta_1(s) + [J_2 s^2 + (D_4+D_5+D_6)s + (K_4+K_5+K_6)]\Theta_2(s) = 0
-\]
-
-Substituting the given numerical values:
-\begin{align}
-    (s^2 + 6s + 7)\Theta_1(s) - (3s + 3)\Theta_2(s) &= T(s) \tag{1} \\
-    -(3s + 3)\Theta_1(s) + (s^2 + 3s + 3)\Theta_2(s) &= 0 \tag{2}
-\end{align}
-
-\noindent\textbf{Solving for the Transfer Function}
-\vspace{8pt}
-
-From equation (2), we express $\Theta_1(s)$ in terms of $\Theta_2(s)$:
-\[
-\Theta_1(s) = \frac{s^2 + 3s + 3}{3s + 3} \Theta_2(s)
-\]
-
-Substitute this into equation (1):
-\[
-(s^2 + 6s + 7) \left( \frac{s^2 + 3s + 3}{3s + 3} \Theta_2(s) \right) - (3s + 3)\Theta_2(s) = T(s)
-\]
-
-Factor out $\Theta_2(s)$:
-\[
-\left[ \frac{(s^2 + 6s + 7)(s^2 + 3s + 3) - (3s + 3)^2}{3s + 3} \right] \Theta_2(s) = T(s)
-\]
-
-Rearrange to find the transfer function $\dfrac{\Theta_2(s)}{T(s)}$:
-\[
-\frac{\Theta_2(s)}{T(s)} = \frac{3s + 3}{(s^2 + 6s + 7)(s^2 + 3s + 3) - (3s + 3)^2}
-\]
-
-Expand and simplify the denominator:
-\begin{align*}
-    \text{Denominator} &= (s^4 + 9s^3 + 28s^2 + 39s + 21) - (9s^2 + 18s + 9) \\
-    &= s^4 + 9s^3 + 19s^2 + 21s + 12
-\end{align*}
-
-The final transfer function is:
-\[
-\boxed{\frac{\Theta_2(s)}{T(s)} = \frac{3s + 3}{s^4 + 9s^3 + 19s^2 + 21s + 12}}
-\]
+\end{center}
+\end{enumerate}
 
 % Problem 26 - Transfer Function Involving Gears
 
@@ -5390,8 +5296,8 @@ T(s) = J_{\text{eq}} s^2 \theta_1(s) + D_{\text{eq}} s \theta_1(s) + K_{\text{eq
 
         \draw (14.5,-1.5) -- (14.5,-2.5);
         \hdamper{(14.5, -1.5)}{$D_4$}
-        \hdamper{(16.5, -1.5)}{$D_2$}
-        \hdamper{(18.5, -1.5)}{$D_3$}
+        \hdamper{(16.5, -1.5)}{$D_5$}
+        \hdamper{(18.5, -1.5)}{$D_6$}
         \blspring{14.5,-2.5}{$K_4$}
         \blspring{16.5,-2.5}{$K_5$}
         \blspring{18.5,-2.5}{$K_6$}
@@ -5607,10 +5513,10 @@ T(s) = J_{\text{eq}} s^2 \theta_1(s) + D_{\text{eq}} s \theta_1(s) + K_{\text{eq
 J_1 &= 1\, \text{kg}\cdot\text{m}^2 & D_1 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} & N_1 &= 20 \\
 J_2 &= 1\, \text{kg}\cdot\text{m}^2 & D_2 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} & N_2 &= 10 \\
 J_3 &= 1\, \text{kg}\cdot\text{m}^2 & D_3 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} & N_3 &= 30 \\
-& & & & D_4 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} & N_4 &= 15 \\
-& & & & D_5 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} & & \\
-& & & & D_6 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} & & \\
-& & & & D_7 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} & &
+& & D_4 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} & N_4 &= 15 \\
+& & D_5 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} & & \\
+& & D_6 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} & & \\
+& & D_7 &= 1\, \text{N}\cdot\text{m}\cdot\text{s/rad} & &
 \end{aligned}
 \]
 

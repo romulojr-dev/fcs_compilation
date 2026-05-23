@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.18)  23 MAY 2026 16:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.18)  23 MAY 2026 15:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/romul/OneDrive/Desktop/fcs_compilation/problems 1-50.tex"
-(c:/Users/romul/OneDrive/Desktop/fcs_compilation/problems 1-50.tex
+**c:/Users/romul/OneDrive/Desktop/fcs_compilation/old.tex
+(c:/Users/romul/OneDrive/Desktop/fcs_compilation/old.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
 (C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -666,8 +666,8 @@ Package translations Info: No language package found. I am going to use `english
  (C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count366
-) (problems 1-50.aux)
-\openout1 = `"problems 1-50.aux"'.
+) (old.aux)
+\openout1 = `old.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 248.
 LaTeX Font Info:    ... okay on input line 248.
@@ -766,294 +766,229 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 LaTeX Font Info:    Trying to load font information for U+esvect on input line 317.
  (C:\Users\romul\AppData\Local\Programs\MiKTeX\tex/latex/esvect\uesvect.fd
 File: uesvect.fd 
-)
-Underfull \hbox (badness 10000) in paragraph at lines 455--456
+) [1] [2] [3] [4] [5] [6] [5] [6]
+Underfull \hbox (badness 10000) in paragraph at lines 841--842
 
  []
 
-[1] [2] [3] [5] [5] [6] [7]
+[7] [8]
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
+Missing character: There is no ` in font nullfont!
 [9] [10]
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-[2] [3]
+Missing character: There is no ` in font nullfont!
+[2]
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-[12] [13]
+Missing character: There is no ` in font nullfont!
+[12]
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-[13] [14]
+Missing character: There is no ` in font nullfont!
+[13]
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
+Missing character: There is no ` in font nullfont!
 [14] [15]
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
+Missing character: There is no ` in font nullfont!
 [16] [17]
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
+Missing character: There is no ` in font nullfont!
 [18] [19]
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
+Missing character: There is no ` in font nullfont!
 [20] [21]
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
+Missing character: There is no ` in font nullfont!
 [22] [23]
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-[24] [25]
-Underfull \hbox (badness 10000) in paragraph at lines 2930--2931
+Missing character: There is no ` in font nullfont!
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 2505--2508
 
  []
 
 [25] [26]
-Underfull \hbox (badness 10000) in paragraph at lines 3155--3156
+Underfull \hbox (badness 10000) in paragraph at lines 2647--2650
 
  []
 
 [27] [28]
-Underfull \hbox (badness 10000) in paragraph at lines 3319--3323
+Underfull \hbox (badness 10000) in paragraph at lines 2797--2801
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3382--3383
+Underfull \hbox (badness 10000) in paragraph at lines 2837--2841
 
+ []
+
+
+Overfull \hbox (91.31644pt too wide) detected at line 2865
+\OMS/cmsy/m/n/10.95 ^^@[]\OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[][]s ^^R[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 s\OT1/cmr/m/n/10.95 ) + []\OML/cmm/m/it/10.95 J[]s[] \OT1/cmr/m/n/10.95 + (\OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 s[]^^R[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 s\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^@ []\OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[][]s ^^R[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 s\OT1/cmr/m/n/10.95 ) = 0\OML/cmm/m/it/10.95 :
  []
 
 [29] [30]
-Underfull \hbox (badness 10000) in paragraph at lines 3516--3520
+Underfull \hbox (badness 10000) in paragraph at lines 2993--2997
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3575--3576
+Underfull \hbox (badness 10000) in paragraph at lines 3034--3038
 
+ []
+
+
+Overfull \hbox (76.01543pt too wide) detected at line 3062
+\OMS/cmsy/m/n/10.95 ^^@[]\OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[][]^^R[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 s\OT1/cmr/m/n/10.95 ) + []\OML/cmm/m/it/10.95 J[]s[] \OT1/cmr/m/n/10.95 + (\OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[]\OT1/cmr/m/n/10.95 )[]\OML/cmm/m/it/10.95 ^^R[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 s\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^@ []\OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[][]^^R[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 s\OT1/cmr/m/n/10.95 ) = 0\OML/cmm/m/it/10.95 :
  []
 
 [31] [32]
-Underfull \hbox (badness 10000) in paragraph at lines 3707--3711
+Underfull \hbox (badness 10000) in paragraph at lines 3178--3182
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3755--3756
+Underfull \hbox (badness 10000) in paragraph at lines 3210--3214
 
  []
 
 [33] [34]
-Underfull \hbox (badness 10000) in paragraph at lines 3867--3871
+Underfull \hbox (badness 10000) in paragraph at lines 3322--3326
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3926--3927
+Underfull \hbox (badness 10000) in paragraph at lines 3365--3369
 
  []
 
 [35] [36]
-Underfull \hbox (badness 10000) in paragraph at lines 4033--4037
+Underfull \hbox (badness 10000) in paragraph at lines 3467--3471
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4092--4093
+Underfull \hbox (badness 10000) in paragraph at lines 3510--3514
 
  []
 
 [37] [38]
-Underfull \hbox (badness 10000) in paragraph at lines 4199--4203
+Underfull \hbox (badness 10000) in paragraph at lines 3612--3616
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4259--4260
+Underfull \hbox (badness 10000) in paragraph at lines 3653--3657
 
  []
 
 [39] [40]
-Underfull \hbox (badness 10000) in paragraph at lines 4370--4374
+Underfull \hbox (badness 10000) in paragraph at lines 3751--3755
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4429--4430
+Underfull \hbox (badness 10000) in paragraph at lines 3791--3794
 
+ []
+
+
+Overfull \hbox (132.50652pt too wide) detected at line 3800
+[]\OML/cmm/m/it/10.95 J[]s[] \OT1/cmr/m/n/10.95 + (\OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 s \OT1/cmr/m/n/10.95 + (\OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[]\OT1/cmr/m/n/10.95 )[] \OML/cmm/m/it/10.95 ^^R[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 s\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^@ []\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 D[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 s \OT1/cmr/m/n/10.95 + (\OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 K[]\OT1/cmr/m/n/10.95 )[] \OML/cmm/m/it/10.95 ^^R[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 s\OT1/cmr/m/n/10.95 ) = \OML/cmm/m/it/10.95 T\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 s\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 :
  []
 
 [41] [42]
-Underfull \hbox (badness 10000) in paragraph at lines 4540--4544
+Underfull \hbox (badness 10000) in paragraph at lines 3892--3896
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4599--4600
+Underfull \hbox (badness 10000) in paragraph at lines 3932--3936
 
  []
 
-[43] [44] [45] [46] [46] [47] [47] [48] [49] [50] [50] [51]
-Underfull \hbox (badness 10000) in paragraph at lines 5698--5699
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5703--5704
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5710--5711
+[43] [44] [45] [46] [47] [48] [49] [50]
+Underfull \hbox (badness 10000) in paragraph at lines 4594--4599
 
  []
 
 [51]
-Underfull \hbox (badness 10000) in paragraph at lines 5745--5746
+Underfull \hbox (badness 10000) in paragraph at lines 4701--4703
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 5756--5757
-
- []
-
-[52]
-Underfull \hbox (badness 10000) in paragraph at lines 5827--5828
+[52] [53]
+Underfull \hbox (badness 10000) in paragraph at lines 4814--4816
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 5832--5833
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5839--5840
+[54] [55]
+Underfull \hbox (badness 10000) in paragraph at lines 4928--4930
 
  []
 
-[52]
-Underfull \hbox (badness 10000) in paragraph at lines 5874--5875
+[56] [57]
+Underfull \hbox (badness 10000) in paragraph at lines 5054--5056
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 5885--5886
-
- []
-
-[53]
-Underfull \hbox (badness 10000) in paragraph at lines 5955--5956
+[58] [59] [60] [61] [62] [63] [64] [65] [66] [67] [68] [69]
+Underfull \hbox (badness 10000) in paragraph at lines 6582--6584
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 5960--5961
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5967--5968
+[70] [71]
+Underfull \hbox (badness 10000) in paragraph at lines 6711--6713
 
  []
 
-[54]
-Underfull \hbox (badness 10000) in paragraph at lines 6002--6003
+[72] [73]
+Underfull \hbox (badness 10000) in paragraph at lines 6835--6837
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 6013--6014
-
- []
-
-[55]
-Underfull \hbox (badness 10000) in paragraph at lines 6083--6084
+[74] [75]
+Underfull \hbox (badness 10000) in paragraph at lines 6959--6960
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 6088--6089
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6095--6096
+[1]
+Underfull \hbox (badness 10000) in paragraph at lines 7085--7087
 
  []
 
-[56]
-Underfull \hbox (badness 10000) in paragraph at lines 6130--6131
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6141--6142
-
- []
-
-[57]
-Underfull \hbox (badness 10000) in paragraph at lines 6211--6212
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6216--6217
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6223--6224
-
- []
-
-[58]
-Underfull \hbox (badness 10000) in paragraph at lines 6258--6259
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6269--6270
-
- []
-
-[59]
-Underfull \hbox (badness 10000) in paragraph at lines 6279--6283
-
- []
-
-[0] [60] [61] [62] [63] [64] [64] [65] [66] [67] [67] [68] [69] [70] [71] [72]
-Overfull \hbox (4.67308pt too wide) detected at line 8313
-[] \OT1/cmr/m/n/10 = []
- []
-
-[73] [74] [75] [1] [2] [77]
-Overfull \hbox (26.2062pt too wide) detected at line 8775
-[] \OT1/cmr/m/n/10 = []
- []
-
-[78] (problems 1-50.aux)
+[77] [78] (old.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 52540 strings out of 467691
- 1456204 string characters out of 5414987
- 2210160 words of memory out of 5000000
- 81017 multiletter control sequences out of 15000+600000
- 645072 words of font info for 111 fonts, out of 8000000 for 9000
+ 52385 strings out of 467691
+ 1453982 string characters out of 5414987
+ 2214592 words of memory out of 5000000
+ 80873 multiletter control sequences out of 15000+600000
+ 642143 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,13n,94p,835b,1061s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on "problems 1-50.pdf" (91 pages, 688807 bytes).
+ 88i,15n,94p,823b,1067s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\romul\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/romul/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on old.pdf (81 pages, 706973 bytes).
 PDF statistics:
- 377 PDF objects out of 1000 (max. 8388607)
+ 362 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  22 words of extra memory for PDF output out of 10000 (max. 10000000)
 
